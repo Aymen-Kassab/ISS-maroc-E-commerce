@@ -449,7 +449,90 @@
 
         <!-- Overlay for mobile -->
         <div class="overlay" id="overlay" onclick="closeMobileMenu()"></div>
-        
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                loadComputers();
+            });
+
+            function loadComputers() {
+                const container = document.getElementById("productsGrid");
+                
+                fetch("http://localhost:8080/api/computers")
+                .then(response => {
+                    if (!response.ok) throw new Error("Network response was not ok");
+                    return response.json();
+                })
+                .then(data => {
+                    container.innerHTML = ""; // Clear existing content
+                    
+                    if (!data || data.length === 0) {
+                        container.innerHTML = `<div class="no-results">Aucun ordinateur trouvé</div>`;
+                        return;
+                    }
+
+                    data.forEach(computer => {
+                        const card = createComputerCard(computer);
+                        container.appendChild(card);
+                    });
+                })
+                .catch(error => {
+                    console.error("Fetch error:", error);
+                    container.innerHTML = `<div class="error">Erreur de chargement: ${error.message}</div>`;
+                });
+            }
+
+            function createComputerCard(computer) {
+                const card = document.createElement("div");
+                card.className = "product-card";
+                
+                // Set data attributes for filtering
+                card.dataset.brand = computer.brand || '';
+                card.dataset.type = computer.type || '';
+                card.dataset.price = computer.price || 0;
+                
+                // Handle image URL
+                let imageUrl = '/placeholder.svg';
+                if (computer.imageUrls && computer.imageUrls.length > 0) {
+                    imageUrl = computer.imageUrls[0].startsWith('http') 
+                        ? computer.imageUrls[0] 
+                        : `http://localhost:8080${computer.imageUrls[0]}`;
+                }
+
+                card.innerHTML = `
+                    <div class="product-image">
+                        <img src="${imageUrl}" alt="${computer.name || 'Ordinateur'}">
+                        ${computer.category ? `<div class="product-badge">${computer.category}</div>` : ''}
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">${computer.type || 'Non spécifié'}</div>
+                        <h3 class="product-title">${computer.name || 'Nom non disponible'}</h3>
+                        <div class="product-specs">
+                            ${computer.processor ? `<span class="spec-highlight">${computer.processor}</span>` : ''}
+                            ${computer.memory ? ` • ${computer.memory} RAM` : ''}
+                            ${computer.storage ? ` • ${computer.storage}` : ''}
+                        </div>
+                        <div class="product-price">
+                            <span class="price-current">${computer.price ? `${computer.price} DH` : 'Prix non disponible'}</span>
+                            ${computer.oldPrice ? `<span class="price-old">${computer.oldPrice} DH</span>` : ''}
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-shopping-cart"></i> Ajouter
+                            </button>
+                            <button class="btn-secondary wishlist">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                // Add event listeners
+                card.querySelector('.add-to-cart').addEventListener('click', () => addToCart(computer.id));
+                card.querySelector('.wishlist').addEventListener('click', () => addToWishlist(computer.id));
+                
+                return card;
+}
+        </script>
         <script src="js_client/client_computer.js"></script>
     </body>
 </html>
