@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ISS MAROC - Gestion des Équipements Réseau</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="stylesheet" href="css_admin/admin_network.css">
+    </head>
+    <body>
+        <!-- Sidebar Overlay -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="#" class="sidebar-logo">
+                    <i class="fas fa-store"></i>
+                    ISS MAROC
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-item">
+                    <a href="admin_home.html" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        <span>Accueil</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin_news.html" class="nav-link">
+                        <i class="fas fa-star"></i>
+                        <span>Nouveautés</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin_computer.html" class="nav-link">
+                        <i class="fas fa-laptop"></i>
+                        <span>Ordinateurs</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin_scanner.html" class="nav-link">
+                        <i class="fas fa-print"></i>
+                        <span>Imprimantes</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link active">
+                        <i class="fas fa-network-wired"></i>
+                        <span>Réseaux</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin_command.html" class="nav-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Commandes</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin_messages.html" class="nav-link">
+                        <i class="fas fa-envelope"></i>
+                        <span>Messages</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content" id="mainContent">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="mobile-toggle" id="mobileToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="page-title" id="pageTitle">Équipements Réseau</h1>
+                </div>
+                <div class="header-right">
+                    <div class="user-profile">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <span class="user-name">Admin</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content" id="dashboardContent">
+                <!-- Network Section -->
+                <div class="network-section">
+                    <!-- Add Network Equipment Form -->
+                    <div class="section-card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-plus-circle"></i> Ajouter un Nouvel Équipement Réseau</h2>
+                            <p>Remplissez les informations ci-dessous pour ajouter un nouvel équipement réseau à votre catalogue</p>
+                        </div>
+                        
+                        <div class="card-content">
+                            <form id="addNetworkForm" enctype="multipart/form-data">
+                                <div class="form-grid">
+                                    <!-- Equipment Name -->
+                                    <div class="form-group">
+                                        <label class="form-label" for="equipmentName">
+                                            <i class="fas fa-network-wired"></i> Nom de l'Équipement *
+                                        </label>
+                                        <input type="text" id="equipmentName" name="equipmentName" class="form-input" 
+                                            placeholder="Ex: Cisco Catalyst 2960-X Series" required>
+                                    </div>
+
+                                    <!-- Brand -->
+                                    <div class="form-group">
+                                        <label class="form-label" for="brand">
+                                            <i class="fas fa-copyright"></i> Marque *
+                                        </label>
+                                        <select id="brand" name="brand" class="form-select" required>
+                                            <option value="">Sélectionner une marque</option>
+                                            <option value="Cisco">Cisco</option>
+                                            <option value="HP">HP</option>
+                                            <option value="Dell">Dell</option>
+                                            <option value="Netgear">Netgear</option>
+                                            <option value="D-Link">D-Link</option>
+                                            <option value="TP-Link">TP-Link</option>
+                                            <option value="Ubiquiti">Ubiquiti</option>
+                                            <option value="Juniper">Juniper</option>
+                                            <option value="Aruba">Aruba</option>
+                                            <option value="Fortinet">Fortinet</option>
+                                            <option value="Autre">Autre</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Model -->
+                                    <div class="form-group">
+                                        <label class="form-label" for="model">
+                                            <i class="fas fa-tag"></i> Modèle *
+                                        </label>
+                                        <input type="text" id="model" name="model" class="form-input" 
+                                            placeholder="Ex: WS-C2960X-24TS-L" required>
+                                    </div>
+
+                                    <!-- Equipment Type -->
+                                    <div class="form-group">
+                                        <label class="form-label" for="equipmentType">
+                                            <i class="fas fa-sitemap"></i> Type d'Équipement *
+                                        </label>
+                                        <select id="equipmentType" name="equipmentType" class="form-select" required>
+                                            <option value="">Sélectionner le type</option>
+                                            <option value="Switch">Switch</option>
+                                            <option value="Routeur">Routeur</option>
+                                            <option value="Point d'Accès">Point d'Accès WiFi</option>
+                                            <option value="Pare-feu">Pare-feu</option>
+                                            <option value="Modem">Modem</option>
+                                            <option value="Hub">Hub</option>
+                                            <option value="Répéteur">Répéteur</option>
+                                            <option value="Contrôleur">Contrôleur Réseau</option>
+                                            <option value="Passerelle">Passerelle</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Number of Ports -->
+                                    <div class="form-group">
+                                        <label class="form-label" for="ports">
+                                            <i class="fas fa-plug"></i> Nombre de Ports
+                                        </label>
+                                        <select id="ports" name="ports" class="form-select">
+                                            <option value="">Sélectionner le nombre de ports</option>
+                                            <option value="4">4 ports</option>
+                                            <option value="8">8 ports</option>
+                                            <option value="16">16 ports</option>
+                                            <option value="24">24 ports</option>
+                                            <option value="48">48 ports</option>
+                                            <option value="Autre">Autre</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Speed -->
+                                    <div class="form-group">
+                                        <label class="form-label" for="speed">
+                                            <i class="fas fa-tachometer-alt"></i> Vitesse
+                                        </label>
+                                        <select id="speed" name="speed" class="form-select">
+                                            <option value="">Sélectionner la vitesse</option>
+                                            <option value="10/100 Mbps">10/100 Mbps</option>
+                                            <option value="10/100/1000 Mbps">10/100/1000 Mbps (Gigabit)</option>
+                                            <option value="10 Gbps">10 Gbps</option>
+                                            <option value="40 Gbps">40 Gbps</option>
+                                            <option value="100 Gbps">100 Gbps</option>
+                                            <option value="Autre">Autre</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Management -->
+                                    <div class="form-group">
+                                        <label class="form-label" for="management">
+                                            <i class="fas fa-cogs"></i> Type de Gestion
+                                        </label>
+                                        <select id="management" name="management" class="form-select">
+                                            <option value="">Sélectionner le type</option>
+                                            <option value="Géré">Géré (Managed)</option>
+                                            <option value="Non géré">Non géré (Unmanaged)</option>
+                                            <option value="Smart">Smart/Web Smart</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Price -->
+                                    <div class="form-group">
+                                        <label class="form-label" for="price">
+                                            <i class="fas fa-money-bill"></i> Prix (DH) *
+                                        </label>
+                                        <input type="number" id="price" name="price" class="form-input" 
+                                            placeholder="Ex: 2500" min="0" step="0.01" required>
+                                    </div>
+
+                                    <!-- Stock Quantity -->
+                                    <div class="form-group">
+                                        <label class="form-label" for="stockQuantity">
+                                            <i class="fas fa-boxes"></i> Quantité en Stock *
+                                        </label>
+                                        <input type="number" id="stockQuantity" name="stockQuantity" class="form-input" 
+                                            placeholder="Ex: 15" min="0" required>
+                                    </div>
+
+                                    <!-- Description -->
+                                    <div class="form-group full-width">
+                                        <label class="form-label" for="description">
+                                            <i class="fas fa-align-left"></i> Description
+                                        </label>
+                                        <textarea id="description" name="description" class="form-input" rows="3" 
+                                                placeholder="Description détaillée de l'équipement réseau..."></textarea>
+                                    </div>
+
+                                    <!-- Image Upload Section -->
+                                    <div class="form-group full-width">
+                                        <label class="form-label">
+                                            <i class="fas fa-images"></i> Images de l'Équipement
+                                        </label>
+                                        <div class="image-upload-section" id="imageUploadSection">
+                                            <div class="upload-icon">
+                                                <i class="fas fa-cloud-upload-alt"></i>
+                                            </div>
+                                            <div class="upload-text">
+                                                <h3>Glissez-déposez vos images ici</h3>
+                                                <p>ou cliquez pour sélectionner des fichiers</p>
+                                                <p><small>Formats acceptés: JPG, PNG, WebP (Max: 5MB par image)</small></p>
+                                            </div>
+                                            <input type="file" id="equipmentImages" name="equipmentImages[]" 
+                                                class="file-input" multiple accept="image/*">
+                                            <button type="button" class="upload-btn" onclick="document.getElementById('equipmentImages').click()">
+                                                <i class="fas fa-plus"></i> Sélectionner des Images
+                                            </button>
+                                        </div>
+                                        <div class="image-preview" id="imagePreview"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Form Actions -->
+                                <div class="form-actions">
+                                    <button type="button" class="btn btn-secondary" onclick="resetForm()">
+                                        <i class="fas fa-times"></i> Annuler
+                                    </button>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-save"></i> Ajouter l'Équipement
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Network Equipment Inventory -->
+                    <div class="section-card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-network-wired"></i> Inventaire des Équipements Réseau</h2>
+                            <p>Gérez vos équipements réseau en stock avec possibilité de modification et suppression</p>
+                        </div>
+                        
+                        <div class="card-content">
+                            <!-- Search and Filter Controls -->
+                            <div class="inventory-controls">
+                                <div class="search-box">
+                                    <i class="fas fa-search search-icon"></i>
+                                    <input type="text" class="search-input" placeholder="Rechercher par nom, marque, modèle..." id="searchInput">
+                                </div>
+                                <select class="filter-select" id="brandFilter">
+                                    <option value="">Toutes les marques</option>
+                                    <option value="Cisco">Cisco</option>
+                                    <option value="HP">HP</option>
+                                    <option value="Dell">Dell</option>
+                                    <option value="Netgear">Netgear</option>
+                                    <option value="D-Link">D-Link</option>
+                                    <option value="TP-Link">TP-Link</option>
+                                </select>
+                                <select class="filter-select" id="typeFilter">
+                                    <option value="">Tous les types</option>
+                                    <option value="Switch">Switch</option>
+                                    <option value="Routeur">Routeur</option>
+                                    <option value="Point d'Accès">Point d'Accès</option>
+                                    <option value="Pare-feu">Pare-feu</option>
+                                    <option value="Modem">Modem</option>
+                                </select>
+                                <select class="filter-select" id="stockFilter">
+                                    <option value="">Tous les stocks</option>
+                                    <option value="in-stock">En stock</option>
+                                    <option value="low-stock">Stock faible</option>
+                                    <option value="out-of-stock">Rupture de stock</option>
+                                </select>
+                            </div>
+
+                            <!-- Network Equipment Inventory Grid -->
+                            <div class="network-inventory" id="networkInventory">
+                                <!-- Sample Network Equipment Cards -->
+                                <div class="network-card" data-brand="Cisco" data-stock="in-stock" data-type="Switch">
+                                    <img src="/placeholder.svg?height=200&width=350" alt="Cisco Switch" class="network-image">
+                                    <div class="network-actions">
+                                        <button class="action-btn edit" onclick="editNetwork(this)">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="action-btn delete" onclick="deleteNetwork(this)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                    <div class="network-info">
+                                        <h3 class="network-name">Cisco Catalyst 2960-X Series</h3>
+                                        <span class="network-brand">Cisco</span>
+                                        <div class="network-specs">
+                                            <div class="spec-item">
+                                                <i class="fas fa-tag"></i>
+                                                <span>Modèle: WS-C2960X-24TS-L</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-plug"></i>
+                                                <span>24 ports Gigabit</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-tachometer-alt"></i>
+                                                <span>10/100/1000 Mbps</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-cogs"></i>
+                                                <span>Géré (Managed)</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-boxes"></i>
+                                                <span>Stock: 8 unités</span>
+                                            </div>
+                                        </div>
+                                        <span class="network-type switch">Switch</span>
+                                        <div class="network-price">12,500 DH</div>
+                                        <span class="stock-status in-stock">En stock (8 unités)</span>
+                                    </div>
+                                </div>
+
+                                <div class="network-card" data-brand="HP" data-stock="in-stock" data-type="Switch">
+                                    <img src="/placeholder.svg?height=200&width=350" alt="HP Switch" class="network-image">
+                                    <div class="network-actions">
+                                        <button class="action-btn edit" onclick="editNetwork(this)">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="action-btn delete" onclick="deleteNetwork(this)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                    <div class="network-info">
+                                        <h3 class="network-name">HP ProCurve 1920S</h3>
+                                        <span class="network-brand">HP</span>
+                                        <div class="network-specs">
+                                            <div class="spec-item">
+                                                <i class="fas fa-tag"></i>
+                                                <span>Modèle: JL382A</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-plug"></i>
+                                                <span>48 ports Gigabit</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-tachometer-alt"></i>
+                                                <span>10/100/1000 Mbps</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-cogs"></i>
+                                                <span>Smart Managed</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-boxes"></i>
+                                                <span>Stock: 5 unités</span>
+                                            </div>
+                                        </div>
+                                        <span class="network-type switch">Switch</span>
+                                        <div class="network-price">8,900 DH</div>
+                                        <span class="stock-status in-stock">En stock (5 unités)</span>
+                                    </div>
+                                </div>
+
+                                <div class="network-card" data-brand="TP-Link" data-stock="low-stock" data-type="Switch">
+                                    <img src="/placeholder.svg?height=200&width=350" alt="TP-Link Switch" class="network-image">
+                                    <div class="network-actions">
+                                        <button class="action-btn edit" onclick="editNetwork(this)">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="action-btn delete" onclick="deleteNetwork(this)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                    <div class="network-info">
+                                        <h3 class="network-name">TP-Link TL-SG1024D</h3>
+                                        <span class="network-brand">TP-Link</span>
+                                        <div class="network-specs">
+                                            <div class="spec-item">
+                                                <i class="fas fa-tag"></i>
+                                                <span>Modèle: TL-SG1024D</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-plug"></i>
+                                                <span>24 ports Gigabit</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-tachometer-alt"></i>
+                                                <span>10/100/1000 Mbps</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-cogs"></i>
+                                                <span>Non géré</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-boxes"></i>
+                                                <span>Stock: 3 unités</span>
+                                            </div>
+                                        </div>
+                                        <span class="network-type switch">Switch</span>
+                                        <div class="network-price">1,850 DH</div>
+                                        <span class="stock-status low-stock">Stock faible (3 unités)</span>
+                                    </div>
+                                </div>
+
+                                <div class="network-card" data-brand="Netgear" data-stock="in-stock" data-type="Routeur">
+                                    <img src="/placeholder.svg?height=200&width=350" alt="Netgear Router" class="network-image">
+                                    <div class="network-actions">
+                                        <button class="action-btn edit" onclick="editNetwork(this)">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="action-btn delete" onclick="deleteNetwork(this)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                    <div class="network-info">
+                                        <h3 class="network-name">Netgear Nighthawk AX12</h3>
+                                        <span class="network-brand">Netgear</span>
+                                        <div class="network-specs">
+                                            <div class="spec-item">
+                                                <i class="fas fa-tag"></i>
+                                                <span>Modèle: RAX120</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-wifi"></i>
+                                                <span>WiFi 6 AX6000</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-plug"></i>
+                                                <span>5 ports Gigabit</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-shield-alt"></i>
+                                                <span>Sécurité avancée</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-boxes"></i>
+                                                <span>Stock: 12 unités</span>
+                                            </div>
+                                        </div>
+                                        <span class="network-type router">Routeur</span>
+                                        <div class="network-price">4,200 DH</div>
+                                        <span class="stock-status in-stock">En stock (12 unités)</span>
+                                    </div>
+                                </div>
+
+                                <div class="network-card" data-brand="Ubiquiti" data-stock="out-of-stock" data-type="Point d'Accès">
+                                    <img src="/placeholder.svg?height=200&width=350" alt="Ubiquiti Access Point" class="network-image">
+                                    <div class="network-actions">
+                                        <button class="action-btn edit" onclick="editNetwork(this)">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="action-btn delete" onclick="deleteNetwork(this)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                    <div class="network-info">
+                                        <h3 class="network-name">Ubiquiti UniFi AP AC Pro</h3>
+                                        <span class="network-brand">Ubiquiti</span>
+                                        <div class="network-specs">
+                                            <div class="spec-item">
+                                                <i class="fas fa-tag"></i>
+                                                <span>Modèle: UAP-AC-PRO</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-wifi"></i>
+                                                <span>802.11ac Wave 2</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-tachometer-alt"></i>
+                                                <span>1.75 Gbps</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-users"></i>
+                                                <span>200+ utilisateurs</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-boxes"></i>
+                                                <span>Stock: 0 unité</span>
+                                            </div>
+                                        </div>
+                                        <span class="network-type access-point">Point d'Accès</span>
+                                        <div class="network-price">2,800 DH</div>
+                                        <span class="stock-status out-of-stock">Rupture de stock (0 unité)</span>
+                                    </div>
+                                </div>
+
+                                <div class="network-card" data-brand="Fortinet" data-stock="in-stock" data-type="Pare-feu">
+                                    <img src="/placeholder.svg?height=200&width=350" alt="Fortinet Firewall" class="network-image">
+                                    <div class="network-actions">
+                                        <button class="action-btn edit" onclick="editNetwork(this)">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="action-btn delete" onclick="deleteNetwork(this)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                    <div class="network-info">
+                                        <h3 class="network-name">Fortinet FortiGate 60F</h3>
+                                        <span class="network-brand">Fortinet</span>
+                                        <div class="network-specs">
+                                            <div class="spec-item">
+                                                <i class="fas fa-tag"></i>
+                                                <span>Modèle: FG-60F</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-shield-alt"></i>
+                                                <span>Pare-feu UTM</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-tachometer-alt"></i>
+                                                <span>10 Gbps Firewall</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-plug"></i>
+                                                <span>7 ports internes</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-boxes"></i>
+                                                <span>Stock: 4 unités</span>
+                                            </div>
+                                        </div>
+                                        <span class="network-type firewall">Pare-feu</span>
+                                        <div class="network-price">15,600 DH</div>
+                                        <span class="stock-status in-stock">En stock (4 unités)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <script src="js_admin/admin_network.js"></script>
+    </body>
+</html>

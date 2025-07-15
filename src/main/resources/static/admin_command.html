@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ISS MAROC - Gestion des Commandes</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="stylesheet" href="css_admin/admin_command.css">
+    </head>
+    <body>
+        <!-- Sidebar Overlay -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="#" class="sidebar-logo">
+                    <i class="fas fa-store"></i>
+                    ISS MAROC
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-item">
+                    <a href="admin_home.html" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        <span>Accueil</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin_news.html" class="nav-link">
+                        <i class="fas fa-star"></i>
+                        <span>Nouveautés</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin_computer.html" class="nav-link">
+                        <i class="fas fa-laptop"></i>
+                        <span>Ordinateurs</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin_scanner.html" class="nav-link">
+                        <i class="fas fa-print"></i>
+                        <span>Imprimantes</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin_network.html" class="nav-link">
+                        <i class="fas fa-network-wired"></i>
+                        <span>Réseaux</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link active">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Commandes</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin_messages.html" class="nav-link">
+                        <i class="fas fa-envelope"></i>
+                        <span>Messages</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content" id="mainContent">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="mobile-toggle" id="mobileToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="page-title" id="pageTitle">Gestion des Commandes</h1>
+                </div>
+                <div class="header-right">
+                    <div class="user-profile">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <span class="user-name">Admin</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content" id="dashboardContent">
+                <!-- Orders Section -->
+                <div class="orders-section">
+                    <!-- Statistics Cards -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon pending">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-number">12</div>
+                            <div class="stat-label">En Attente</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon confirmed">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="stat-number">8</div>
+                            <div class="stat-label">Confirmées</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon shipped">
+                                <i class="fas fa-shipping-fast"></i>
+                            </div>
+                            <div class="stat-number">5</div>
+                            <div class="stat-label">Expédiées</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon delivered">
+                                <i class="fas fa-box-open"></i>
+                            </div>
+                            <div class="stat-number">15</div>
+                            <div class="stat-label">Livrées</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon canceled">
+                                <i class="fas fa-times-circle"></i>
+                            </div>
+                            <div class="stat-number">3</div>
+                            <div class="stat-label">Annulées</div>
+                        </div>
+                    </div>
+
+                    <!-- Orders Management -->
+                    <div class="section-card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-list"></i> Liste des Commandes</h2>
+                            <p>Gérez toutes les commandes de vos clients avec possibilité de modification du statut</p>
+                        </div>
+                        
+                        <div class="card-content">
+                            <!-- Search and Filter Controls -->
+                            <div class="orders-controls">
+                                <div class="search-box">
+                                    <i class="fas fa-search search-icon"></i>
+                                    <input type="text" class="search-input" placeholder="Rechercher par nom client, téléphone, produit..." id="searchInput">
+                                </div>
+                                <select class="filter-select" id="statusFilter">
+                                    <option value="">Tous les statuts</option>
+                                    <option value="pending">En Attente</option>
+                                    <option value="confirmed">Confirmée</option>
+                                    <option value="shipped">Expédiée</option>
+                                    <option value="delivered">Livrée</option>
+                                    <option value="canceled">Annulée</option>
+                                </select>
+                                <select class="filter-select" id="dateFilter">
+                                    <option value="">Toutes les dates</option>
+                                    <option value="today">Aujourd'hui</option>
+                                    <option value="week">Cette semaine</option>
+                                    <option value="month">Ce mois</option>
+                                </select>
+                            </div>
+
+                            <!-- Orders Table -->
+                            <div class="orders-table-container">
+                                <table class="orders-table" id="ordersTable">
+                                    <thead>
+                                        <tr>
+                                            <th>N° Commande</th>
+                                            <th>Client</th>
+                                            <th>Produit(s)</th>
+                                            <th>Total</th>
+                                            <th>Date</th>
+                                            <th>Statut</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Sample Orders -->
+                                        <tr data-status="pending">
+                                            <td class="order-id">#CMD001</td>
+                                            <td>
+                                                <div class="client-info">
+                                                    <span class="client-name">Ahmed Benali</span>
+                                                    <span class="client-phone">+212 6 12 34 56 78</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="product-info">
+                                                    <span class="product-name">MacBook Pro 16" M3</span>
+                                                    <span class="product-quantity">Quantité: 1</span>
+                                                </div>
+                                            </td>
+                                            <td class="order-total">45,000 DH</td>
+                                            <td class="order-date">15/01/2024</td>
+                                            <td>
+                                                <select class="status-select pending" onchange="updateOrderStatus(this, 'CMD001')">
+                                                    <option value="pending" selected>En Attente</option>
+                                                    <option value="confirmed">Confirmée</option>
+                                                    <option value="shipped">Expédiée</option>
+                                                    <option value="delivered">Livrée</option>
+                                                    <option value="canceled">Annulée</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <div class="action-buttons">
+                                                    <button class="action-btn view" onclick="viewOrder('CMD001')" title="Voir détails">
+                                                        <i class="fas fa-eye"></i>
+                                                    </button>
+                                                    <button class="action-btn edit" onclick="editOrder('CMD001')" title="Modifier">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="action-btn delete" onclick="deleteOrder('CMD001')" title="Supprimer">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr data-status="confirmed">
+                                            <td class="order-id">#CMD002</td>
+                                            <td>
+                                                <div class="client-info">
+                                                    <span class="client-name">Fatima Zahra</span>
+                                                    <span class="client-phone">+212 6 87 65 43 21</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="product-info">
+                                                    <span class="product-name">HP LaserJet Pro M404dn</span>
+                                                    <span class="product-quantity">Quantité: 2</span>
+                                                </div>
+                                            </td>
+                                            <td class="order-total">7,800 DH</td>
+                                            <td class="order-date">14/01/2024</td>
+                                            <td>
+                                                <select class="status-select confirmed" onchange="updateOrderStatus(this, 'CMD002')">
+                                                    <option value="pending">En Attente</option>
+                                                    <option value="confirmed" selected>Confirmée</option>
+                                                    <option value="shipped">Expédiée</option>
+                                                    <option value="delivered">Livrée</option>
+                                                    <option value="canceled">Annulée</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <div class="action-buttons">
+                                                    <button class="action-btn view" onclick="viewOrder('CMD002')" title="Voir détails">
+                                                        <i class="fas fa-eye"></i>
+                                                    </button>
+                                                    <button class="action-btn edit" onclick="editOrder('CMD002')" title="Modifier">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="action-btn delete" onclick="deleteOrder('CMD002')" title="Supprimer">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr data-status="shipped">
+                                            <td class="order-id">#CMD003</td>
+                                            <td>
+                                                <div class="client-info">
+                                                    <span class="client-name">Mohamed Alami</span>
+                                                    <span class="client-phone">+212 6 55 44 33 22</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="product-info">
+                                                    <span class="product-name">Cisco Catalyst 2960-X</span>
+                                                    <span class="product-quantity">Quantité: 1</span>
+                                                </div>
+                                            </td>
+                                            <td class="order-total">12,500 DH</td>
+                                            <td class="order-date">13/01/2024</td>
+                                            <td>
+                                                <select class="status-select shipped" onchange="updateOrderStatus(this, 'CMD003')">
+                                                    <option value="pending">En Attente</option>
+                                                    <option value="confirmed">Confirmée</option>
+                                                    <option value="shipped" selected>Expédiée</option>
+                                                    <option value="delivered">Livrée</option>
+                                                    <option value="canceled">Annulée</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <div class="action-buttons">
+                                                    <button class="action-btn view" onclick="viewOrder('CMD003')" title="Voir détails">
+                                                        <i class="fas fa-eye"></i>
+                                                    </button>
+                                                    <button class="action-btn edit" onclick="editOrder('CMD003')" title="Modifier">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="action-btn delete" onclick="deleteOrder('CMD003')" title="Supprimer">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr data-status="delivered">
+                                            <td class="order-id">#CMD004</td>
+                                            <td>
+                                                <div class="client-info">
+                                                    <span class="client-name">Aicha Bennani</span>
+                                                    <span class="client-phone">+212 6 99 88 77 66</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="product-info">
+                                                    <span class="product-name">Canon CanoScan LiDE 400</span>
+                                                    <span class="product-quantity">Quantité: 1</span>
+                                                </div>
+                                            </td>
+                                            <td class="order-total">1,850 DH</td>
+                                            <td class="order-date">12/01/2024</td>
+                                            <td>
+                                                <select class="status-select delivered" onchange="updateOrderStatus(this, 'CMD004')">
+                                                    <option value="pending">En Attente</option>
+                                                    <option value="confirmed">Confirmée</option>
+                                                    <option value="shipped">Expédiée</option>
+                                                    <option value="delivered" selected>Livrée</option>
+                                                    <option value="canceled">Annulée</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <div class="action-buttons">
+                                                    <button class="action-btn view" onclick="viewOrder('CMD004')" title="Voir détails">
+                                                        <i class="fas fa-eye"></i>
+                                                    </button>
+                                                    <button class="action-btn edit" onclick="editOrder('CMD004')" title="Modifier">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="action-btn delete" onclick="deleteOrder('CMD004')" title="Supprimer">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr data-status="canceled">
+                                            <td class="order-id">#CMD005</td>
+                                            <td>
+                                                <div class="client-info">
+                                                    <span class="client-name">Youssef Idrissi</span>
+                                                    <span class="client-phone">+212 6 11 22 33 44</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="product-info">
+                                                    <span class="product-name">Dell XPS 15 9530</span>
+                                                    <span class="product-quantity">Quantité: 1</span>
+                                                </div>
+                                            </td>
+                                            <td class="order-total">28,500 DH</td>
+                                            <td class="order-date">11/01/2024</td>
+                                            <td>
+                                                <select class="status-select canceled" onchange="updateOrderStatus(this, 'CMD005')">
+                                                    <option value="pending">En Attente</option>
+                                                    <option value="confirmed">Confirmée</option>
+                                                    <option value="shipped">Expédiée</option>
+                                                    <option value="delivered">Livrée</option>
+                                                    <option value="canceled" selected>Annulée</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <div class="action-buttons">
+                                                    <button class="action-btn view" onclick="viewOrder('CMD005')" title="Voir détails">
+                                                        <i class="fas fa-eye"></i>
+                                                    </button>
+                                                    <button class="action-btn edit" onclick="editOrder('CMD005')" title="Modifier">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="action-btn delete" onclick="deleteOrder('CMD005')" title="Supprimer">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr data-status="pending">
+                                            <td class="order-id">#CMD006</td>
+                                            <td>
+                                                <div class="client-info">
+                                                    <span class="client-name">Khadija Amrani</span>
+                                                    <span class="client-phone">+212 6 77 66 55 44</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="product-info">
+                                                    <span class="product-name">TP-Link TL-SG1024D</span>
+                                                    <span class="product-quantity">Quantité: 3</span>
+                                                </div>
+                                            </td>
+                                            <td class="order-total">5,550 DH</td>
+                                            <td class="order-date">10/01/2024</td>
+                                            <td>
+                                                <select class="status-select pending" onchange="updateOrderStatus(this, 'CMD006')">
+                                                    <option value="pending" selected>En Attente</option>
+                                                    <option value="confirmed">Confirmée</option>
+                                                    <option value="shipped">Expédiée</option>
+                                                    <option value="delivered">Livrée</option>
+                                                    <option value="canceled">Annulée</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <div class="action-buttons">
+                                                    <button class="action-btn view" onclick="viewOrder('CMD006')" title="Voir détails">
+                                                        <i class="fas fa-eye"></i>
+                                                    </button>
+                                                    <button class="action-btn edit" onclick="editOrder('CMD006')" title="Modifier">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="action-btn delete" onclick="deleteOrder('CMD006')" title="Supprimer">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <script src="js_admin/admin_command.js"></script>
+    </body>
+</html>

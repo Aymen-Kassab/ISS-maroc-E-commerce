@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ISS MAROC - Accueil</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="stylesheet" href="css_client/client_home.css">
+    </head>
+    <body>
+        <header class="header">
+            <div class="header-container">
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            
+                <a href="#" class="logo">ISS MAROC</a>
+            
+                <div class="search-container">
+                    <input type="text" class="search-bar" placeholder="Rechercher des produits...">
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            
+                <div class="header-icons">
+                    <button class="icon-btn">
+                        <a href="client_login.html" style="color: #ffffff;"><i class="fas fa-user"></i></a>
+                    </button>
+                    <button class="icon-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-badge">0</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-layout">
+        <!-- Main Sidebar -->
+            <nav class="main-sidebar" id="mainSidebar">
+                <ul class="sidebar-menu">
+                    <li>
+                        <a href="#" class="active">
+                            <i class="fas fa-home"></i>
+                            Accueil
+                        </a>
+                    </li>
+                    <li>
+                        <a href="client_computer.html" onclick="toggleExpandableSidebar('ordinateur')">
+                            <i class="fas fa-desktop"></i>
+                            Ordinateur
+                            <i class="fas fa-chevron-right" style="margin-left: auto;"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="client_scanner.html" onclick="toggleExpandableSidebar('imprimants')">
+                            <i class="fas fa-print"></i>
+                            Imprimants
+                            <i class="fas fa-chevron-right" style="margin-left: auto;"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="client_network.html" onclick="toggleExpandableSidebar('reseau')">
+                            <i class="fas fa-network-wired"></i>
+                            Réseau
+                            <i class="fas fa-chevron-right" style="margin-left: auto;"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="client_contact.html">
+                            <i class="fas fa-envelope"></i>
+                            Contact
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Expandable Left Sidebar -->
+            <div class="expandable-sidebar" id="expandableSidebar">
+                <div class="category-section">
+                    <button class="category-header" onclick="toggleCategory('bureau')">
+                         Ordinateur Bureau
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="category-content" id="bureau">
+                        <ul class="subcategory-list">
+                            <li><a href="#">x</a></li>
+                            <li><a href="#">x</a></li>
+                            <li><a href="#">x</a></li>
+                            <li><a href="#">x</a></li>
+                            <li><a href="#">x</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="category-section">
+                    <button class="category-header" onclick="toggleCategory('portable')">
+                        Ordinateur Portable
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="category-content" id="portable">
+                        <ul class="subcategory-list">
+                            <li><a href="#">x</a></li>
+                            <li><a href="#">x</a></li>
+                            <li><a href="#">x</a></li>
+                            <li><a href="#">x</a></li>
+                            <li><a href="#">x</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="category-section">
+                    <button class="category-header" onclick="toggleCategory('impression')">
+                        Impression et Imagerie
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="category-content" id="impression">
+                        <ul class="subcategory-list">
+                            <li><a href="#">x</a></li>
+                            <li><a href="#">x</a></li>
+                            <li><a href="#">x</a></li>
+                            <li><a href="#">x</a></li>
+                            <li><a href="#">x</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="category-section">
+                    <button class="category-header" onclick="toggleCategory('reseauSub')">
+                        Réseau
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="category-content" id="reseauSub">
+                        <ul class="subcategory-list">
+                            <li><a href="#">x</a></li>
+                            <li><a href="#">x</a></li>
+                            <li><a href="#">x</a></li>
+                            <li><a href="#">x</a></li>
+                            <li><a href="#">x</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <main class="content-area">
+                <div class="image-slider">
+                    <div class="slider-container">
+                        <!-- Replace these with your actual images -->
+                    </div>
+                    <button class="slider-arrow next-arrow">❯</button>
+                    <button class="slider-arrow prev-arrow">❮</button>
+                    <div class="slider-dots">
+                        
+                    </div>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-desktop"></i>
+                        <h3>Ordinateurs</h3>
+                        <p>Large sélection d'ordinateurs de bureau et portables pour tous vos besoins professionnels et personnels.</p>
+                    </div>
+                
+                    <div class="feature-card">
+                        <i class="fas fa-print"></i>
+                        <h3>Impression</h3>
+                        <p>Solutions d'impression complètes avec imprimantes, scanners et consommables de qualité.</p>
+                    </div>
+                
+                    <div class="feature-card">
+                        <i class="fas fa-network-wired"></i>
+                        <h3>Réseau</h3>
+                        <p>Équipements réseau professionnels pour connecter et sécuriser votre infrastructure informatique.</p>
+                    </div>
+                
+                    <div class="feature-card">
+                        <i class="fas fa-headset"></i>
+                        <h3>Support</h3>
+                        <p>Service client réactif et support technique pour vous accompagner dans tous vos projets.</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <div class="overlay" id="overlay" onclick="closeMobileMenu()"></div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                loadNews();
+            });
+
+            function loadNews() {
+                const sliderContainer = document.querySelector(".slider-container");
+                
+                // Clear existing content
+                sliderContainer.innerHTML = "";
+
+                fetch("http://localhost:8080/api/news")
+                    .then(response => {
+                        if (!response.ok) throw new Error("Erreur de chargement des images");
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.length === 0) {
+                            sliderContainer.innerHTML = "<p>Aucune image publiée pour le moment.</p>";
+                            return;
+                        }
+
+                        // Create image slides
+                        data.forEach(news => {
+                            const img = document.createElement("img");
+                            img.src = news.imageUrl;
+                            img.alt = news.title || "Actualité ISS MAROC";
+                            sliderContainer.appendChild(img);
+                        });
+
+                        // Initialize slider functionality
+                        initSlider();
+                    })
+                    .catch(error => {
+                        sliderContainer.innerHTML = `<p>Erreur: ${error.message}</p>`;
+                    });
+            }
+
+            // Slider functionality with arrows
+            let currentIndex = 0;
+            let slideInterval;
+
+            function initSlider() {
+                const slides = document.querySelectorAll(".slider-container img");
+                if (slides.length === 0) return;
+
+                // Set up arrow navigation
+                document.querySelector(".prev-arrow").addEventListener("click", prevSlide);
+                document.querySelector(".next-arrow").addEventListener("click", nextSlide);
+
+                // Start auto-sliding
+                slideInterval = setInterval(nextSlide, 3000);
+                
+                // Pause on hover
+                const slider = document.querySelector(".image-slider");
+                slider.addEventListener("mouseenter", () => clearInterval(slideInterval));
+                slider.addEventListener("mouseleave", () => {
+                    slideInterval = setInterval(nextSlide, 3000);
+                });
+            }
+
+            function goToSlide(index) {
+                const slides = document.querySelectorAll(".slider-container img");
+                currentIndex = (index + slides.length) % slides.length; // Handle wrap-around
+                document.querySelector(".slider-container").style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+
+            function nextSlide() {
+                goToSlide(currentIndex + 1);
+            }
+
+            function prevSlide() {
+                goToSlide(currentIndex - 1);
+            }
+        </script>
+        <script src="js_client/client_home.js"></script>
+    </body>
+</html>

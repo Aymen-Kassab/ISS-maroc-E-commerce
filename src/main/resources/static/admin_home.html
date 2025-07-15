@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ISS MAROC - Panneau d'Administration</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="stylesheet" href="css_admin/admin_home.css">
+    </head>
+    <body>
+        <!-- Sidebar Overlay -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="#" class="sidebar-logo">
+                    <i class="fas fa-store"></i>
+                    ISS MAROC
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-item">
+                    <a href="#" class="nav-link active">
+                        <i class="fas fa-home"></i>
+                        <span>Accueil</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin_news.html" class="nav-link">
+                        <i class="fas fa-star"></i>
+                        <span>Nouveautés</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin_computer.html" class="nav-link">
+                        <i class="fas fa-laptop"></i>
+                        <span>Ordinateurs</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin_scanner.html" class="nav-link">
+                        <i class="fas fa-print"></i>
+                        <span>Imprimantes</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin_network.html" class="nav-link">
+                        <i class="fas fa-network-wired"></i>
+                        <span>Réseaux</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin_command.html" class="nav-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Commandes</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin_messages.html" class="nav-link">
+                        <i class="fas fa-envelope"></i>
+                        <span>Messages</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content" id="mainContent">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="mobile-toggle" id="mobileToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="page-title" id="pageTitle">Accueil</h1>
+                </div>
+                <div class="header-right">
+                    <div class="user-profile">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <span class="user-name">Admin</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content" id="dashboardContent">
+                <!-- Welcome Section -->
+                <div class="welcome-section">
+                    <h2>Bienvenue dans votre panneau d'administration</h2>
+                    <p>Gérez votre boutique ISS MAROC efficacement avec ce tableau de bord</p>
+                </div>
+
+                <!-- Statistics Grid -->
+                <div class="stats-grid">
+                    <!-- Ordinateurs -->
+                    <div class="stat-card ordinateurs">
+                        <div class="stat-header">
+                            <div class="stat-icon ordinateurs">
+                                <i class="fas fa-laptop"></i>
+                            </div>
+                            <button class="stat-menu">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </button>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Ordinateurs</h3>
+                            <div class="stat-number" id="totalOrdinateurs">347</div>
+                            <div class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>+8% ce mois</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Imprimantes -->
+                    <div class="stat-card imprimantes">
+                        <div class="stat-header">
+                            <div class="stat-icon imprimantes">
+                                <i class="fas fa-print"></i>
+                            </div>
+                            <button class="stat-menu">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </button>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Imprimantes</h3>
+                            <div class="stat-number" id="totalImprimantes">156</div>
+                            <div class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>+15% ce mois</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Réseaux -->
+                    <div class="stat-card reseaux">
+                        <div class="stat-header">
+                            <div class="stat-icon reseaux">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <button class="stat-menu">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </button>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Équipements Réseau</h3>
+                            <div class="stat-number" id="totalReseaux">89</div>
+                            <div class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>+22% ce mois</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Commandes -->
+                    <div class="stat-card commandes">
+                        <div class="stat-header">
+                            <div class="stat-icon commandes">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <button class="stat-menu">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </button>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Commandes Totales</h3>
+                            <div class="stat-number" id="totalCommandes">1,247</div>
+                            <div class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>+12% cette semaine</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Messages -->
+                    <div class="stat-card messages">
+                        <div class="stat-header">
+                            <div class="stat-icon messages">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <button class="stat-menu">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </button>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Messages Non Lus</h3>
+                            <div class="stat-number" id="unreadMessages">23</div>
+                            <div class="stat-change negative">
+                                <i class="fas fa-arrow-down"></i>
+                                <span>-5% aujourd'hui</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="recent-activity">
+                    <div class="activity-header">
+                        <h3>Activité Récente</h3>
+                        <a href="#" class="view-all-btn">Voir tout</a>
+                    </div>
+                    <ul class="activity-list">
+                        <li class="activity-item">
+                            <div class="activity-icon commande">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>Nouvelle commande #1234</h4>
+                                <p>Commande de 3 ordinateurs portables Dell</p>
+                            </div>
+                            <div class="activity-time">Il y a 5 min</div>
+                        </li>
+                        <li class="activity-item">
+                            <div class="activity-icon ordinateur">
+                                <i class="fas fa-laptop"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>Ordinateur ajouté</h4>
+                                <p>MacBook Pro 16" M3 ajouté au catalogue</p>
+                            </div>
+                            <div class="activity-time">Il y a 1h</div>
+                        </li>
+                        <li class="activity-item">
+                            <div class="activity-icon imprimante">
+                                <i class="fas fa-print"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>Stock imprimante mis à jour</h4>
+                                <p>HP LaserJet Pro - Stock: 25 unités</p>
+                            </div>
+                            <div class="activity-time">Il y a 2h</div>
+                        </li>
+                        <li class="activity-item">
+                            <div class="activity-icon reseau">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>Équipement réseau ajouté</h4>
+                                <p>Switch Cisco 24 ports ajouté</p>
+                            </div>
+                            <div class="activity-time">Il y a 3h</div>
+                        </li>
+                        <li class="activity-item">
+                            <div class="activity-icon message">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>Nouveau message</h4>
+                                <p>Question sur la garantie des ordinateurs</p>
+                            </div>
+                            <div class="activity-time">Il y a 4h</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <script src="js_admin/admin_home.js"></script>
+    </body>
+</html>

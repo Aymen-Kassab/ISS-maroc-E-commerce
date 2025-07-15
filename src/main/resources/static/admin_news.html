@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ISS MAROC - Panneau d'Administration</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="stylesheet" href="css_admin/admin_news.css">
+    </head>
+    <body>
+        <!-- Sidebar Overlay -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="#" class="sidebar-logo">
+                    <i class="fas fa-store"></i>
+                    ISS MAROC
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-item">
+                    <a href="admin_home.html" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        <span>Accueil</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link active">
+                        <i class="fas fa-star"></i>
+                        <span>Nouveautés</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin_computer.html" class="nav-link">
+                        <i class="fas fa-laptop"></i>
+                        <span>Ordinateurs</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin_scanner.html" class="nav-link">
+                        <i class="fas fa-print"></i>
+                        <span>Imprimantes</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin_network.html" class="nav-link">
+                        <i class="fas fa-network-wired"></i>
+                        <span>Réseaux</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin_command.html" class="nav-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Commandes</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin_messages.html" class="nav-link">
+                        <i class="fas fa-envelope"></i>
+                        <span>Messages</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content" id="mainContent">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="mobile-toggle" id="mobileToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="page-title" id="pageTitle">Nouveautés</h1>
+                </div>
+                <div class="header-right">
+                    <div class="user-profile">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <span class="user-name">Admin</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content" id="dashboardContent">
+                <!-- Nouveautés Section -->
+                <div class="news-section">
+                    <!-- Upload Card -->
+                    <div class="upload-card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-images"></i> Ajouter des Images de Nouveautés</h2>
+                            <p>Téléchargez des images pour les nouveaux ordinateurs, imprimantes, équipements réseau, promotions, etc.</p>
+                        </div>
+                        <form id="newsUploadForm" enctype="multipart/form-data">
+                            <div class="card-content">
+                                <!-- Image Upload Area -->
+                                <div class="image-upload-area" id="imageUploadArea">
+                                    <div class="upload-icon">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                    </div>
+                                    <div class="upload-content">
+                                        <h3>Glissez-déposez vos images ici</h3>
+                                        <p>ou cliquez pour sélectionner des fichiers</p>
+                                        <small>Formats acceptés: JPG, PNG, WebP • Taille max: 10MB par image</small>
+                                    </div>
+                                    <input type="file" id="newsImages" name="newsImages" 
+                                        class="file-input" multiple accept="image/*">
+                                    <button type="button" class="upload-btn" onclick="document.getElementById('newsImages').click()">
+                                        <i class="fas fa-plus"></i> Sélectionner des Images
+                                    </button>
+                                </div>
+                                <!-- Form Actions -->
+                                <div class="form-actions">
+                                    <button type="button" class="btn btn-secondary" onclick="clearAll()">
+                                        <i class="fas fa-trash"></i> Tout Effacer
+                                    </button>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-upload"></i> Publier les Images
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Image Gallery -->
+                    <div class="upload-card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-photo-video"></i> Images Publiées</h2>
+                            <p>Gérez vos images de nouveautés déjà publiées par catégorie</p>
+                        </div>
+                        
+                        <div class="card-content">
+                            <div class="image-gallery" id="imageGallery">
+                                <!-- Sample images - these would come from your backend -->
+                                <div class="gallery-item">
+                                    <img src="uploads/30846abf-3d7b-4a34-a0b4-c4adae36cfe7.jpg" alt="MacBook Pro" class="gallery-image">
+                                    <div class="gallery-info">
+                                        <span class="gallery-type ordinateurs">Ordinateurs</span>
+                                        <div class="gallery-name">MacBook Pro M3 16"</div>
+                                        <div class="gallery-date">Ajouté le 15 Jan 2024</div>
+                                    </div>
+                                    <div class="gallery-actions">
+                                        <button class="action-btn edit" onclick="editImage(this)">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="action-btn delete" onclick="deleteImage(this)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="gallery-item">
+                                    <img src="/placeholder.svg?height=200&width=280" alt="HP LaserJet" class="gallery-image">
+                                    <div class="gallery-info">
+                                        <span class="gallery-type imprimantes">Imprimantes</span>
+                                        <div class="gallery-name">HP LaserJet Pro 4301dw</div>
+                                        <div class="gallery-date">Ajouté le 12 Jan 2024</div>
+                                    </div>
+                                    <div class="gallery-actions">
+                                        <button class="action-btn edit" onclick="editImage(this)">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="action-btn delete" onclick="deleteImage(this)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="gallery-item">
+                                    <img src="/placeholder.svg?height=200&width=280" alt="Switch Cisco" class="gallery-image">
+                                    <div class="gallery-info">
+                                        <span class="gallery-type reseaux">Réseaux</span>
+                                        <div class="gallery-name">Switch Cisco 24 ports</div>
+                                        <div class="gallery-date">Ajouté le 10 Jan 2024</div>
+                                    </div>
+                                    <div class="gallery-actions">
+                                        <button class="action-btn edit" onclick="editImage(this)">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="action-btn delete" onclick="deleteImage(this)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="gallery-item">
+                                    <img src="/placeholder.svg?height=200&width=280" alt="Promotion" class="gallery-image">
+                                    <div class="gallery-info">
+                                        <span class="gallery-type promotion">Promotion</span>
+                                        <div class="gallery-name">Soldes d'hiver 2024</div>
+                                        <div class="gallery-date">Ajouté le 8 Jan 2024</div>
+                                    </div>
+                                    <div class="gallery-actions">
+                                        <button class="action-btn edit" onclick="editImage(this)">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="action-btn delete" onclick="deleteImage(this)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="gallery-item">
+                                    <img src="/placeholder.svg?height=200&width=280" alt="Dell Workstation" class="gallery-image">
+                                    <div class="gallery-info">
+                                        <span class="gallery-type ordinateurs">Ordinateurs</span>
+                                        <div class="gallery-name">Dell Precision 7000</div>
+                                        <div class="gallery-date">Ajouté le 5 Jan 2024</div>
+                                    </div>
+                                    <div class="gallery-actions">
+                                        <button class="action-btn edit" onclick="editImage(this)">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="action-btn delete" onclick="deleteImage(this)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script>
+            document.getElementById("newsUploadForm").addEventListener("submit", function(e){
+                e.preventDefault();
+
+                const formData = new FormData();
+
+                const file = document.getElementById("newsImages").files[0];
+                if(!file) return alert("Veuillez sélectionner une image.");
+
+                formData.append("image", file);
+
+                fetch("http://localhost:8080/api/news", {
+                    method: "POST",
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) throw new Error("Erreur d'upload");
+                    return response.json();
+                    loadNews();
+                })
+                .then(data => {
+                    alert("Image ajoutée avec succès!");
+                    loadNews();
+                })
+                .catch(error => alert("Erreur lors de l'ajout de l'image."))
+            })
+        </script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                loadNews();
+            });
+            function loadNews(){
+                const gallery = document.getElementById("imageGallery");
+                gallery.innerHTML = "";
+
+                fetch("http://localhost:8080/api/news")
+                .then(response => {
+                    if(!response.ok) throw new Error("Erreur de chargement des images");
+                    return response.json();
+                })
+                .then(data => {
+                    if(data.length === 0){
+                        alert("Aucune image publiée pour le moment.");
+                        return;
+                    }
+                    data.forEach(news => {
+                        const item = document.createElement("div");
+                        item.classList.add("gallery-item");
+                        const imageUrl = news.imageUrl;
+                        item.innerHTML = `
+                            <img src="${imageUrl}" alt="" class="gallery-image">
+                            <div class="gallery-info">
+                                <span class="gallery-type promotion">Nouveauté</span>
+                            </div>
+                            <div class="gallery-actions">
+                                <button class="action-btn delete" onclick="deleteImage(${news.id}, this)">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>`;
+                        gallery.appendChild(item);
+                    });
+                })
+                .catch(error => {
+                    gallery.innerHTML = `<p>Erreur de chargement: ${error.message}</p>`;
+                });
+            }
+            
+            async function deleteNews(id, buttonElement) {
+                if (!confirm("Supprimer cette image ?")) return;
+
+                try {
+                    const response = await fetch(`http://localhost:8080/api/news/${id}`, {
+                        method: "DELETE"
+                    });
+
+                    if (!response.ok) throw new Error("Échec de la suppression");
+
+                    // Remove the deleted item from the UI
+                    buttonElement.closest(".gallery-item").remove();
+                    console.log("Image supprimée !");
+                } catch (error) {
+                    alert("Erreur : " + error.message);
+                }
+            }
+        </script>
+        <script src="js_admin/admin_news.js"></script>
+    </body>
+</html>
+

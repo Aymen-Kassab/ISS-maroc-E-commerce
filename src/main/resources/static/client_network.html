@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+    <html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ISS MAROC - Équipements Réseau</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="stylesheet" href="css_client/client_network.css">
+    </head>
+    <body>
+        <!-- Header (Same as before) -->
+        <header class="header">
+            <div class="header-container">
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <a href="#" class="logo">ISS MAROC</a>
+                
+                <div class="search-container">
+                    <input type="text" class="search-bar" placeholder="Rechercher des équipements réseau...">
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
+                <div class="header-icons">
+                    <button class="icon-btn">
+                        <i class="fas fa-user"></i>
+                    </button>
+                    <button class="icon-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-badge">3</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Layout -->
+        <div class="main-layout">
+            <!-- Main Sidebar -->
+            <nav class="main-sidebar" id="mainSidebar">
+                <ul class="sidebar-menu">
+                    <li>
+                        <a href="client_home.html">
+                            <i class="fas fa-home"></i>
+                            Accueil
+                        </a>
+                    </li>
+                    <li>
+                        <a href="client_computer.html">
+                            <i class="fas fa-desktop"></i>
+                            Ordinateur
+                        </a>
+                    </li>
+                    <li>
+                        <a href="client_scanner.html">
+                            <i class="fas fa-print"></i>
+                            Imprimants
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="active">
+                            <i class="fas fa-network-wired"></i>
+                            Réseau
+                        </a>
+                    </li>
+                    <li>
+                        <a href="client_contact.html">
+                            <i class="fas fa-envelope"></i>
+                            Contact
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Content Area - Network Equipment Listing -->
+            <main class="content-area">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <h1>Équipements Réseau</h1>
+                    <div class="breadcrumb">
+                        <a href="#">Accueil</a> / <span>Réseau</span>
+                    </div>
+                </div>
+
+                <!-- Filter Section -->
+                <div class="filter-section">
+                    <div class="filter-header">
+                        <h3><i class="fas fa-filter"></i> Filtres</h3>
+                        <button class="clear-filters" onclick="clearAllFilters()">
+                            <i class="fas fa-times"></i> Effacer les filtres
+                        </button>
+                    </div>
+                    
+                    <div class="filter-grid">
+                        <div class="filter-group">
+                            <label class="filter-label">Catégorie</label>
+                            <select class="filter-select" id="categoryFilter" onchange="applyFilters()">
+                                <option value="">Toutes les catégories</option>
+                                <option value="routeur">Routeurs</option>
+                                <option value="switch">Switches</option>
+                                <option value="access-point">Points d'accès</option>
+                                <option value="firewall">Pare-feu</option>
+                                <option value="cable">Câbles & Accessoires</option>
+                                <option value="nas">Serveurs NAS</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Gamme de prix</label>
+                            <select class="filter-select" id="priceFilter" onchange="applyFilters()">
+                                <option value="">Tous les prix</option>
+                                <option value="0-500">0 - 500 DH</option>
+                                <option value="500-1500">500 - 1,500 DH</option>
+                                <option value="1500-3000">1,500 - 3,000 DH</option>
+                                <option value="3000-8000">3,000 - 8,000 DH</option>
+                                <option value="8000+">8,000+ DH</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Marque</label>
+                            <select class="filter-select" id="brandFilter" onchange="applyFilters()">
+                                <option value="">Toutes les marques</option>
+                                <option value="cisco">Cisco</option>
+                                <option value="tp-link">TP-Link</option>
+                                <option value="netgear">Netgear</option>
+                                <option value="ubiquiti">Ubiquiti</option>
+                                <option value="d-link">D-Link</option>
+                                <option value="asus">ASUS</option>
+                                <option value="mikrotik">MikroTik</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Vitesse</label>
+                            <select class="filter-select" id="speedFilter" onchange="applyFilters()">
+                                <option value="">Toutes les vitesses</option>
+                                <option value="100mbps">100 Mbps</option>
+                                <option value="1gbps">1 Gbps</option>
+                                <option value="10gbps">10 Gbps</option>
+                                <option value="wifi5">WiFi 5 (AC)</option>
+                                <option value="wifi6">WiFi 6 (AX)</option>
+                                <option value="wifi6e">WiFi 6E</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Products Section -->
+                <div class="products-section">
+                    <div class="products-header">
+                        <div class="results-count">
+                            <span id="resultsCount">21</span> équipements trouvés
+                        </div>
+                        
+                        <div class="sort-section">
+                            <span class="sort-label">Trier par:</span>
+                            <select class="sort-select" id="sortSelect" onchange="sortProducts()">
+                                <option value="relevance">Pertinence</option>
+                                <option value="price-low">Prix croissant</option>
+                                <option value="price-high">Prix décroissant</option>
+                                <option value="name">Nom A-Z</option>
+                                <option value="newest">Plus récent</option>
+                            </select>
+                            
+                            <div class="view-toggle">
+                                <button class="view-btn active" onclick="toggleView('grid')">
+                                    <i class="fas fa-th"></i>
+                                </button>
+                                <button class="view-btn" onclick="toggleView('list')">
+                                    <i class="fas fa-list"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Products Grid -->
+                    <div class="products-grid" id="productsGrid">
+                        <!-- Sample Network Equipment Products -->
+                        <div class="product-card" data-category="routeur" data-brand="tp-link" data-price="850" data-speed="wifi6">
+                            <div class="product-image">
+                                <img src="/placeholder.svg?height=200&width=280" alt="TP-Link Router">
+                                <div class="product-badge wifi6">WiFi 6</div>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Routeur WiFi</div>
+                                <h3 class="product-title">TP-Link Archer AX73</h3>
+                                <div class="product-specs">AX5400, WiFi 6, 4 ports Gigabit, USB 3.0</div>
+                                <div class="product-price">
+                                    <span class="price-current">850 DH</span>
+                                    <span class="price-old">950 DH</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="btn-primary">
+                                        <i class="fas fa-shopping-cart"></i> Ajouter
+                                    </button>
+                                    <button class="btn-secondary">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card" data-category="switch" data-brand="cisco" data-price="3500" data-speed="1gbps">
+                            <div class="product-image">
+                                <img src="/placeholder.svg?height=200&width=280" alt="Cisco Switch">
+                                <div class="product-badge enterprise">Enterprise</div>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Switch Manageable</div>
+                                <h3 class="product-title">Cisco SG350-28 28-Port</h3>
+                                <div class="product-specs">28 ports Gigabit, Layer 3, PoE+, Manageable</div>
+                                <div class="product-price">
+                                    <span class="price-current">3,500 DH</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="btn-primary">
+                                        <i class="fas fa-shopping-cart"></i> Ajouter
+                                    </button>
+                                    <button class="btn-secondary">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card" data-category="access-point" data-brand="ubiquiti" data-price="1200" data-speed="wifi6">
+                            <div class="product-image">
+                                <img src="/placeholder.svg?height=200&width=280" alt="Ubiquiti Access Point">
+                                <div class="product-badge pro">Pro</div>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Point d'accès</div>
+                                <h3 class="product-title">Ubiquiti UniFi 6 Lite</h3>
+                                <div class="product-specs">WiFi 6, 2x2 MIMO, PoE, Gestion centralisée</div>
+                                <div class="product-price">
+                                    <span class="price-current">1,200 DH</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="btn-primary">
+                                        <i class="fas fa-shopping-cart"></i> Ajouter
+                                    </button>
+                                    <button class="btn-secondary">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card" data-category="firewall" data-brand="netgear" data-price="4500" data-speed="1gbps">
+                            <div class="product-image">
+                                <img src="/placeholder.svg?height=200&width=280" alt="Netgear Firewall">
+                                <div class="product-badge enterprise">Enterprise</div>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Pare-feu</div>
+                                <h3 class="product-title">Netgear ProSAFE SRX5308</h3>
+                                <div class="product-specs">8 ports Gigabit, VPN, UTM, Haute sécurité</div>
+                                <div class="product-price">
+                                    <span class="price-current">4,500 DH</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="btn-primary">
+                                        <i class="fas fa-shopping-cart"></i> Ajouter
+                                    </button>
+                                    <button class="btn-secondary">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card" data-category="nas" data-brand="asus" data-price="8500" data-speed="10gbps">
+                            <div class="product-image">
+                                <img src="/placeholder.svg?height=200&width=280" alt="ASUS NAS">
+                                <div class="product-badge pro">Pro</div>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Serveur NAS</div>
+                                <h3 class="product-title">ASUS AS6604T 4-Bay</h3>
+                                <div class="product-specs">4 baies, Intel Celeron, 8GB RAM, 10GbE</div>
+                                <div class="product-price">
+                                    <span class="price-current">8,500 DH</span>
+                                    <span class="price-old">9,200 DH</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="btn-primary">
+                                        <i class="fas fa-shopping-cart"></i> Ajouter
+                                    </button>
+                                    <button class="btn-secondary">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card" data-category="cable" data-brand="d-link" data-price="150" data-speed="1gbps">
+                            <div class="product-image">
+                                <img src="/placeholder.svg?height=200&width=280" alt="Câble Ethernet">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Câbles & Accessoires</div>
+                                <h3 class="product-title">Câble Ethernet Cat6 - 10m</h3>
+                                <div class="product-specs">Cat6, RJ45, Blindé, 10 mètres</div>
+                                <div class="product-price">
+                                    <span class="price-current">150 DH</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="btn-primary">
+                                        <i class="fas fa-shopping-cart"></i> Ajouter
+                                    </button>
+                                    <button class="btn-secondary">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card" data-category="routeur" data-brand="mikrotik" data-price="2800" data-speed="1gbps">
+                            <div class="product-image">
+                                <img src="/placeholder.svg?height=200&width=280" alt="MikroTik Router">
+                                <div class="product-badge pro">Pro</div>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Routeur Professionnel</div>
+                                <h3 class="product-title">MikroTik hEX S</h3>
+                                <div class="product-specs">5 ports Gigabit, SFP, RouterOS, PoE out</div>
+                                <div class="product-price">
+                                    <span class="price-current">2,800 DH</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="btn-primary">
+                                        <i class="fas fa-shopping-cart"></i> Ajouter
+                                    </button>
+                                    <button class="btn-secondary">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card" data-category="switch" data-brand="tp-link" data-price="650" data-speed="1gbps">
+                            <div class="product-image">
+                                <img src="/placeholder.svg?height=200&width=280" alt="TP-Link Switch">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Switch Non-manageable</div>
+                                <h3 class="product-title">TP-Link TL-SG1016</h3>
+                                <div class="product-specs">16 ports Gigabit, Plug & Play, Métal</div>
+                                <div class="product-price">
+                                    <span class="price-current">650 DH</span>
+                                    <span class="price-old">750 DH</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="btn-primary">
+                                        <i class="fas fa-shopping-cart"></i> Ajouter
+                                    </button>
+                                    <button class="btn-secondary">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card" data-category="access-point" data-brand="d-link" data-price="450" data-speed="wifi5">
+                            <div class="product-image">
+                                <img src="/placeholder.svg?height=200&width=280" alt="D-Link Access Point">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Point d'accès</div>
+                                <h3 class="product-title">D-Link DAP-1360</h3>
+                                <div class="product-specs">WiFi 5, 300 Mbps, PoE, Montage plafond</div>
+                                <div class="product-price">
+                                    <span class="price-current">450 DH</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="btn-primary">
+                                        <i class="fas fa-shopping-cart"></i> Ajouter
+                                    </button>
+                                    <button class="btn-secondary">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <button disabled><i class="fas fa-chevron-left"></i></button>
+                        <button class="active">1</button>
+                        <button>2</button>
+                        <button>3</button>
+                        <button><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Overlay for mobile -->
+        <div class="overlay" id="overlay" onclick="closeMobileMenu()"></div>
+
+        <script src="js_client/client_network.js"></script>
+    </body>
+</html>

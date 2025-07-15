@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ISS MAROC - Panneau d'Administration</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="stylesheet" href="css_admin/admin_computer.css">
+    </head>
+    <body>
+        <!-- Sidebar Overlay -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="#" class="sidebar-logo">
+                    <i class="fas fa-store"></i>
+                    ISS MAROC
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-item">
+                    <a href="admin_home.html" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        <span>Accueil</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin_news.html" class="nav-link">
+                        <i class="fas fa-star"></i>
+                        <span>Nouveautés</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link active">
+                        <i class="fas fa-laptop"></i>
+                        <span>Ordinateurs</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin_scanner.html" class="nav-link">
+                        <i class="fas fa-print"></i>
+                        <span>Imprimantes</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin_network.html" class="nav-link">
+                        <i class="fas fa-network-wired"></i>
+                        <span>Réseaux</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin_command.html" class="nav-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Commandes</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin_messages.html" class="nav-link">
+                        <i class="fas fa-envelope"></i>
+                        <span>Messages</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content" id="mainContent">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="mobile-toggle" id="mobileToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="page-title" id="pageTitle">Ordinateurs</h1>
+                </div>
+                <div class="header-right">
+                    <div class="user-profile">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <span class="user-name">Admin</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content" id="dashboardContent">
+                <!-- Ordinateurs Section -->
+                <div class="ordinateurs-section">
+                    <!-- Add PC Form -->
+                    <div class="section-card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-plus-circle"></i> Ajouter un Nouvel Ordinateur</h2>
+                            <p>Remplissez les informations ci-dessous pour ajouter un nouvel ordinateur à votre catalogue</p>
+                        </div>
+                        
+                        <div class="card-content">
+                            <form id="addPcForm" enctype="multipart/form-data" method="post">
+                                <div class="form-grid">
+                                    <!-- PC Name -->
+                                    <div class="form-group">
+                                        <label class="form-label" for="pcName">
+                                            <i class="fas fa-laptop"></i> Nom du PC *
+                                        </label>
+                                        <input type="text" id="pcName" name="pcName" class="form-input" 
+                                            placeholder="Ex: MacBook Pro 16 pouces M3" required>
+                                    </div>
+
+                                    <!-- Brand -->
+                                    <div class="form-group">
+                                        <label class="form-label" for="brand">
+                                            <i class="fas fa-copyright"></i> Marque *
+                                        </label>
+                                        <select id="brand" name="brand" class="form-select" required>
+                                            <option value="">Sélectionner une marque</option>
+                                            <option value="Apple">Apple</option>
+                                            <option value="Dell">Dell</option>
+                                            <option value="HP">HP</option>
+                                            <option value="Lenovo">Lenovo</option>
+                                            <option value="Asus">Asus</option>
+                                            <option value="Acer">Acer</option>
+                                            <option value="MSI">MSI</option>
+                                            <option value="Samsung">Samsung</option>
+                                            <option value="Autre">Autre</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- PC Type -->
+                                    <div class="form-group">
+                                        <label class="form-label" for="pcType">
+                                            <i class="fas fa-desktop"></i> Type de PC *
+                                        </label>
+                                        <select id="pcType" name="pcType" class="form-select" required>
+                                            <option value="">Sélectionner le type</option>
+                                            <option value="Portable">PC Portable</option>
+                                            <option value="Bureau">PC de Bureau</option>
+                                            <option value="All-in-One">All-in-One</option>
+                                            <option value="Mini PC">Mini PC</option>
+                                            <option value="Workstation">Workstation</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Processor -->
+                                    <div class="form-group">
+                                        <label class="form-label" for="processor">
+                                            <i class="fas fa-microchip"></i> Processeur *
+                                        </label>
+                                        <input type="text" id="processor" name="processor" class="form-input" 
+                                            placeholder="Ex: Intel Core i7-13700H, Apple M3 Pro" required>
+                                    </div>
+
+                                    <!-- RAM -->
+                                    <div class="form-group">
+                                        <label class="form-label" for="ram">
+                                            <i class="fas fa-memory"></i> RAM *
+                                        </label>
+                                        <select id="ram" name="ram" class="form-select" required>
+                                            <option value="">Sélectionner la RAM</option>
+                                            <option value="4GB">4 GB</option>
+                                            <option value="8GB">8 GB</option>
+                                            <option value="16GB">16 GB</option>
+                                            <option value="32GB">32 GB</option>
+                                            <option value="64GB">64 GB</option>
+                                            <option value="128GB">128 GB</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Storage -->
+                                    <div class="form-group">
+                                        <label class="form-label" for="stockage">
+                                            <i class="fas fa-hdd"></i> Stockage *
+                                        </label>
+                                        <input type="text" id="stockage" name="stockage" class="form-input" 
+                                            placeholder="Ex: 512GB SSD, 1TB HDD" required>
+                                    </div>
+
+                                    <!-- Storage Type -->
+                                    <div class="form-group">
+                                        <label class="form-label" for="ram">
+                                            <i class="fas fa-memory"></i> Types de stockage *
+                                        </label>
+                                        <select id="typeStockage" name="typeStockage" class="form-select" required>
+                                            <option value="">Sélectionner la RAM</option>
+                                            <option value="SDD">SDD</option>
+                                            <option value="HDD">HDD</option>
+                                            <option value="SATA">SATA</option>
+                                            <option value="SSHD">SSHD</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Price -->
+                                    <div class="form-group">
+                                        <label class="form-label" for="price">
+                                            <i class="fas fa-money-bill"></i> Prix (DH) *
+                                        </label>
+                                        <input type="text" id="price" name="price" class="form-input" 
+                                            placeholder="Ex: 25000" min="0" step="0.01" required>
+                                    </div>
+
+                                    <!-- Stock Quantity -->
+                                    <div class="form-group">
+                                        <label class="form-label" for="stockQuantity">
+                                            <i class="fas fa-boxes"></i> Quantité en Stock *
+                                        </label>
+                                        <input type="text" id="stockQuantity" name="stockQuantity" class="form-input" 
+                                            placeholder="Ex: 25" min="0" required>
+                                    </div>
+
+                                    <!-- Image Upload Section -->
+                                    <div class="form-group full-width">
+                                        <label class="form-label">
+                                            <i class="fas fa-images"></i> Images du PC
+                                        </label>
+                                        <div class="image-upload-section" id="imageUploadSection">
+                                            <div class="upload-icon">
+                                                <i class="fas fa-cloud-upload-alt"></i>
+                                            </div>
+                                            <div class="upload-text">
+                                                <h3>Glissez-déposez vos images ici</h3>
+                                                <p>ou cliquez pour sélectionner des fichiers</p>
+                                                <p><small>Formats acceptés: JPG, PNG, WebP (Max: 5MB par image)</small></p>
+                                            </div>
+                                            <input type="file" id="pcImages" name="pcImages" 
+                                                class="file-input" multiple accept="image/*">
+                                            <button type="button" class="upload-btn" onclick="document.getElementById('pcImages').click()">
+                                                <i class="fas fa-plus"></i> Sélectionner des Images
+                                            </button>
+                                        </div>
+                                        <div class="image-preview" id="imagePreview"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Form Actions -->
+                                <div class="form-actions">
+                                    <button type="button" class="btn btn-secondary" onclick="resetForm()">
+                                        <i class="fas fa-times"></i> Annuler
+                                    </button>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-save"></i> Ajouter l'Ordinateur
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- PC Inventory -->
+                    <div class="section-card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-laptop"></i> Inventaire des Ordinateurs</h2>
+                            <p>Gérez vos ordinateurs en stock avec possibilité de modification et suppression</p>
+                        </div>
+                        
+                        <div class="card-content">
+                            <!-- Search and Filter Controls -->
+                            <div class="inventory-controls">
+                                <div class="search-box">
+                                    <i class="fas fa-search search-icon"></i>
+                                    <input type="text" class="search-input" placeholder="Rechercher par nom, marque, processeur..." id="searchInput">
+                                </div>
+                                <select class="filter-select" id="brandFilter">
+                                    <option value="">Toutes les marques</option>
+                                    <option value="Apple">Apple</option>
+                                    <option value="Dell">Dell</option>
+                                    <option value="HP">HP</option>
+                                    <option value="Lenovo">Lenovo</option>
+                                    <option value="Asus">Asus</option>
+                                </select>
+                                <select class="filter-select" id="stockFilter">
+                                    <option value="">Tous les stocks</option>
+                                    <option value="in-stock">En stock</option>
+                                    <option value="low-stock">Stock faible</option>
+                                    <option value="out-of-stock">Rupture de stock</option>
+                                </select>
+                                <select class="filter-select" id="typeFilter">
+                                    <option value="">Tous les types</option>
+                                    <option value="Portable">PC Portable</option>
+                                    <option value="Bureau">PC de Bureau</option>
+                                    <option value="All-in-One">All-in-One</option>
+                                    <option value="Mini PC">Mini PC</option>
+                                    <option value="Workstation">Workstation</option>
+                                </select>
+                                <select class="filter-select" id="stockRangeFilter">
+                                    <option value="">Toutes quantités</option>
+                                    <option value="high">Stock élevé (>10)</option>
+                                    <option value="medium">Stock moyen (5-10)</option>
+                                    <option value="low">Stock faible (1-4)</option>
+                                    <option value="empty">Rupture de stock (0)</option>
+                                </select>
+                            </div>
+
+                            <!-- PC Inventory Grid -->
+                            <div class="pc-inventory" id="pcInventory">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script>
+            document.getElementById("addPcForm").addEventListener("submit", async function(e) {
+                e.preventDefault();
+        
+                const formValues = {
+                    pcName: document.getElementById("pcName").value,
+                    brand: document.getElementById("brand").value,
+                    pcType: document.getElementById("pcType").value,
+                    processor: document.getElementById("processor").value,
+                    ram: document.getElementById("ram").value,
+                    stockage: document.getElementById("stockage").value,
+                    typeStockage: document.getElementById("typeStockage").value,
+                    price: document.getElementById("price").value,
+                    stockQuantity: document.getElementById("stockQuantity").value
+                };
+
+                // 2. Create new FormData and MANUALLY append values
+                const formData = new FormData();
+                for (const [key, value] of Object.entries(formValues)) {
+                    formData.append(key, value);
+                }
+
+                // 3. Handle file uploads separately
+                const imageFiles = document.getElementById("pcImages").files;
+                for (let i = 0; i < imageFiles.length; i++) {
+                    formData.append("pcImages", imageFiles[i]);
+                }
+
+                // 4. DEBUG: Verify ALL data before sending
+                console.log("=== FINAL FORMDATA ===");
+                for (let [key, value] of formData.entries()) {
+                    console.log(key, value);
+                }
+
+                // 5. Send to backend
+                try {
+                    const response = await fetch('http://localhost:8080/api/computers', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                        throw new Error(errorText || 'Request failed');
+                    }
+                    
+                    const result = await response.json();
+                    console.log("Success:", result);
+                    alert("Ordinateur ajouté avec succès !");
+                    this.reset();
+                    loadComputers();
+
+                    document.getElementById('imagePreview').innerHTML = '';
+                    document.getElementById('fileCount').style.display = 'none';
+                } catch (error) {
+                    console.error("Error:", error);
+                    alert("Erreur: " + error.message);
+                }
+            });
+        </script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                loadComputers();
+            });
+
+            function loadComputers() {
+                fetch("http://localhost:8080/api/computers")
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById("pcInventory");
+                    container.innerHTML = "";
+                    data.forEach(comp => renderComputer(comp, container));
+                })
+                .catch(error => {
+                    console.error("Erreur lors du chargement :", error);
+                    container.innerHTML = `<div class="error">Erreur de chargement des données</div>`;
+                });
+            }
+
+            function renderComputer(comp, container) {
+                const pcCard = document.createElement("div");
+                pcCard.classList.add("pc-card");
+                pcCard.setAttribute("data-brand", comp.brand);
+                
+                // Better stock status calculation
+                const stockQty = parseInt(comp.stock) || 0;
+                const stockStatus = stockQty === 0 ? "out-of-stock" : 
+                                stockQty < 5 ? "low-stock" : "in-stock";
+                pcCard.setAttribute("data-stock", stockStatus);
+
+                // Fix image URL handling
+                const imageUrl = comp.imageUrls && comp.imageUrls.length > 0 ? `http://localhost:8080${comp.imageUrls[0]}` : '/placeholder.svg?height=200&width=350';
+
+                pcCard.innerHTML = `
+                    <img src="${imageUrl}" alt="${comp.name}" class="pc-image">
+                    <div class="pc-actions">
+                        <button class="action-btn edit" data-id="${comp.id}">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="action-btn delete" data-id="${comp.id}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                    <div class="pc-info">
+                        <h3 class="pc-name">${comp.name || 'N/A'}</h3>
+                        <span class="pc-brand">${comp.brand || 'N/A'}</span>
+                        <div class="pc-specs">
+                            <div class="spec-item">
+                                <i class="fas fa-microchip"></i>
+                                <span>${comp.processor || 'N/A'}</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-desktop"></i>
+                                <span>${comp.type || 'N/A'}</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-memory"></i>
+                                <span>${comp.memory || 'N/A'}</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-hdd"></i>
+                                <span>${comp.storage || 'N/A'}</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-boxes"></i>
+                                <span>Stock: ${comp.stock || '0'} unités</span>
+                            </div>
+                        </div>
+                        <div class="pc-price">${comp.price ? parseFloat(comp.price).toLocaleString('fr-MA') : '0'} DH</div>
+                        <span class="stock-status ${stockStatus}">
+                            ${stockStatus === 'out-of-stock' ? 'Rupture de stock' : 
+                            stockStatus === 'low-stock' ? 'Stock faible' : 'En stock'} (${comp.stock || '0'} unités)
+                        </span>
+                    </div>
+                `;
+                
+                // Add the card to the container
+                container.appendChild(pcCard);
+                
+                // Add event listeners to the new buttons
+                pcCard.querySelector('.edit').addEventListener('click', () => editPc(comp.id));
+                pcCard.querySelector('.delete').addEventListener('click', (event) => {
+                const button = event.currentTarget;
+                const id = button.getAttribute('data-id');
+                deletePc(id);
+                });
+
+            }
+
+            // Example action functions
+            function editPc(id) {
+                console.log("Editing computer with ID:", id);
+                // Implement your edit logic here
+            }
+
+            function deletePc(id) {
+                if (confirm("Voulez-vous vraiment supprimer cet ordinateur?")) {
+                    fetch(`http://localhost:8080/api/computers/${id}`, {
+                        method: 'DELETE'
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            loadComputers(); // Refresh the list
+                            alert("Ordinateur supprimé avec succès!");
+                        } else {
+                            throw new Error("Échec de la suppression");
+                            loadComputers();
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+                        alert("Erreur lors de la suppression");
+                        loadComputers();
+                    });
+                }
+            }
+        </script>
+        <script src="js_admin/admin_computer.js"></script>
+    </body>
+</html>

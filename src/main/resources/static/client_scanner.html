@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ISS MAROC - Imprimants</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="stylesheet" href="css_client/client_scanner.css">
+    </head>
+    <body>
+        <!-- Header (Same as before) -->
+        <header class="header">
+            <div class="header-container">
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <a href="#" class="logo">ISS MAROC</a>
+                
+                <div class="search-container">
+                    <input type="text" class="search-bar" placeholder="Rechercher des imprimants...">
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
+                <div class="header-icons">
+                    <button class="icon-btn">
+                        <i class="fas fa-user"></i>
+                    </button>
+                    <button class="icon-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-badge">3</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Layout -->
+        <div class="main-layout">
+            <!-- Main Sidebar -->
+            <nav class="main-sidebar" id="mainSidebar">
+                <ul class="sidebar-menu">
+                    <li>
+                        <a href="client_home.html">
+                            <i class="fas fa-home"></i>
+                            Accueil
+                        </a>
+                    </li>
+                    <li>
+                        <a href="client_computer.html">
+                            <i class="fas fa-desktop"></i>
+                            Ordinateur
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="active">
+                            <i class="fas fa-print"></i>
+                            Imprimants
+                        </a>
+                    </li>
+                    <li>
+                        <a href="client_network.html">
+                            <i class="fas fa-network-wired"></i>
+                            Réseau
+                        </a>
+                    </li>
+                    <li>
+                        <a href="client_contact.html">
+                            <i class="fas fa-envelope"></i>
+                            Contact
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Content Area - Printer Listing -->
+            <main class="content-area">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <h1>Imprimants</h1>
+                    <div class="breadcrumb">
+                        <a href="#">Accueil</a> / <span>Imprimants</span>
+                    </div>
+                </div>
+
+                <!-- Filter Section -->
+                <div class="filter-section">
+                    <div class="filter-header">
+                        <h3><i class="fas fa-filter"></i> Filtres</h3>
+                        <button class="clear-filters" onclick="clearAllFilters()">
+                            <i class="fas fa-times"></i> Effacer les filtres
+                        </button>
+                    </div>
+                    
+                    <div class="filter-grid">
+                        <div class="filter-group">
+                            <label class="filter-label">Catégorie</label>
+                            <select class="filter-select" id="categoryFilter" onchange="applyFilters()">
+                                <option value="">Toutes les catégories</option>
+                                <option value="jet-encre">Imprimante Jet d'encre</option>
+                                <option value="laser">Imprimante Laser</option>
+                                <option value="multifonction">Imprimante Multifonction</option>
+                                <option value="photo">Imprimante Photo</option>
+                                <option value="3d">Imprimante 3D</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Gamme de prix</label>
+                            <select class="filter-select" id="priceFilter" onchange="applyFilters()">
+                                <option value="">Tous les prix</option>
+                                <option value="0-1000">0 - 1,000 DH</option>
+                                <option value="1000-3000">1,000 - 3,000 DH</option>
+                                <option value="3000-5000">3,000 - 5,000 DH</option>
+                                <option value="5000-10000">5,000 - 10,000 DH</option>
+                                <option value="10000+">10,000+ DH</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Marque</label>
+                            <select class="filter-select" id="brandFilter" onchange="applyFilters()">
+                                <option value="">Toutes les marques</option>
+                                <option value="hp">HP</option>
+                                <option value="canon">Canon</option>
+                                <option value="epson">Epson</option>
+                                <option value="brother">Brother</option>
+                                <option value="samsung">Samsung</option>
+                                <option value="xerox">Xerox</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Type d'impression</label>
+                            <select class="filter-select" id="printTypeFilter" onchange="applyFilters()">
+                                <option value="">Tous les types</option>
+                                <option value="noir-blanc">Noir et blanc</option>
+                                <option value="couleur">Couleur</option>
+                                <option value="photo">Photo</option>
+                                <option value="3d">3D</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Products Section -->
+                <div class="products-section">
+                    <div class="products-header">
+                        <div class="results-count">
+                            <span id="resultsCount">18</span> imprimants trouvés
+                        </div>
+                        
+                        <div class="sort-section">
+                            <span class="sort-label">Trier par:</span>
+                            <select class="sort-select" id="sortSelect" onchange="sortProducts()">
+                                <option value="relevance">Pertinence</option>
+                                <option value="price-low">Prix croissant</option>
+                                <option value="price-high">Prix décroissant</option>
+                                <option value="name">Nom A-Z</option>
+                                <option value="newest">Plus récent</option>
+                            </select>
+                            
+                            <div class="view-toggle">
+                                <button class="view-btn active" onclick="toggleView('grid')">
+                                    <i class="fas fa-th"></i>
+                                </button>
+                                <button class="view-btn" onclick="toggleView('list')">
+                                    <i class="fas fa-list"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Products Grid -->
+                    <div class="products-grid" id="productsGrid">
+                        <!-- Sample Printer Products -->
+                        <div class="product-card" data-category="jet-encre" data-brand="hp" data-price="850" data-print-type="couleur">
+                            <div class="product-image">
+                                <img src="/placeholder.svg?height=200&width=280" alt="HP DeskJet">
+                                <div class="product-badge">Nouveau</div>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Imprimante Jet d'encre</div>
+                                <h3 class="product-title">HP DeskJet 2720e</h3>
+                                <div class="product-specs">Impression couleur, WiFi, 7.5 ppm, A4</div>
+                                <div class="product-price">
+                                    <span class="price-current">850 DH</span>
+                                    <span class="price-old">950 DH</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="btn-primary">
+                                        <i class="fas fa-shopping-cart"></i> Ajouter
+                                    </button>
+                                    <button class="btn-secondary">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card" data-category="laser" data-brand="canon" data-price="2500" data-print-type="noir-blanc">
+                            <div class="product-image">
+                                <img src="/placeholder.svg?height=200&width=280" alt="Canon Laser">
+                                <div class="product-badge pro">Pro</div>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Imprimante Laser</div>
+                                <h3 class="product-title">Canon i-SENSYS LBP6030</h3>
+                                <div class="product-specs">Laser N&B, 18 ppm, USB, A4</div>
+                                <div class="product-price">
+                                    <span class="price-current">2,500 DH</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="btn-primary">
+                                        <i class="fas fa-shopping-cart"></i> Ajouter
+                                    </button>
+                                    <button class="btn-secondary">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card" data-category="multifonction" data-brand="epson" data-price="3200" data-print-type="couleur">
+                            <div class="product-image">
+                                <img src="/placeholder.svg?height=200&width=280" alt="Epson Multifonction">
+                                <div class="product-badge">Multifonction</div>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Imprimante Multifonction</div>
+                                <h3 class="product-title">Epson EcoTank L3250</h3>
+                                <div class="product-specs">Impression/Scan/Copie, WiFi, Réservoirs</div>
+                                <div class="product-price">
+                                    <span class="price-current">3,200 DH</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="btn-primary">
+                                        <i class="fas fa-shopping-cart"></i> Ajouter
+                                    </button>
+                                    <button class="btn-secondary">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card" data-category="photo" data-brand="canon" data-price="1800" data-print-type="photo">
+                            <div class="product-image">
+                                <img src="/placeholder.svg?height=200&width=280" alt="Canon Photo">
+                                <div class="product-badge">Photo</div>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Imprimante Photo</div>
+                                <h3 class="product-title">Canon PIXMA TS8350</h3>
+                                <div class="product-specs">6 couleurs, Photo 10x15, WiFi, CD/DVD</div>
+                                <div class="product-price">
+                                    <span class="price-current">1,800 DH</span>
+                                    <span class="price-old">2,100 DH</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="btn-primary">
+                                        <i class="fas fa-shopping-cart"></i> Ajouter
+                                    </button>
+                                    <button class="btn-secondary">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card" data-category="laser" data-brand="brother" data-price="4500" data-print-type="couleur">
+                            <div class="product-image">
+                                <img src="/placeholder.svg?height=200&width=280" alt="Brother Laser Couleur">
+                                <div class="product-badge pro">Pro</div>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Imprimante Laser</div>
+                                <h3 class="product-title">Brother HL-L3270CDW</h3>
+                                <div class="product-specs">Laser couleur, 24 ppm, WiFi, Recto-verso</div>
+                                <div class="product-price">
+                                    <span class="price-current">4,500 DH</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="btn-primary">
+                                        <i class="fas fa-shopping-cart"></i> Ajouter
+                                    </button>
+                                    <button class="btn-secondary">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card" data-category="3d" data-brand="xerox" data-price="15000" data-print-type="3d">
+                            <div class="product-image">
+                                <img src="/placeholder.svg?height=200&width=280" alt="Imprimante 3D">
+                                <div class="product-badge">3D</div>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Imprimante 3D</div>
+                                <h3 class="product-title">Creality Ender 3 V2</h3>
+                                <div class="product-specs">220x220x250mm, PLA/ABS, Écran LCD</div>
+                                <div class="product-price">
+                                    <span class="price-current">15,000 DH</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="btn-primary">
+                                        <i class="fas fa-shopping-cart"></i> Ajouter
+                                    </button>
+                                    <button class="btn-secondary">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card" data-category="multifonction" data-brand="hp" data-price="2800" data-print-type="couleur">
+                            <div class="product-image">
+                                <img src="/placeholder.svg?height=200&width=280" alt="HP Multifonction">
+                                <div class="product-badge eco">Éco</div>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Imprimante Multifonction</div>
+                                <h3 class="product-title">HP Smart Tank 515</h3>
+                                <div class="product-specs">Réservoirs d'encre, WiFi, Scan, Copie</div>
+                                <div class="product-price">
+                                    <span class="price-current">2,800 DH</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="btn-primary">
+                                        <i class="fas fa-shopping-cart"></i> Ajouter
+                                    </button>
+                                    <button class="btn-secondary">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card" data-category="jet-encre" data-brand="epson" data-price="1200" data-print-type="couleur">
+                            <div class="product-image">
+                                <img src="/placeholder.svg?height=200&width=280" alt="Epson Expression">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Imprimante Jet d'encre</div>
+                                <h3 class="product-title">Epson Expression Home XP-2100</h3>
+                                <div class="product-specs">Compact, WiFi, 27 ppm N&B, 15 ppm couleur</div>
+                                <div class="product-price">
+                                    <span class="price-current">1,200 DH</span>
+                                    <span class="price-old">1,400 DH</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="btn-primary">
+                                        <i class="fas fa-shopping-cart"></i> Ajouter
+                                    </button>
+                                    <button class="btn-secondary">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card" data-category="laser" data-brand="samsung" data-price="3800" data-print-type="noir-blanc">
+                            <div class="product-image">
+                                <img src="/placeholder.svg?height=200&width=280" alt="Samsung Laser">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Imprimante Laser</div>
+                                <h3 class="product-title">Samsung Xpress M2020W</h3>
+                                <div class="product-specs">Laser N&B, 20 ppm, WiFi, NFC</div>
+                                <div class="product-price">
+                                    <span class="price-current">3,800 DH</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="btn-primary">
+                                        <i class="fas fa-shopping-cart"></i> Ajouter
+                                    </button>
+                                    <button class="btn-secondary">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <button disabled><i class="fas fa-chevron-left"></i></button>
+                        <button class="active">1</button>
+                        <button>2</button>
+                        <button>3</button>
+                        <button><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Overlay for mobile -->
+        <div class="overlay" id="overlay" onclick="closeMobileMenu()"></div>
+
+        <script src="js_client/client_scanner.js"></script>
+    </body>
+</html>
