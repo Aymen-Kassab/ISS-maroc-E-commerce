@@ -98,11 +98,11 @@
                             <label class="filter-label">Type</label>
                             <select class="filter-select" id="typeFilter" onchange="applyFilters()">
                                 <option value="">Tous les types</option>
-                                <option value="desktop">PC de Bureau</option>
-                                <option value="laptop">PC Portable</option>
-                                <option value="gaming">Gaming</option>
-                                <option value="workstation">Workstation</option>
-                                <option value="ultrabook">Ultrabook</option>
+                                <option value="Portable">PC Portable</option>
+                                <option value="Bureau">PC de Bureau</option>
+                                <option value="All-in-One">All-in-One</option>
+                                <option value="Mini PC">Mini PC</option>
+                                <option value="Workstation">Workstation</option>
                             </select>
                         </div>
                         
@@ -139,13 +139,15 @@
                             <label class="filter-label">Marque</label>
                             <select class="filter-select" id="brandFilter" onchange="applyFilters()">
                                 <option value="">Toutes les marques</option>
-                                <option value="hp">HP</option>
-                                <option value="dell">Dell</option>
-                                <option value="lenovo">Lenovo</option>
-                                <option value="asus">ASUS</option>
-                                <option value="acer">Acer</option>
-                                <option value="msi">MSI</option>
-                                <option value="apple">Apple</option>
+                                <option value="Apple">Apple</option>
+                                <option value="Dell">Dell</option>
+                                <option value="HP">HP</option>
+                                <option value="Lenovo">Lenovo</option>
+                                <option value="Asus">Asus</option>
+                                <option value="Acer">Acer</option>
+                                <option value="MSI">MSI</option>
+                                <option value="Samsung">Samsung</option>
+                                <option value="Autre">Autre</option>
                             </select>
                         </div>
                         
@@ -153,11 +155,12 @@
                             <label class="filter-label">Mémoire RAM</label>
                             <select class="filter-select" id="ramFilter" onchange="applyFilters()">
                                 <option value="">Toute la RAM</option>
-                                <option value="4gb">4 GB</option>
-                                <option value="8gb">8 GB</option>
-                                <option value="16gb">16 GB</option>
-                                <option value="32gb">32 GB</option>
-                                <option value="64gb">64 GB</option>
+                                <option value="4GB">4 GB</option>
+                                <option value="8GB">8 GB</option>
+                                <option value="16GB">16 GB</option>
+                                <option value="32GB">32 GB</option>
+                                <option value="64GB">64 GB</option>
+                                <option value="128GB">128 GB</option>
                             </select>
                         </div>
                         
@@ -206,233 +209,7 @@
                     <!-- Products Grid -->
                     <div class="products-grid" id="productsGrid">
                         <!-- Sample Computer Products -->
-                        <div class="product-card" data-type="laptop" data-processor="intel-i7" data-brand="hp" data-price="15500" data-ram="16gb" data-storage="512gb-ssd">
-                            <div class="product-image">
-                                <img src="/placeholder.svg?height=220&width=300" alt="HP Pavilion">
-                                <div class="product-badge business">Business</div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-category">PC Portable</div>
-                                <h3 class="product-title">HP Pavilion 15-eh1000nk</h3>
-                                <div class="product-specs">
-                                    <span class="spec-highlight">Intel Core i7-1165G7</span> • 16GB RAM • 512GB SSD • Intel Iris Xe • 15.6" FHD
-                                </div>
-                                <div class="product-price">
-                                    <span class="price-current">15,500 DH</span>
-                                    <span class="price-old">17,200 DH</span>
-                                </div>
-                                <div class="product-actions">
-                                    <button class="btn-primary">
-                                        <i class="fas fa-shopping-cart"></i> Ajouter
-                                    </button>
-                                    <button class="btn-secondary">
-                                        <i class="fas fa-heart"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="product-card" data-type="gaming" data-processor="amd-ryzen7" data-brand="msi" data-price="28500" data-ram="32gb" data-storage="1tb-ssd">
-                            <div class="product-image">
-                                <img src="/placeholder.svg?height=220&width=300" alt="MSI Gaming">
-                                <div class="product-badge gaming">Gaming</div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-category">PC Gaming</div>
-                                <h3 class="product-title">MSI Katana GF66 11UE</h3>
-                                <div class="product-specs">
-                                    <span class="spec-highlight">AMD Ryzen 7 5800H</span> • 32GB RAM • 1TB SSD • RTX 3060 • 15.6" 144Hz
-                                </div>
-                                <div class="product-price">
-                                    <span class="price-current">28,500 DH</span>
-                                </div>
-                                <div class="product-actions">
-                                    <button class="btn-primary">
-                                        <i class="fas fa-shopping-cart"></i> Ajouter
-                                    </button>
-                                    <button class="btn-secondary">
-                                        <i class="fas fa-heart"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="product-card" data-type="desktop" data-processor="intel-i5" data-brand="dell" data-price="12800" data-ram="8gb" data-storage="256gb-ssd">
-                            <div class="product-image">
-                                <img src="/placeholder.svg?height=220&width=300" alt="Dell OptiPlex">
-                                <div class="product-badge business">Business</div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-category">PC de Bureau</div>
-                                <h3 class="product-title">Dell OptiPlex 3090 SFF</h3>
-                                <div class="product-specs">
-                                    <span class="spec-highlight">Intel Core i5-11500</span> • 8GB RAM • 256GB SSD • Intel UHD 750 • Windows 11 Pro
-                                </div>
-                                <div class="product-price">
-                                    <span class="price-current">12,800 DH</span>
-                                    <span class="price-old">14,500 DH</span>
-                                </div>
-                                <div class="product-actions">
-                                    <button class="btn-primary">
-                                        <i class="fas fa-shopping-cart"></i> Ajouter
-                                    </button>
-                                    <button class="btn-secondary">
-                                        <i class="fas fa-heart"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="product-card" data-type="ultrabook" data-processor="intel-i7" data-brand="asus" data-price="22500" data-ram="16gb" data-storage="512gb-ssd">
-                            <div class="product-image">
-                                <img src="/placeholder.svg?height=220&width=300" alt="ASUS ZenBook">
-                                <div class="product-badge ultrabook">Ultrabook</div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-category">Ultrabook</div>
-                                <h3 class="product-title">ASUS ZenBook 14 UX425EA</h3>
-                                <div class="product-specs">
-                                    <span class="spec-highlight">Intel Core i7-1165G7</span> • 16GB RAM • 512GB SSD • Intel Iris Xe • 14" FHD
-                                </div>
-                                <div class="product-price">
-                                    <span class="price-current">22,500 DH</span>
-                                </div>
-                                <div class="product-actions">
-                                    <button class="btn-primary">
-                                        <i class="fas fa-shopping-cart"></i> Ajouter
-                                    </button>
-                                    <button class="btn-secondary">
-                                        <i class="fas fa-heart"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="product-card" data-type="laptop" data-processor="amd-ryzen5" data-brand="lenovo" data-price="9800" data-ram="8gb" data-storage="256gb-ssd">
-                            <div class="product-image">
-                                <img src="/placeholder.svg?height=220&width=300" alt="Lenovo IdeaPad">
-                            </div>
-                            <div class="product-info">
-                                <div class="product-category">PC Portable</div>
-                                <h3 class="product-title">Lenovo IdeaPad 3 15ALC6</h3>
-                                <div class="product-specs">
-                                    <span class="spec-highlight">AMD Ryzen 5 5500U</span> • 8GB RAM • 256GB SSD • AMD Radeon • 15.6" FHD
-                                </div>
-                                <div class="product-price">
-                                    <span class="price-current">9,800 DH</span>
-                                    <span class="price-old">11,200 DH</span>
-                                </div>
-                                <div class="product-actions">
-                                    <button class="btn-primary">
-                                        <i class="fas fa-shopping-cart"></i> Ajouter
-                                    </button>
-                                    <button class="btn-secondary">
-                                        <i class="fas fa-heart"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="product-card" data-type="workstation" data-processor="intel-i9" data-brand="hp" data-price="45000" data-ram="64gb" data-storage="1tb-ssd">
-                            <div class="product-image">
-                                <img src="/placeholder.svg?height=220&width=300" alt="HP ZBook">
-                                <div class="product-badge workstation">Workstation</div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-category">Workstation</div>
-                                <h3 class="product-title">HP ZBook Studio G8</h3>
-                                <div class="product-specs">
-                                    <span class="spec-highlight">Intel Core i9-11950H</span> • 64GB RAM • 1TB SSD • RTX A3000 • 15.6" 4K
-                                </div>
-                                <div class="product-price">
-                                    <span class="price-current">45,000 DH</span>
-                                </div>
-                                <div class="product-actions">
-                                    <button class="btn-primary">
-                                        <i class="fas fa-shopping-cart"></i> Ajouter
-                                    </button>
-                                    <button class="btn-secondary">
-                                        <i class="fas fa-heart"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="product-card" data-type="laptop" data-processor="intel-i3" data-brand="acer" data-price="6500" data-ram="4gb" data-storage="1tb-hdd">
-                            <div class="product-image">
-                                <img src="/placeholder.svg?height=220&width=300" alt="Acer Aspire">
-                            </div>
-                            <div class="product-info">
-                                <div class="product-category">PC Portable</div>
-                                <h3 class="product-title">Acer Aspire 3 A315-23</h3>
-                                <div class="product-specs">
-                                    <span class="spec-highlight">Intel Core i3-1115G4</span> • 4GB RAM • 1TB HDD • Intel UHD • 15.6" HD
-                                </div>
-                                <div class="product-price">
-                                    <span class="price-current">6,500 DH</span>
-                                    <span class="price-old">7,200 DH</span>
-                                </div>
-                                <div class="product-actions">
-                                    <button class="btn-primary">
-                                        <i class="fas fa-shopping-cart"></i> Ajouter
-                                    </button>
-                                    <button class="btn-secondary">
-                                        <i class="fas fa-heart"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="product-card" data-type="desktop" data-processor="amd-ryzen7" data-brand="asus" data-price="18500" data-ram="16gb" data-storage="512gb-ssd">
-                            <div class="product-image">
-                                <img src="/placeholder.svg?height=220&width=300" alt="ASUS Desktop">
-                                <div class="product-badge business">Business</div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-category">PC de Bureau</div>
-                                <h3 class="product-title">ASUS ExpertCenter D700MA</h3>
-                                <div class="product-specs">
-                                    <span class="spec-highlight">AMD Ryzen 7 5700G</span> • 16GB RAM • 512GB SSD • AMD Radeon • Windows 11 Pro
-                                </div>
-                                <div class="product-price">
-                                    <span class="price-current">18,500 DH</span>
-                                </div>
-                                <div class="product-actions">
-                                    <button class="btn-primary">
-                                        <i class="fas fa-shopping-cart"></i> Ajouter
-                                    </button>
-                                    <button class="btn-secondary">
-                                        <i class="fas fa-heart"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="product-card" data-type="gaming" data-processor="intel-i7" data-brand="msi" data-price="32000" data-ram="32gb" data-storage="1tb-ssd">
-                            <div class="product-image">
-                                <img src="/placeholder.svg?height=220&width=300" alt="MSI Gaming Desktop">
-                                <div class="product-badge gaming">Gaming</div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-category">PC Gaming</div>
-                                <h3 class="product-title">MSI Aegis RS 12</h3>
-                                <div class="product-specs">
-                                    <span class="spec-highlight">Intel Core i7-12700KF</span> • 32GB RAM • 1TB SSD • RTX 3070 • RGB Lighting
-                                </div>
-                                <div class="product-price">
-                                    <span class="price-current">32,000 DH</span>
-                                    <span class="price-old">35,500 DH</span>
-                                </div>
-                                <div class="product-actions">
-                                    <button class="btn-primary">
-                                        <i class="fas fa-shopping-cart"></i> Ajouter
-                                    </button>
-                                    <button class="btn-secondary">
-                                        <i class="fas fa-heart"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
 
                     <!-- Pagination -->
@@ -486,9 +263,9 @@
                 card.className = "product-card";
                 
                 // Set data attributes for filtering
-                card.dataset.brand = computer.brand || '';
-                card.dataset.type = computer.type || '';
-                card.dataset.price = computer.price || 0;
+                card.dataset.brand = computer.brand;
+                card.dataset.type = computer.type;
+                card.dataset.price = computer.price;
                 
                 // Handle image URL
                 let imageUrl = '/placeholder.svg';
@@ -504,15 +281,15 @@
                         ${computer.category ? `<div class="product-badge">${computer.category}</div>` : ''}
                     </div>
                     <div class="product-info">
-                        <div class="product-category">${computer.type || 'Non spécifié'}</div>
-                        <h3 class="product-title">${computer.name || 'Nom non disponible'}</h3>
+                        <div class="product-category">${computer.type}</div>
+                        <h3 class="product-title">${computer.name}</h3>
                         <div class="product-specs">
                             ${computer.processor ? `<span class="spec-highlight">${computer.processor}</span>` : ''}
                             ${computer.memory ? ` • ${computer.memory} RAM` : ''}
                             ${computer.storage ? ` • ${computer.storage}` : ''}
                         </div>
                         <div class="product-price">
-                            <span class="price-current">${computer.price ? `${computer.price} DH` : 'Prix non disponible'}</span>
+                            <span class="price-current">${computer.price} DH</span>
                             ${computer.oldPrice ? `<span class="price-old">${computer.oldPrice} DH</span>` : ''}
                         </div>
                         <div class="product-actions">
@@ -529,9 +306,14 @@
                 // Add event listeners
                 card.querySelector('.add-to-cart').addEventListener('click', () => addToCart(computer.id));
                 card.querySelector('.wishlist').addEventListener('click', () => addToWishlist(computer.id));
+
+                card.style.cursor = "pointer";
+                    card.addEventListener("click", () => {
+                        window.location.href = `/client_purchase.html?id=${computer.id}`;
+                    });
                 
                 return card;
-}
+            }
         </script>
         <script src="js_client/client_computer.js"></script>
     </body>

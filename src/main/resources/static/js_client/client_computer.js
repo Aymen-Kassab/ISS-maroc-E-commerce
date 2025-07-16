@@ -73,9 +73,11 @@ function applyFilters() {
                 
         product.style.display = show ? 'block' : 'none';
         if (show) visibleCount++;
+
     });
             
     document.getElementById('resultsCount').textContent = visibleCount;
+
 }
 
 function clearAllFilters() {
