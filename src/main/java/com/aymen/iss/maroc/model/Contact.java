@@ -40,6 +40,10 @@ public class Contact {
         return this.subject;
     }
 
+    public String getMessage(){
+        return this.message;
+    }
+
     // Setters
 
     public void setFirstName(String firstName){
@@ -60,5 +64,9 @@ public class Contact {
 
     public void setSubject(String subject){
         this.subject = subject;
+    }
+
+    public void setMessage(String message){
+        this.message = message;
     }
 }

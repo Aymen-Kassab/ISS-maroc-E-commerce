@@ -311,6 +311,50 @@
 
     <!-- Overlay for mobile -->
     <div class="overlay" id="overlay" onclick="closeMobileMenu()"></div>
+    
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            const contactValues = {
+                firstName: document.getElementById("firstName").value,
+                lastName: document.getElementById("lastName").value,
+                email: document.getElementById("email").value,
+                phoneNumber: document.getElementById("phone").value,
+                subject: document.getElementById("subject").value,
+                message: document.getElementById("message").value
+            }
+
+            const contactForm = new FormData();
+
+            for (const [key, value] of Object.entries(contactValues)){
+                contactForm.append(key, value);
+            }
+
+            try{
+                const response = await fetch('http://localhost:8080/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(contactValues),
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(errorText || 'Request failed');
+                }
+
+                const result = await response.json();
+                console.log("Success:", result);
+                alert("Ordinateur ajouté avec succès !");
+                this.reset();
+            }catch (error) {
+                console.error("Error:", error);
+                alert("Erreur: " + error.message);
+            }
+        });
+    </script>
 
     <script src="js_client/client_contact.js"></script>
 </body>
