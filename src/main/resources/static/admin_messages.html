@@ -96,28 +96,21 @@
                             <div class="stat-icon new">
                                 <i class="fas fa-envelope"></i>
                             </div>
-                            <div class="stat-number">8</div>
+                            <div class="stat-number" id="unread"></div>
                             <div class="stat-label">Nouveaux Messages</div>
                         </div>
                         <div class="stat-card">
                             <div class="stat-icon read">
                                 <i class="fas fa-envelope-open"></i>
                             </div>
-                            <div class="stat-number">15</div>
+                            <div class="stat-number" id="read"></div>
                             <div class="stat-label">Messages Lus</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon replied">
-                                <i class="fas fa-reply"></i>
-                            </div>
-                            <div class="stat-number">12</div>
-                            <div class="stat-label">Réponses Envoyées</div>
                         </div>
                         <div class="stat-card">
                             <div class="stat-icon archived">
                                 <i class="fas fa-archive"></i>
                             </div>
-                            <div class="stat-number">25</div>
+                            <div class="stat-number" id="archived"></div>
                             <div class="stat-label">Messages Archivés</div>
                         </div>
                     </div>
@@ -159,243 +152,7 @@
 
                             <!-- Messages Grid -->
                             <div class="messages-grid" id="messagesGrid">
-                                <!-- Sample Messages -->
-                                <div class="message-card unread" data-status="new" data-priority="high">
-                                    <div class="message-header">
-                                        <div class="message-info">
-                                            <div class="client-name">Ahmed Benali</div>
-                                            <div class="contact-info">
-                                                <div class="contact-item">
-                                                    <i class="fas fa-envelope"></i>
-                                                    <span>ahmed.benali@email.com</span>
-                                                </div>
-                                                <div class="contact-item">
-                                                    <i class="fas fa-phone"></i>
-                                                    <span>+212 6 12 34 56 78</span>
-                                                </div>
-                                            </div>
-                                            <div class="message-subject">Demande de devis pour ordinateurs portables</div>
-                                            <div class="message-date">15 Janvier 2024, 14:30</div>
-                                        </div>
-                                        <div class="message-status">
-                                            <span class="status-badge new">Nouveau</span>
-                                            <span class="priority-badge high">Priorité Haute</span>
-                                        </div>
-                                    </div>
-                                    <div class="message-content">
-                                        <div class="message-text">
-                                            Bonjour, je suis intéressé par l'achat de 10 ordinateurs portables pour mon entreprise. Pourriez-vous me faire un devis pour des MacBook Pro 16" M3 ? J'aimerais également connaître les délais de livraison et les conditions de paiement. Merci de me contacter rapidement car c'est urgent.
-                                        </div>
-                                        <div class="message-actions">
-                                            <button class="action-btn reply" onclick="replyMessage('MSG001')">
-                                                <i class="fas fa-reply"></i> Répondre
-                                            </button>
-                                            <button class="action-btn mark-read" onclick="markAsRead('MSG001')">
-                                                <i class="fas fa-check"></i> Marquer comme lu
-                                            </button>
-                                            <button class="action-btn archive" onclick="archiveMessage('MSG001')">
-                                                <i class="fas fa-archive"></i> Archiver
-                                            </button>
-                                            <button class="action-btn delete" onclick="deleteMessage('MSG001')">
-                                                <i class="fas fa-trash"></i> Supprimer
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="message-card read" data-status="read" data-priority="medium">
-                                    <div class="message-header">
-                                        <div class="message-info">
-                                            <div class="client-name">Fatima Zahra Alami</div>
-                                            <div class="contact-info">
-                                                <div class="contact-item">
-                                                    <i class="fas fa-envelope"></i>
-                                                    <span>fatima.alami@email.com</span>
-                                                </div>
-                                                <div class="contact-item">
-                                                    <i class="fas fa-phone"></i>
-                                                    <span>+212 6 87 65 43 21</span>
-                                                </div>
-                                            </div>
-                                            <div class="message-subject">Question sur les imprimantes HP</div>
-                                            <div class="message-date">14 Janvier 2024, 10:15</div>
-                                        </div>
-                                        <div class="message-status">
-                                            <span class="status-badge read">Lu</span>
-                                            <span class="priority-badge medium">Priorité Moyenne</span>
-                                        </div>
-                                    </div>
-                                    <div class="message-content">
-                                        <div class="message-text">
-                                            Bonjour, j'aimerais savoir si vous avez en stock l'imprimante HP LaserJet Pro M404dn. Quels sont les prix et est-ce que vous proposez une garantie ? Également, est-ce que cette imprimante est compatible avec les systèmes Mac ?
-                                        </div>
-                                        <div class="message-actions">
-                                            <button class="action-btn reply" onclick="replyMessage('MSG002')">
-                                                <i class="fas fa-reply"></i> Répondre
-                                            </button>
-                                            <button class="action-btn archive" onclick="archiveMessage('MSG002')">
-                                                <i class="fas fa-archive"></i> Archiver
-                                            </button>
-                                            <button class="action-btn delete" onclick="deleteMessage('MSG002')">
-                                                <i class="fas fa-trash"></i> Supprimer
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="message-card replied" data-status="replied" data-priority="low">
-                                    <div class="message-header">
-                                        <div class="message-info">
-                                            <div class="client-name">Mohamed Idrissi</div>
-                                            <div class="contact-info">
-                                                <div class="contact-item">
-                                                    <i class="fas fa-envelope"></i>
-                                                    <span>mohamed.idrissi@email.com</span>
-                                                </div>
-                                                <div class="contact-item">
-                                                    <i class="fas fa-phone"></i>
-                                                    <span>+212 6 55 44 33 22</span>
-                                                </div>
-                                            </div>
-                                            <div class="message-subject">Remerciements pour la livraison</div>
-                                            <div class="message-date">13 Janvier 2024, 16:45</div>
-                                        </div>
-                                        <div class="message-status">
-                                            <span class="status-badge replied">Répondu</span>
-                                            <span class="priority-badge low">Priorité Basse</span>
-                                        </div>
-                                    </div>
-                                    <div class="message-content">
-                                        <div class="message-text">
-                                            Bonjour, je tenais à vous remercier pour la livraison rapide du switch Cisco. Tout fonctionne parfaitement et l'installation s'est bien passée. Je recommanderai vos services à mes collègues. Excellente qualité de service !
-                                        </div>
-                                        <div class="message-actions">
-                                            <button class="action-btn archive" onclick="archiveMessage('MSG003')">
-                                                <i class="fas fa-archive"></i> Archiver
-                                            </button>
-                                            <button class="action-btn delete" onclick="deleteMessage('MSG003')">
-                                                <i class="fas fa-trash"></i> Supprimer
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="message-card unread" data-status="new" data-priority="high">
-                                    <div class="message-header">
-                                        <div class="message-info">
-                                            <div class="client-name">Aicha Bennani</div>
-                                            <div class="contact-info">
-                                                <div class="contact-item">
-                                                    <i class="fas fa-envelope"></i>
-                                                    <span>aicha.bennani@email.com</span>
-                                                </div>
-                                                <div class="contact-item">
-                                                    <i class="fas fa-phone"></i>
-                                                    <span>+212 6 99 88 77 66</span>
-                                                </div>
-                                            </div>
-                                            <div class="message-subject">Problème avec ma commande</div>
-                                            <div class="message-date">15 Janvier 2024, 09:20</div>
-                                        </div>
-                                        <div class="message-status">
-                                            <span class="status-badge new">Nouveau</span>
-                                            <span class="priority-badge high">Priorité Haute</span>
-                                        </div>
-                                    </div>
-                                    <div class="message-content">
-                                        <div class="message-text">
-                                            Bonjour, j'ai passé une commande il y a une semaine (commande #CMD004) pour un scanner Canon, mais je n'ai toujours pas reçu de nouvelles concernant la livraison. Pouvez-vous me donner des informations sur le statut de ma commande ? C'est urgent car j'en ai besoin pour mon travail.
-                                        </div>
-                                        <div class="message-actions">
-                                            <button class="action-btn reply" onclick="replyMessage('MSG004')">
-                                                <i class="fas fa-reply"></i> Répondre
-                                            </button>
-                                            <button class="action-btn mark-read" onclick="markAsRead('MSG004')">
-                                                <i class="fas fa-check"></i> Marquer comme lu
-                                            </button>
-                                            <button class="action-btn archive" onclick="archiveMessage('MSG004')">
-                                                <i class="fas fa-archive"></i> Archiver
-                                            </button>
-                                            <button class="action-btn delete" onclick="deleteMessage('MSG004')">
-                                                <i class="fas fa-trash"></i> Supprimer
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="message-card read" data-status="read" data-priority="medium">
-                                    <div class="message-header">
-                                        <div class="message-info">
-                                            <div class="client-name">Youssef Amrani</div>
-                                            <div class="contact-info">
-                                                <div class="contact-item">
-                                                    <i class="fas fa-envelope"></i>
-                                                    <span>youssef.amrani@email.com</span>
-                                                </div>
-                                                <div class="contact-item">
-                                                    <i class="fas fa-phone"></i>
-                                                    <span>+212 6 77 66 55 44</span>
-                                                </div>
-                                            </div>
-                                            <div class="message-subject">Demande d'information sur les équipements réseau</div>
-                                            <div class="message-date">12 Janvier 2024, 11:30</div>
-                                        </div>
-                                        <div class="message-status">
-                                            <span class="status-badge read">Lu</span>
-                                            <span class="priority-badge medium">Priorité Moyenne</span>
-                                        </div>
-                                    </div>
-                                    <div class="message-content">
-                                        <div class="message-text">
-                                            Bonjour, je cherche des équipements réseau pour équiper un petit bureau de 20 personnes. Auriez-vous des recommandations pour des switches et points d'accès WiFi ? J'aimerais également connaître vos tarifs pour l'installation et la configuration.
-                                        </div>
-                                        <div class="message-actions">
-                                            <button class="action-btn reply" onclick="replyMessage('MSG005')">
-                                                <i class="fas fa-reply"></i> Répondre
-                                            </button>
-                                            <button class="action-btn archive" onclick="archiveMessage('MSG005')">
-                                                <i class="fas fa-archive"></i> Archiver
-                                            </button>
-                                            <button class="action-btn delete" onclick="deleteMessage('MSG005')">
-                                                <i class="fas fa-trash"></i> Supprimer
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="message-card archived" data-status="archived" data-priority="low">
-                                    <div class="message-header">
-                                        <div class="message-info">
-                                            <div class="client-name">Khadija Tazi</div>
-                                            <div class="contact-info">
-                                                <div class="contact-item">
-                                                    <i class="fas fa-envelope"></i>
-                                                    <span>khadija.tazi@email.com</span>
-                                                </div>
-                                                <div class="contact-item">
-                                                    <i class="fas fa-phone"></i>
-                                                    <span>+212 6 33 22 11 00</span>
-                                                </div>
-                                            </div>
-                                            <div class="message-subject">Demande de catalogue produits</div>
-                                            <div class="message-date">10 Janvier 2024, 14:00</div>
-                                        </div>
-                                        <div class="message-status">
-                                            <span class="status-badge archived">Archivé</span>
-                                            <span class="priority-badge low">Priorité Basse</span>
-                                        </div>
-                                    </div>
-                                    <div class="message-content">
-                                        <div class="message-text">
-                                            Bonjour, pourriez-vous m'envoyer votre catalogue de produits informatiques ? Je suis particulièrement intéressée par les ordinateurs portables et les imprimantes. Merci d'avance.
-                                        </div>
-                                        <div class="message-actions">
-                                            <button class="action-btn delete" onclick="deleteMessage('MSG006')">
-                                                <i class="fas fa-trash"></i> Supprimer
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -413,10 +170,23 @@
                 .then(data => {
                     const container = document.getElementById("messagesGrid");
                     container.innerHTML = "";
+
+                    let read = 0;
+                    let unread = 0;
+                    let archived = 0;
+
+
                     data.forEach(comp => {
+                        if (comp.status === "read") read++;
+                        else if (comp.status === "unread") unread++;
+                        else if (comp.status === "archived") archived++;
+
                         renderMessages(comp, container);
                     });
-                    console.log(data);
+
+                    document.getElementById("read").innerText = read;
+                    document.getElementById("unread").innerText = unread;
+                    document.getElementById("archived").innerText = archived;
                 })
                 .catch(error => {
                     console.error("Erreur lors du chargement :", error);
@@ -425,10 +195,26 @@
 
             function renderMessages(comp, container){
                 const messageCard = document.createElement('div');
-                messageCard.classList.add('message-card');
+                messageCard.classList.add("message-card");
+                if (comp.status) messageCard.classList.add(comp.status);
+                messageCard.setAttribute("data-status", comp.status);
+
+                let priority = "";
+
+                switch(comp.status){
+                    case "unread" : messageCard.setAttribute("data-priority", "high");
+                                    priority = "high";
+                    break;
+                    case "read" : messageCard.setAttribute("data-priority", "medium");
+                                  priority = "medium";
+                    break;
+                    case "archived" : messageCard.setAttribute("data-priority", "low");
+                                      priority = "low";
+                    break;
+                }
 
                 messageCard.innerHTML = `
-                    <div class="message-header>
+                    <div class="message-header">
                         <div class="message-info">
                             <div class="client-name">${comp.firstName} ${comp.lastName}</div>
                             <div class="contact-info">
@@ -445,8 +231,8 @@
                             <div class="message-date"></div>
                         </div>
                         <div class="message-status">
-                            <span class="status-badge archived">Archivé</span>
-                            <span class="priority-badge low">Priorité Basse</span>
+                            <span class="status-badge ${comp.status}">${comp.status}</span>
+                            <span class="priority-badge ${priority}">Priorité ${priority}</span>
                         </div>
                     </div>
                     <div class="message-content">
