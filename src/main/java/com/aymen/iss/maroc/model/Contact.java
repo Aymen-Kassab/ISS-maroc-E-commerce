@@ -14,11 +14,16 @@ public class Contact {
     private String email;
     private String phoneNumber;
     private String subject;
+    private String status = "unread";
 
     @Lob
     private String message;
 
     // Getters
+
+    public long getId(){
+        return this.id;
+    }
 
     public String getFirstName(){
         return this.firstName;
@@ -40,9 +45,14 @@ public class Contact {
         return this.subject;
     }
 
+    public String getStatus(){
+        return this.status;
+    }
+
     public String getMessage(){
         return this.message;
     }
+
 
     // Setters
 
@@ -64,6 +74,10 @@ public class Contact {
 
     public void setSubject(String subject){
         this.subject = subject;
+    }
+
+    public void setStatus(String status){
+        this.status = status;
     }
 
     public void setMessage(String message){

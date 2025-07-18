@@ -13,38 +13,6 @@ sidebarOverlay.addEventListener('click', function() {
     sidebarOverlay.classList.remove('active');
 });
 
-// Navigation functionality
-/*const navLinks = document.querySelectorAll('.nav-link');
-const pageTitle = document.getElementById('pageTitle');
-
-navLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        navLinks.forEach(l => l.classList.remove('active'));
-        this.classList.add('active');
-        
-        const pageName = this.dataset.page;
-        const pageNames = {
-            'accueil': 'Accueil',
-            'nouveautes': 'Nouveautés',
-            'ordinateurs': 'Ordinateurs',
-            'imprimantes': 'Imprimantes',
-            'scanners': 'Scanners',
-            'reseaux': 'Équipements Réseau',
-            'commandes': 'Gestion des Commandes',
-            'messages': 'Gestion des Messages'
-        };
-        
-        pageTitle.textContent = pageNames[pageName];
-        
-        if (window.innerWidth <= 768) {
-            sidebar.classList.remove('mobile-visible');
-            sidebarOverlay.classList.remove('active');
-        }
-    });
-});*/
-
 // Search functionality
 const searchInput = document.getElementById('searchInput');
 const statusFilter = document.getElementById('statusFilter');
@@ -148,22 +116,6 @@ function archiveMessage(messageId) {
     
     updateStatistics();
     alert(`Message ${messageId} archivé`);
-}
-
-function deleteMessage(messageId) {
-    if (confirm(`Êtes-vous sûr de vouloir supprimer ce message ?`)) {
-        // Find and remove the message card
-        const messageCards = document.querySelectorAll('.message-card');
-        messageCards.forEach(card => {
-            const actions = card.querySelector('.message-actions');
-            if (actions && actions.innerHTML.includes(messageId)) {
-                card.remove();
-                console.log('Message supprimé:', messageId);
-                updateStatistics();
-            }
-        });
-        // Here you would send delete request to backend
-    }
 }
 
 // Update Statistics

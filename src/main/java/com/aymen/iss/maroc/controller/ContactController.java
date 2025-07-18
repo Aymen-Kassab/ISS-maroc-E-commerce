@@ -32,4 +32,20 @@ public class ContactController {
     public List<Contact> getAllContact(){
         return contactRepository.findAll();
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteContact(@PathVariable Long id) {
+        contactRepository.deleteById(id);
+    }
+
+    @PutMapping("/{id}/status")
+    public Contact updateStatus(@PathVariable Long id, @RequestBody Map<String, String> payload) {
+        Contact contact = contactRepository.findById(id).orElseThrow(() -> new RuntimeException("Contact not found"));
+
+        String newStatus = payload.get("status");
+        contact.setStatus(newStatus);
+
+        return contactRepository.save(contact);
+    }
+
 }

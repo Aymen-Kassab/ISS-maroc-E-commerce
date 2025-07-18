@@ -408,7 +408,139 @@
             });
 
             function loadMessages() {
+                fetch("http://localhost:8080/api/contact")
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById("messagesGrid");
+                    container.innerHTML = "";
+                    data.forEach(comp => {
+                        renderMessages(comp, container);
+                    });
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error("Erreur lors du chargement :", error);
+                });    
+            }
 
+            function renderMessages(comp, container){
+                const messageCard = document.createElement('div');
+                messageCard.classList.add('message-card');
+
+                messageCard.innerHTML = `
+                    <div class="message-header>
+                        <div class="message-info">
+                            <div class="client-name">${comp.firstName} ${comp.lastName}</div>
+                            <div class="contact-info">
+                                <div class="contact-item">
+                                    <i class="fas fa-envelope"></i>
+                                    <span>${comp.email}</span>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="fas fa-phone"></i>
+                                    <span>${comp.phoneNumber}</span>
+                                </div>
+                            </div>
+                            <div class="message-subject">${comp.subject}</div>
+                            <div class="message-date"></div>
+                        </div>
+                        <div class="message-status">
+                            <span class="status-badge archived">Archivé</span>
+                            <span class="priority-badge low">Priorité Basse</span>
+                        </div>
+                    </div>
+                    <div class="message-content">
+                        <div class="message-text">
+                            ${comp.message}
+                        </div>
+                        <div class="message-actions">
+                            <button class="action-btn mark-read">
+                                <i class="fas fa-check"></i> Marquer comme lu
+                            </button>
+                            <button class="action-btn archive">
+                                <i class="fas fa-archive"></i> Archiver
+                            </button>
+                            <button class="action-btn delete">
+                                <i class="fas fa-trash"></i> Supprimer
+                            </button>
+                        </div>
+                    </div>
+                `;
+                    
+                container.appendChild(messageCard);
+
+                messageCard.querySelector(".delete").addEventListener("click", () => deleteMessage(comp.id));
+                messageCard.querySelector(".archive").addEventListener("click", () => archMessage(comp.id));
+                messageCard.querySelector(".mark-read").addEventListener("click", () => markReadMessage(comp.id));
+
+            }
+
+            function deleteMessage(id){
+                if(confirm("Voulez-vous vraiment supprimer ce message?")){
+                    fetch(`http://localhost:8080/api/contact/${id}`, {
+                        method: 'DELETE'
+                    })
+                    .then(response => {
+                        if(response.ok){
+                            loadMessages();
+                            alert("Message supprimé avec succès!");
+                        }
+                        else {
+                            throw new Error("Error de la supression!");
+                            loadMessages();
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+                        alert("Erreur lors de la suppression");
+                        loadMessages();
+                    });
+                }
+            }
+
+            async function markReadMessage(Id) {
+                try {
+                    const response = await fetch(`http://localhost:8080/api/contact/${Id}/status`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ status: "read" })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error("Failed to update status");
+                    }
+
+                    const result = await response.json();
+                    alert("Status updated to: " + result.status);
+                } catch (error) {
+                        console.error("Error updating status:", error);
+                }
+                loadMessages();
+            }
+            
+            async function archMessage(Id) {
+                try {
+                    const response = await fetch(`http://localhost:8080/api/contact/${Id}/status`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ status: "archived" })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error("Failed to update status");
+                    }
+
+                    const result = await response.json();
+                    alert("Status updated to: " + result.status);
+                } catch (error) {
+                        console.error("Error updating status:", error);
+                }
+
+                loadMessages();
             }
         </script>
         <script src="js_admin/admin_message.js"></script>
