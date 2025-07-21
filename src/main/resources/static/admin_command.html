@@ -173,7 +173,7 @@
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="command-container">
                                         <!-- Sample Orders -->
                                         <tr data-status="pending">
                                             <td class="order-id">#CMD001</td>
@@ -422,7 +422,137 @@
                 </div>
             </div>
         </main>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                loadCommands();
+            });
 
+            function loadCommands() {
+                fetch("http://localhost:8080/api/command/by-date")
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById("command-container");
+                    container.innerHTML = "";
+
+                    let pending = 0;
+                    let confirmed = 0;
+                    let shipped = 0;
+                    let delivered = 0;
+                    let canceled = 0;
+
+                    data.forEach(command => {
+                        if (command.status === "pending") pending++;
+                        else if (command.status === "confirmed") confirmed++;
+                        else if (command.status === "shipped") shipped++;
+                        else if (command.status === "delivered") delivered++;
+                        else if (command.status === "canceled") canceled++;
+
+                        renderCommand(command, container);
+                    });
+
+                    // Update stats cards
+                    document.querySelector(".pending .stat-number").innerText = pending;
+                    document.querySelector(".confirmed .stat-number").innerText = confirmed;
+                    document.querySelector(".shipped .stat-number").innerText = shipped;
+                    document.querySelector(".delivered .stat-number").innerText = delivered;
+                    document.querySelector(".canceled .stat-number").innerText = canceled;
+                })
+                .catch(error => {
+                    console.error("Erreur lors du chargement :", error);
+                });
+            }
+
+            function renderCommand(command, container) {
+                const commandRow = document.createElement('tr');
+                commandRow.setAttribute("data-status", command.status);
+
+                // Format date (assuming command.date is in ISO format)
+                const orderDate = new Date(command.date).toLocaleDateString('fr-FR');
+                
+                commandRow.innerHTML = `
+                    <td class="order-id">#${command.id}</td>
+                    <td>
+                        <div class="client-info">
+                            <span class="client-name">${command.fullName}</span>
+                            <span class="client-phone">${command.phoneNumber}</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="product-info">
+                            <span class="product-name">${command.productName}</span>
+                            <span class="product-quantity">Quantité: ${command.quantity}</span>
+                        </div>
+                    </td>
+                    <td class="order-total">${command.price} DH</td>
+                    <td class="order-date">${orderDate}</td>
+                    <td>
+                        <select class="status-select ${command.status}" onchange="updateOrderStatus(this, '${command.id}')">
+                            <option value="pending" ${command.status === 'pending' ? 'selected' : ''}>En Attente</option>
+                            <option value="confirmed" ${command.status === 'confirmed' ? 'selected' : ''}>Confirmée</option>
+                            <option value="shipped" ${command.status === 'shipped' ? 'selected' : ''}>Expédiée</option>
+                            <option value="delivered" ${command.status === 'delivered' ? 'selected' : ''}>Livrée</option>
+                            <option value="canceled" ${command.status === 'canceled' ? 'selected' : ''}>Annulée</option>
+                        </select>
+                    </td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-btn view" onclick="viewOrder('${command.id}')" title="Voir détails">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="action-btn edit" onclick="editOrder('${command.id}')" title="Modifier">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="action-btn delete" onclick="deleteOrder('${command.id}')" title="Supprimer">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                `;
+                
+                container.appendChild(commandRow);
+            }
+
+            async function updateOrderStatus(selectElement, commandId) {
+    const newStatus = selectElement.value;
+    const row = selectElement.closest('tr');
+
+    try {
+        selectElement.disabled = true;
+        selectElement.classList.add('updating');
+        
+        const response = await fetch(`http://localhost:8080/api/command/${commandId}/status`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ status: newStatus })
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(errorText || 'Update failed');
+        }
+
+        // Success - update UI
+        row.setAttribute('data-status', newStatus);
+        selectElement.className = `status-select ${newStatus}`;
+        
+        // Visual feedback
+        row.style.backgroundColor = "#e6ffe6";
+        setTimeout(() => row.style.backgroundColor = "", 1000);
+        
+        // Refresh counters
+        loadCommands();
+        
+    } catch (error) {
+        console.error("Error:", error);
+        selectElement.value = row.getAttribute('data-status');
+        alert("Erreur: " + error.message);
+    } finally {
+        selectElement.disabled = false;
+        selectElement.classList.remove('updating');
+    }
+}
+
+        </script>
         <script src="js_admin/admin_command.js"></script>
     </body>
 </html>

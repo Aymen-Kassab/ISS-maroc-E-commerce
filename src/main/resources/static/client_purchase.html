@@ -192,14 +192,8 @@
                       address: document.getElementById("address").value,
                       productName: product.name,
                       price: product.price * quantity,
-                      date: "2025/05/31",
-                      status: "En Attente"
-                  }
-
-                  const orderForm = new FormData();
-
-                  for (const [key, value] of Object.entries(orderValues)){
-                      orderForm.append(key, value);
+                      date: new Date().toISOString().split('T')[0] ,
+                      status: "canceled"
                   }
 
                   try{

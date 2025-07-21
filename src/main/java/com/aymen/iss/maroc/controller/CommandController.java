@@ -1,9 +1,7 @@
 package com.aymen.iss.maroc.controller;
 
 import com.aymen.iss.maroc.model.Command;
-import com.aymen.iss.maroc.model.Contact;
 import com.aymen.iss.maroc.repository.CommandRepository;
-import com.aymen.iss.maroc.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -41,15 +39,18 @@ public class CommandController {
 
     @PutMapping("/{id}/status")
     public Command updateStatus(@PathVariable Long id, @RequestBody Map<String, String> payload) {
-        Command command = commandRepository.findById(id).orElseThrow(() -> new RuntimeException("Command not found"));
+        Command command = commandRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Command not found"));
 
         String newStatus = payload.get("status");
         command.setStatus(newStatus);
 
         return commandRepository.save(command);
     }
-    @GetMapping
+
+    @GetMapping("/by-date")
     public List<Command> getAllCommandByDate() {
         return commandRepository.findAllByOrderByStatusAscDateDesc();
     }
+
 }

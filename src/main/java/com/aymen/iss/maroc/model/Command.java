@@ -21,7 +21,7 @@ public class Command {
     private String address;
     private String productName;
     private BigDecimal price;
-    private LocalDateTime date;
+    private String date;
     private String status;
 
    //Getters
@@ -54,7 +54,7 @@ public class Command {
        return this.price;
    }
 
-   public LocalDateTime getDate(){
+   public String getDate(){
        return this.date;
    }
 
@@ -92,7 +92,7 @@ public class Command {
        this.price = price;
     }
 
-    public void setDate(LocalDateTime date){
+    public void setDate(String date){
        this.date = date;
     }
 
