@@ -132,7 +132,7 @@
                         </div>
 
                         <div class="product-actions">
-                        <button class="btn-primary" onclick="addToCart(${product.id})">Add to Cart</button>
+                        <button class="btn-primary">Add to Cart</button>
                         <button class="btn-secondary" onclick="buyNow(${product.id})">Buy Now</button>
                         </div>
 
@@ -144,22 +144,21 @@
 
                     </div>
                 `;
+                document.querySelector(".btn-secondary").addEventListener("click", () => {
+                            addToCart(product.id);
+                        });
+
+                document.querySelector(".btn-secondary").addEventListener("click", (e) => {
+                    e.preventDefault();
+                    // Use the product.id from the fetched product data
+                    window.location.href = `/client_purchase.html?id=${product.id}`;
+                });
                 })
                 .catch(error => {
                 container.innerHTML = `<div class="error">Erreur: ${error.message}</div>`;
                 console.error(error);
                 });
             });
-
-            function addToCart(productId) {
-            console.log("Add to cart:", productId);
-            // Add your add-to-cart logic here
-            }
-
-            function buyNow(productId) {
-            console.log("Buy now:", productId);
-            // Add your buy-now logic here
-            }
         </script>
     </body>
 </html>
