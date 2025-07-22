@@ -45,65 +45,6 @@ navLinks.forEach(link => {
     });
 });*/
 
-// Update Order Status
-function updateOrderStatus(selectElement, orderId) {
-    const newStatus = selectElement.value;
-    const oldClass = selectElement.className.split(' ').find(cls => 
-        ['pending', 'confirmed', 'shipped', 'delivered', 'canceled'].includes(cls)
-    );
-    
-    // Update select styling
-    selectElement.classList.remove(oldClass);
-    selectElement.classList.add(newStatus);
-    
-    // Update row data attribute
-    const row = selectElement.closest('tr');
-    row.setAttribute('data-status', newStatus);
-    
-    // Here you would send the status update to your backend
-    console.log(`Commande ${orderId} mise à jour: ${newStatus}`);
-    
-    // Show confirmation
-    const statusNames = {
-        'pending': 'En Attente',
-        'confirmed': 'Confirmée',
-        'shipped': 'Expédiée',
-        'delivered': 'Livrée',
-        'canceled': 'Annulée'
-    };
-    
-    alert(`Statut de la commande ${orderId} mis à jour: ${statusNames[newStatus]}`);
-    
-    // Update statistics (you would get this from backend in real implementation)
-    updateStatistics();
-}
-
-// Update Statistics
-function updateStatistics() {
-    const rows = document.querySelectorAll('#ordersTable tbody tr');
-    const stats = {
-        pending: 0,
-        confirmed: 0,
-        shipped: 0,
-        delivered: 0,
-        canceled: 0
-    };
-    
-    rows.forEach(row => {
-        const status = row.getAttribute('data-status');
-        if (stats.hasOwnProperty(status)) {
-            stats[status]++;
-        }
-    });
-    
-    // Update stat cards
-    document.querySelector('.stat-card:nth-child(1) .stat-number').textContent = stats.pending;
-    document.querySelector('.stat-card:nth-child(2) .stat-number').textContent = stats.confirmed;
-    document.querySelector('.stat-card:nth-child(3) .stat-number').textContent = stats.shipped;
-    document.querySelector('.stat-card:nth-child(4) .stat-number').textContent = stats.delivered;
-    document.querySelector('.stat-card:nth-child(5) .stat-number').textContent = stats.canceled;
-}
-
 // Search functionality
 const searchInput = document.getElementById('searchInput');
 const statusFilter = document.getElementById('statusFilter');

@@ -3,8 +3,10 @@ package com.aymen.iss.maroc.controller;
 import com.aymen.iss.maroc.model.Command;
 import com.aymen.iss.maroc.repository.CommandRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.aymen.iss.maroc.dto.StatusUpdateDTO;
 
 import java.util.HashMap;
 import java.util.List;
@@ -19,11 +21,13 @@ public class CommandController {
     private CommandRepository commandRepository;
 
     @PostMapping
-    public ResponseEntity<Map<String, String>> createCommand(@RequestBody Command command){
-        commandRepository.save(command);
-        Map<String, String> response = new HashMap<>();
-        response.put("message", "Message received");
-        return ResponseEntity.ok(response);
+    public ResponseEntity<?> createCommand(@RequestBody Command command) {
+        try {
+            commandRepository.save(command);
+            return ResponseEntity.ok(Map.of("message", "Command created successfully"));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
+        }
     }
 
     //Get - get all commands
@@ -38,19 +42,31 @@ public class CommandController {
     }
 
     @PutMapping("/{id}/status")
-    public Command updateStatus(@PathVariable Long id, @RequestBody Map<String, String> payload) {
-        Command command = commandRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Command not found"));
+    public ResponseEntity<?> updateStatus(@PathVariable Long id, @RequestBody StatusUpdateDTO dto) {
+        System.out.println("Incoming status update: " + dto.getStatus());
 
-        String newStatus = payload.get("status");
-        command.setStatus(newStatus);
+        try {
+            Command command = commandRepository.findById(id)
+                    .orElseThrow(() -> new RuntimeException("Commande introuvable"));
 
-        return commandRepository.save(command);
+            // Add validation for status values
+            List<String> validStatuses = List.of("pending", "confirmed", "shipped", "delivered", "canceled");
+            if (!validStatuses.contains(dto.getStatus())) {
+                return ResponseEntity.badRequest().body("Statut invalide");
+            }
+
+            command.setStatus(dto.getStatus());
+            Command updatedCommand = commandRepository.save(command);
+
+            return ResponseEntity.ok(updatedCommand);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Erreur serveur: " + e.getMessage());
+        }
     }
 
-    @GetMapping("/by-date")
-    public List<Command> getAllCommandByDate() {
-        return commandRepository.findAllByOrderByStatusAscDateDesc();
+    @GetMapping("/sorted-by-id")
+    public List<Command> getAllCommandsSortedById() {
+        return commandRepository.findAllByOrderByIdDesc();
     }
-
 }

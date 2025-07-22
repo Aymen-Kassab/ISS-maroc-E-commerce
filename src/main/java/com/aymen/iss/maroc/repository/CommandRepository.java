@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface CommandRepository extends JpaRepository<Command, Long> {
     List<Command> findAllByOrderByStatusAscDateDesc();
+
+    List<Command> findAllByOrderByIdDesc();
 }

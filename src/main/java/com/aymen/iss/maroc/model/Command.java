@@ -1,14 +1,14 @@
 package com.aymen.iss.maroc.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(indexes = @Index(name = "idx_status_date", columnList = "status, date"))
 public class Command {
 
     @Id
@@ -21,8 +21,10 @@ public class Command {
     private String address;
     private String productName;
     private BigDecimal price;
-    private String date;
-    private String status;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate date;
+    private String status = "pending";
 
    //Getters
 
@@ -54,7 +56,7 @@ public class Command {
        return this.price;
    }
 
-   public String getDate(){
+   public LocalDate getDate(){
        return this.date;
    }
 
@@ -92,7 +94,7 @@ public class Command {
        this.price = price;
     }
 
-    public void setDate(String date){
+    public void setDate(LocalDate date){
        this.date = date;
     }
 

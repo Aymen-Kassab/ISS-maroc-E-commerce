@@ -8,10 +8,8 @@
         <link rel="stylesheet" href="css_admin/admin_command.css">
     </head>
     <body>
-        <!-- Sidebar Overlay -->
         <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-        <!-- Sidebar -->
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <a href="#" class="sidebar-logo">
@@ -66,9 +64,7 @@
             </nav>
         </aside>
 
-        <!-- Main Content -->
         <main class="main-content" id="mainContent">
-            <!-- Top Header -->
             <header class="top-header">
                 <div class="header-left">
                     <button class="mobile-toggle" id="mobileToggle">
@@ -86,50 +82,48 @@
                 </div>
             </header>
 
-            <!-- Dashboard Content -->
             <div class="dashboard-content" id="dashboardContent">
-                <!-- Orders Section -->
+                
                 <div class="orders-section">
-                    <!-- Statistics Cards -->
+                    
                     <div class="stats-grid">
                         <div class="stat-card">
                             <div class="stat-icon pending">
                                 <i class="fas fa-clock"></i>
                             </div>
-                            <div class="stat-number">12</div>
+                            <div class="stat-number"></div>
                             <div class="stat-label">En Attente</div>
                         </div>
                         <div class="stat-card">
                             <div class="stat-icon confirmed">
                                 <i class="fas fa-check-circle"></i>
                             </div>
-                            <div class="stat-number">8</div>
+                            <div class="stat-number"></div>
                             <div class="stat-label">Confirmées</div>
                         </div>
                         <div class="stat-card">
                             <div class="stat-icon shipped">
                                 <i class="fas fa-shipping-fast"></i>
                             </div>
-                            <div class="stat-number">5</div>
+                            <div class="stat-number"></div>
                             <div class="stat-label">Expédiées</div>
                         </div>
                         <div class="stat-card">
                             <div class="stat-icon delivered">
                                 <i class="fas fa-box-open"></i>
                             </div>
-                            <div class="stat-number">15</div>
+                            <div class="stat-number"></div>
                             <div class="stat-label">Livrées</div>
                         </div>
                         <div class="stat-card">
                             <div class="stat-icon canceled">
                                 <i class="fas fa-times-circle"></i>
                             </div>
-                            <div class="stat-number">3</div>
+                            <div class="stat-number"></div>
                             <div class="stat-label">Annulées</div>
                         </div>
                     </div>
 
-                    <!-- Orders Management -->
                     <div class="section-card">
                         <div class="card-header">
                             <h2><i class="fas fa-list"></i> Liste des Commandes</h2>
@@ -137,7 +131,6 @@
                         </div>
                         
                         <div class="card-content">
-                            <!-- Search and Filter Controls -->
                             <div class="orders-controls">
                                 <div class="search-box">
                                     <i class="fas fa-search search-icon"></i>
@@ -159,7 +152,6 @@
                                 </select>
                             </div>
 
-                            <!-- Orders Table -->
                             <div class="orders-table-container">
                                 <table class="orders-table" id="ordersTable">
                                     <thead>
@@ -170,250 +162,11 @@
                                             <th>Total</th>
                                             <th>Date</th>
                                             <th>Statut</th>
-                                            <th>Actions</th>
+                                            <th>Adresse</th>
                                         </tr>
                                     </thead>
                                     <tbody id="command-container">
-                                        <!-- Sample Orders -->
-                                        <tr data-status="pending">
-                                            <td class="order-id">#CMD001</td>
-                                            <td>
-                                                <div class="client-info">
-                                                    <span class="client-name">Ahmed Benali</span>
-                                                    <span class="client-phone">+212 6 12 34 56 78</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="product-info">
-                                                    <span class="product-name">MacBook Pro 16" M3</span>
-                                                    <span class="product-quantity">Quantité: 1</span>
-                                                </div>
-                                            </td>
-                                            <td class="order-total">45,000 DH</td>
-                                            <td class="order-date">15/01/2024</td>
-                                            <td>
-                                                <select class="status-select pending" onchange="updateOrderStatus(this, 'CMD001')">
-                                                    <option value="pending" selected>En Attente</option>
-                                                    <option value="confirmed">Confirmée</option>
-                                                    <option value="shipped">Expédiée</option>
-                                                    <option value="delivered">Livrée</option>
-                                                    <option value="canceled">Annulée</option>
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <div class="action-buttons">
-                                                    <button class="action-btn view" onclick="viewOrder('CMD001')" title="Voir détails">
-                                                        <i class="fas fa-eye"></i>
-                                                    </button>
-                                                    <button class="action-btn edit" onclick="editOrder('CMD001')" title="Modifier">
-                                                        <i class="fas fa-edit"></i>
-                                                    </button>
-                                                    <button class="action-btn delete" onclick="deleteOrder('CMD001')" title="Supprimer">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-
-                                        <tr data-status="confirmed">
-                                            <td class="order-id">#CMD002</td>
-                                            <td>
-                                                <div class="client-info">
-                                                    <span class="client-name">Fatima Zahra</span>
-                                                    <span class="client-phone">+212 6 87 65 43 21</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="product-info">
-                                                    <span class="product-name">HP LaserJet Pro M404dn</span>
-                                                    <span class="product-quantity">Quantité: 2</span>
-                                                </div>
-                                            </td>
-                                            <td class="order-total">7,800 DH</td>
-                                            <td class="order-date">14/01/2024</td>
-                                            <td>
-                                                <select class="status-select confirmed" onchange="updateOrderStatus(this, 'CMD002')">
-                                                    <option value="pending">En Attente</option>
-                                                    <option value="confirmed" selected>Confirmée</option>
-                                                    <option value="shipped">Expédiée</option>
-                                                    <option value="delivered">Livrée</option>
-                                                    <option value="canceled">Annulée</option>
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <div class="action-buttons">
-                                                    <button class="action-btn view" onclick="viewOrder('CMD002')" title="Voir détails">
-                                                        <i class="fas fa-eye"></i>
-                                                    </button>
-                                                    <button class="action-btn edit" onclick="editOrder('CMD002')" title="Modifier">
-                                                        <i class="fas fa-edit"></i>
-                                                    </button>
-                                                    <button class="action-btn delete" onclick="deleteOrder('CMD002')" title="Supprimer">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-
-                                        <tr data-status="shipped">
-                                            <td class="order-id">#CMD003</td>
-                                            <td>
-                                                <div class="client-info">
-                                                    <span class="client-name">Mohamed Alami</span>
-                                                    <span class="client-phone">+212 6 55 44 33 22</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="product-info">
-                                                    <span class="product-name">Cisco Catalyst 2960-X</span>
-                                                    <span class="product-quantity">Quantité: 1</span>
-                                                </div>
-                                            </td>
-                                            <td class="order-total">12,500 DH</td>
-                                            <td class="order-date">13/01/2024</td>
-                                            <td>
-                                                <select class="status-select shipped" onchange="updateOrderStatus(this, 'CMD003')">
-                                                    <option value="pending">En Attente</option>
-                                                    <option value="confirmed">Confirmée</option>
-                                                    <option value="shipped" selected>Expédiée</option>
-                                                    <option value="delivered">Livrée</option>
-                                                    <option value="canceled">Annulée</option>
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <div class="action-buttons">
-                                                    <button class="action-btn view" onclick="viewOrder('CMD003')" title="Voir détails">
-                                                        <i class="fas fa-eye"></i>
-                                                    </button>
-                                                    <button class="action-btn edit" onclick="editOrder('CMD003')" title="Modifier">
-                                                        <i class="fas fa-edit"></i>
-                                                    </button>
-                                                    <button class="action-btn delete" onclick="deleteOrder('CMD003')" title="Supprimer">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-
-                                        <tr data-status="delivered">
-                                            <td class="order-id">#CMD004</td>
-                                            <td>
-                                                <div class="client-info">
-                                                    <span class="client-name">Aicha Bennani</span>
-                                                    <span class="client-phone">+212 6 99 88 77 66</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="product-info">
-                                                    <span class="product-name">Canon CanoScan LiDE 400</span>
-                                                    <span class="product-quantity">Quantité: 1</span>
-                                                </div>
-                                            </td>
-                                            <td class="order-total">1,850 DH</td>
-                                            <td class="order-date">12/01/2024</td>
-                                            <td>
-                                                <select class="status-select delivered" onchange="updateOrderStatus(this, 'CMD004')">
-                                                    <option value="pending">En Attente</option>
-                                                    <option value="confirmed">Confirmée</option>
-                                                    <option value="shipped">Expédiée</option>
-                                                    <option value="delivered" selected>Livrée</option>
-                                                    <option value="canceled">Annulée</option>
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <div class="action-buttons">
-                                                    <button class="action-btn view" onclick="viewOrder('CMD004')" title="Voir détails">
-                                                        <i class="fas fa-eye"></i>
-                                                    </button>
-                                                    <button class="action-btn edit" onclick="editOrder('CMD004')" title="Modifier">
-                                                        <i class="fas fa-edit"></i>
-                                                    </button>
-                                                    <button class="action-btn delete" onclick="deleteOrder('CMD004')" title="Supprimer">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-
-                                        <tr data-status="canceled">
-                                            <td class="order-id">#CMD005</td>
-                                            <td>
-                                                <div class="client-info">
-                                                    <span class="client-name">Youssef Idrissi</span>
-                                                    <span class="client-phone">+212 6 11 22 33 44</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="product-info">
-                                                    <span class="product-name">Dell XPS 15 9530</span>
-                                                    <span class="product-quantity">Quantité: 1</span>
-                                                </div>
-                                            </td>
-                                            <td class="order-total">28,500 DH</td>
-                                            <td class="order-date">11/01/2024</td>
-                                            <td>
-                                                <select class="status-select canceled" onchange="updateOrderStatus(this, 'CMD005')">
-                                                    <option value="pending">En Attente</option>
-                                                    <option value="confirmed">Confirmée</option>
-                                                    <option value="shipped">Expédiée</option>
-                                                    <option value="delivered">Livrée</option>
-                                                    <option value="canceled" selected>Annulée</option>
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <div class="action-buttons">
-                                                    <button class="action-btn view" onclick="viewOrder('CMD005')" title="Voir détails">
-                                                        <i class="fas fa-eye"></i>
-                                                    </button>
-                                                    <button class="action-btn edit" onclick="editOrder('CMD005')" title="Modifier">
-                                                        <i class="fas fa-edit"></i>
-                                                    </button>
-                                                    <button class="action-btn delete" onclick="deleteOrder('CMD005')" title="Supprimer">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-
-                                        <tr data-status="pending">
-                                            <td class="order-id">#CMD006</td>
-                                            <td>
-                                                <div class="client-info">
-                                                    <span class="client-name">Khadija Amrani</span>
-                                                    <span class="client-phone">+212 6 77 66 55 44</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="product-info">
-                                                    <span class="product-name">TP-Link TL-SG1024D</span>
-                                                    <span class="product-quantity">Quantité: 3</span>
-                                                </div>
-                                            </td>
-                                            <td class="order-total">5,550 DH</td>
-                                            <td class="order-date">10/01/2024</td>
-                                            <td>
-                                                <select class="status-select pending" onchange="updateOrderStatus(this, 'CMD006')">
-                                                    <option value="pending" selected>En Attente</option>
-                                                    <option value="confirmed">Confirmée</option>
-                                                    <option value="shipped">Expédiée</option>
-                                                    <option value="delivered">Livrée</option>
-                                                    <option value="canceled">Annulée</option>
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <div class="action-buttons">
-                                                    <button class="action-btn view" onclick="viewOrder('CMD006')" title="Voir détails">
-                                                        <i class="fas fa-eye"></i>
-                                                    </button>
-                                                    <button class="action-btn edit" onclick="editOrder('CMD006')" title="Modifier">
-                                                        <i class="fas fa-edit"></i>
-                                                    </button>
-                                                    <button class="action-btn delete" onclick="deleteOrder('CMD006')" title="Supprimer">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -427,46 +180,63 @@
                 loadCommands();
             });
 
+            // 1. Fixed loadCommands function
             function loadCommands() {
-                fetch("http://localhost:8080/api/command/by-date")
-                .then(response => response.json())
-                .then(data => {
+                fetch("http://localhost:8080/api/command/sorted-by-id")
+                .then(response => {
+                    if (!response.ok) throw new Error("Failed to load commands");
+                    return response.json();
+                })
+                .then(commands => {
                     const container = document.getElementById("command-container");
+                    if (!container) {
+                        console.error("Container element not found");
+                        return;
+                    }
+                    
                     container.innerHTML = "";
-
-                    let pending = 0;
-                    let confirmed = 0;
-                    let shipped = 0;
-                    let delivered = 0;
-                    let canceled = 0;
-
-                    data.forEach(command => {
-                        if (command.status === "pending") pending++;
-                        else if (command.status === "confirmed") confirmed++;
-                        else if (command.status === "shipped") shipped++;
-                        else if (command.status === "delivered") delivered++;
-                        else if (command.status === "canceled") canceled++;
-
+                    
+                    commands.forEach(command => {
                         renderCommand(command, container);
                     });
-
-                    // Update stats cards
-                    document.querySelector(".pending .stat-number").innerText = pending;
-                    document.querySelector(".confirmed .stat-number").innerText = confirmed;
-                    document.querySelector(".shipped .stat-number").innerText = shipped;
-                    document.querySelector(".delivered .stat-number").innerText = delivered;
-                    document.querySelector(".canceled .stat-number").innerText = canceled;
+                    
+                    updateStats(commands); // Use the correct function name
                 })
                 .catch(error => {
-                    console.error("Erreur lors du chargement :", error);
+                    console.error("Error:", error);
+                    alert("Error loading commands: " + error.message);
                 });
             }
 
+            // 2. Fixed stats update function (renamed to avoid confusion)
+            function updateStats(commands = []) {
+                const counts = {
+                    pending: 0,
+                    confirmed: 0,
+                    shipped: 0,
+                    delivered: 0,
+                    canceled: 0
+                };
+                
+                commands.forEach(cmd => {
+                    if (cmd && cmd.status && counts.hasOwnProperty(cmd.status)) {
+                        counts[cmd.status]++;
+                    }
+                });
+                
+                // Update stats display
+                Object.entries(counts).forEach(([status, count], index) => {
+                    const statElement = document.querySelector(`.stat-card:nth-child(${index + 1}) .stat-number`);
+                    if (statElement) statElement.textContent = count;
+                });
+            }
+
+            // 3. Fixed render function with proper event binding
             function renderCommand(command, container) {
                 const commandRow = document.createElement('tr');
                 commandRow.setAttribute("data-status", command.status);
+                commandRow.setAttribute("data-command-id", command.id);
 
-                // Format date (assuming command.date is in ISO format)
                 const orderDate = new Date(command.date).toLocaleDateString('fr-FR');
                 
                 commandRow.innerHTML = `
@@ -486,7 +256,7 @@
                     <td class="order-total">${command.price} DH</td>
                     <td class="order-date">${orderDate}</td>
                     <td>
-                        <select class="status-select ${command.status}" onchange="updateOrderStatus(this, '${command.id}')">
+                        <select class="status-select ${command.status}">
                             <option value="pending" ${command.status === 'pending' ? 'selected' : ''}>En Attente</option>
                             <option value="confirmed" ${command.status === 'confirmed' ? 'selected' : ''}>Confirmée</option>
                             <option value="shipped" ${command.status === 'shipped' ? 'selected' : ''}>Expédiée</option>
@@ -494,64 +264,67 @@
                             <option value="canceled" ${command.status === 'canceled' ? 'selected' : ''}>Annulée</option>
                         </select>
                     </td>
-                    <td>
-                        <div class="action-buttons">
-                            <button class="action-btn view" onclick="viewOrder('${command.id}')" title="Voir détails">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                            <button class="action-btn edit" onclick="editOrder('${command.id}')" title="Modifier">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="action-btn delete" onclick="deleteOrder('${command.id}')" title="Supprimer">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </td>
+                    <td class="address">${command.address}</td>
                 `;
+
+                // Proper event binding
+                const selectElement = commandRow.querySelector('.status-select');
+                selectElement.addEventListener('change', function() {
+                    updateOrderStatus(this);
+                });
                 
                 container.appendChild(commandRow);
             }
 
-            async function updateOrderStatus(selectElement, commandId) {
-    const newStatus = selectElement.value;
-    const row = selectElement.closest('tr');
+            // 4. Completely rewritten update function
+            async function updateOrderStatus(selectElement) {
+                const newStatus = selectElement.value;
+                const row = selectElement.closest('tr');
+                const commandId = row.dataset.commandId;
+                const originalStatus = row.dataset.status;
 
-    try {
-        selectElement.disabled = true;
-        selectElement.classList.add('updating');
-        
-        const response = await fetch(`http://localhost:8080/api/command/${commandId}/status`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ status: newStatus })
-        });
+                console.log(`Updating command ${commandId} from ${originalStatus} to ${newStatus}`);
 
-        if (!response.ok) {
-            const errorText = await response.text();
-            throw new Error(errorText || 'Update failed');
-        }
+                try {
+                    // Lock UI during update
+                    selectElement.disabled = true;
+                    row.classList.add('updating');
 
-        // Success - update UI
-        row.setAttribute('data-status', newStatus);
-        selectElement.className = `status-select ${newStatus}`;
-        
-        // Visual feedback
-        row.style.backgroundColor = "#e6ffe6";
-        setTimeout(() => row.style.backgroundColor = "", 1000);
-        
-        // Refresh counters
-        loadCommands();
-        
-    } catch (error) {
-        console.error("Error:", error);
-        selectElement.value = row.getAttribute('data-status');
-        alert("Erreur: " + error.message);
-    } finally {
-        selectElement.disabled = false;
-        selectElement.classList.remove('updating');
-    }
-}
+                    const response = await fetch(`http://localhost:8080/api/command/${commandId}/status`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify({ status: newStatus })
+                    });
 
+                    console.log('Response status:', response.status);
+
+                    if (!response.ok) {
+                        const error = await response.text();
+                        throw new Error(error || `HTTP error! status: ${response.status}`);
+                    }
+
+                    // Update UI on success
+                    row.dataset.status = newStatus;
+                    selectElement.className = `status-select ${newStatus}`;
+                    row.classList.add('updated');
+                    
+                    // Update statistics
+                    const commands = await fetch("http://localhost:8080/api/command").then(res => res.json());
+                    updateStats(commands);
+                    
+                } catch (error) {
+                    console.error("Update failed:", error);
+                    selectElement.value = originalStatus;
+                    alert(`Échec de la mise à jour: ${error.message}`);
+                } finally {
+                    selectElement.disabled = false;
+                    row.classList.remove('updating');
+                    setTimeout(() => row.classList.remove('updated'), 2000);
+                }
+            }
         </script>
         <script src="js_admin/admin_command.js"></script>
     </body>

@@ -11,7 +11,7 @@
 
     <header class="header">
       <div class="header-container">
-        <a href="#" class="logo">TechStore</a>
+        <a href="#" class="logo">ISS MAROC</a>
         <div class="search-container">
           <input type="text" class="search-bar" placeholder="Search..." />
           <button class="search-btn"><i class="fas fa-search"></i></button>
@@ -28,205 +28,149 @@
 
     <main class="content-area">
       <div class="product-details-card">
-        <div class="product-details-grid">
-
-          <!-- Product Image -->
-          <div class="product-image-large">
-            <img src="https://via.placeholder.com/600x400" alt="Product Image" />
-            <span class="product-badge gaming">Gaming</span>
-          </div>
-
-          <!-- Product Info + Order Form -->
-          <div class="product-details-info">
-            <p class="product-category">Laptop</p>
-            <h2 class="product-title">Acer Predator Helios 300</h2>
-
-            <p class="product-specs">
-              <span class="spec-highlight">Intel Core i7</span> |
-              <span class="spec-highlight">16GB RAM</span> |
-              <span class="spec-highlight">512GB SSD</span> |
-              <span class="spec-highlight">RTX 3060</span>
-            </p>
-
-            <div class="product-price">
-              <span class="price-current">13,999 DH</span>
-              <span class="price-old">15,999 DH</span>
-            </div>
-
-            <div class="product-description">
-              <h3>Description</h3>
-              <p>
-                Le Acer Predator Helios 300 est un ordinateur portable de jeu puissant équipé de composants haut de gamme. Parfait pour les jeux, la création de contenu, et les tâches intensives.
-              </p>
-            </div>
-
-            <form id="order-form" class="order-form">
-              <h3>Commander ce produit</h3>
-              <div class="form-group">
-                <label for="fullName">Nom Complet:</label>
-                <input type="text" id="fullName" name="fullName" required placeholder="Votre nom complet">
-              </div>
-              <div class="form-group">
-                <label for="phone">Numéro de Téléphone:</label>
-                <input type="tel" id="phone" name="phone" required placeholder="06 12 34 56 78">
-              </div>
-              <div class="form-group">
-                <label for="address">Adresse:</label>
-                <textarea id="address" name="address" required placeholder="Votre adresse complète"></textarea>
-              </div>
-              <button type="submit" class="btn-primary">Passer la commande</button>
-            </form>
-
-          </div>
-
-        </div>
+        
       </div>
     </main>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-            const params = new URLSearchParams(window.location.search);
-            const productId = params.get("id");
-            const container = document.querySelector(".product-details-card");
+        const params = new URLSearchParams(window.location.search);
+        const productId = params.get("id");
+        const container = document.querySelector(".product-details-card");
 
-            if (!productId) {
-                container.innerHTML = `<div class="error">Produit non spécifié.</div>`;
-                return;
+        if (!productId) {
+          container.innerHTML = `<div class="error">Produit non spécifié.</div>`;
+          return;
+        }
+
+        fetch(`http://localhost:8080/api/computers/${productId}`)
+        .then(res => {
+          if (!res.ok) throw new Error("Erreur lors du chargement du produit.");
+          return res.json();
+        })
+        .then(product => {
+          if (!product) {
+            container.innerHTML = `<div class="error">Produit introuvable.</div>`;
+            return;
+          }
+
+          // Prepare image url (first one or placeholder)
+          let imageUrl = "https://via.placeholder.com/600x400";
+          if (product.imageUrls && product.imageUrls.length > 0) {
+            imageUrl = product.imageUrls[0].startsWith("http") ? product.imageUrls[0] : `http://localhost:8080${product.imageUrls[0]}`;
+          }
+
+          // Prepare badge category with a lowercase class safe for CSS
+          const badgeClass = product.category ? product.category.toLowerCase().replace(/\s+/g, '-') : "";
+
+          // Build specs string with highlights
+          const specs = [
+              product.processor,
+              product.memory ? product.memory + " RAM" : null,
+              product.storage,
+              product.graphicsCard
+          ].filter(Boolean).map(spec => `<span class="spec-highlight">${spec}</span>`).join(" | ");
+
+          container.innerHTML = `
+            <div class="product-details-grid">
+
+              <div class="product-image-large">
+                <img src="${imageUrl}" alt="Product Image" />
+                <span class="product-badge ${product.category}">${product.category}</span>
+              </div>
+
+              <div class="product-details-info">
+                <p class="product-category">${product.type}</p>
+                <h2 class="product-title">${product.name}</h2>
+
+                <p class="product-specs">
+                  <span class="spec-highlight">${product.processor}</span> |
+                  <span class="spec-highlight">${product.memory} </span> |
+                  <span class="spec-highlight">${product.storage} ${product.storageType}</span> |
+                  <span class="spec-highlight">Stock: ${product.stock}</span>
+                </p>
+
+                <div class="product-price">
+                  <span class="price-current">${product.price} DH</span>
+                </div>
+
+                <div class="product-description">
+                  <h3>Description</h3>
+                  <p>
+                    Le Acer Predator Helios 300 est un ordinateur portable de jeu puissant équipé de composants haut de gamme. Parfait pour les jeux, la création de contenu, et les tâches intensives.
+                  </p>
+                </div>
+
+                <form id="order-form" class="order-form">
+                  <h3>Commander ce produit</h3>
+                  <div class="form-group">
+                    <label for="fullName">Nom Complet:</label>
+                    <input type="text" id="fullName" name="fullName" required placeholder="Votre nom complet">
+                  </div>
+                  <div class="form-group">
+                    <label for="phone">Numéro de Téléphone:</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="06 12 34 56 78">
+                  </div>
+                  <div class="form-group">
+                    <label for="quantity">Quantité:</label>
+                    <input type="number" id="quantity" name="quantity" required >
+                  </div>
+                  <div class="form-group">
+                    <label for="address">Adresse:</label>
+                    <textarea id="address" name="address" required placeholder="Votre adresse complète"></textarea>
+                  </div>
+                  <button type="submit" class="btn-primary">Passer la commande</button>
+                </form>
+
+              </div>
+
+            </div>
+          `;
+
+          document.getElementById("order-form").addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            const quantity = parseInt(document.getElementById("quantity").value);
+
+            const orderValues = {
+                fullName: document.getElementById("fullName").value,
+                phoneNumber: document.getElementById("phone").value,
+                quantity: quantity,
+                address: document.getElementById("address").value,
+                productName: product.name,
+                price: product.price * quantity,
+                date: new Date().toISOString().split('T')[0],
+                status: "pending"
             }
 
-            fetch(`http://localhost:8080/api/computers/${productId}`)
-                .then(res => {
-                if (!res.ok) throw new Error("Erreur lors du chargement du produit.");
-                return res.json();
-                })
-                .then(product => {
-                if (!product) {
-                    container.innerHTML = `<div class="error">Produit introuvable.</div>`;
-                    return;
-                }
-
-                // Prepare image url (first one or placeholder)
-                let imageUrl = "https://via.placeholder.com/600x400";
-                if (product.imageUrls && product.imageUrls.length > 0) {
-                    imageUrl = product.imageUrls[0].startsWith("http")
-                    ? product.imageUrls[0]
-                    : `http://localhost:8080${product.imageUrls[0]}`;
-                }
-
-                // Prepare badge category with a lowercase class safe for CSS
-                const badgeClass = product.category ? product.category.toLowerCase().replace(/\s+/g, '-') : "";
-
-                // Build specs string with highlights
-                const specs = [
-                    product.processor,
-                    product.memory ? product.memory + " RAM" : null,
-                    product.storage,
-                    product.graphicsCard
-                ].filter(Boolean).map(spec => `<span class="spec-highlight">${spec}</span>`).join(" | ");
-
-                container.innerHTML = `
-                    <div class="product-details-grid">
-
-                      <div class="product-image-large">
-                        <img src="${imageUrl}" alt="Product Image" />
-                        <span class="product-badge ${product.category}">${product.category}</span>
-                      </div>
-
-                      <div class="product-details-info">
-                        <p class="product-category">${product.type}</p>
-                        <h2 class="product-title">${product.name}</h2>
-
-                        <p class="product-specs">
-                          <span class="spec-highlight">${product.processor}</span> |
-                          <span class="spec-highlight">${product.memory} </span> |
-                          <span class="spec-highlight">${product.storage} ${product.storageType}</span> |
-                          <span class="spec-highlight">Stock: ${product.stock}</span>
-                        </p>
-
-                        <div class="product-price">
-                          <span class="price-current">${product.price} DH</span>
-                        </div>
-
-                        <div class="product-description">
-                          <h3>Description</h3>
-                          <p>
-                            Le Acer Predator Helios 300 est un ordinateur portable de jeu puissant équipé de composants haut de gamme. Parfait pour les jeux, la création de contenu, et les tâches intensives.
-                          </p>
-                        </div>
-
-                        <form id="order-form" class="order-form">
-                          <h3>Commander ce produit</h3>
-                          <div class="form-group">
-                            <label for="fullName">Nom Complet:</label>
-                            <input type="text" id="fullName" name="fullName" required placeholder="Votre nom complet">
-                          </div>
-                          <div class="form-group">
-                            <label for="phone">Numéro de Téléphone:</label>
-                            <input type="tel" id="phone" name="phone" required placeholder="06 12 34 56 78">
-                          </div>
-                          <div class="form-group">
-                            <label for="quantity">Quantité:</label>
-                            <input type="number" id="quantity" name="quantity" required >
-                          </div>
-                          <div class="form-group">
-                            <label for="address">Adresse:</label>
-                            <textarea id="address" name="address" required placeholder="Votre adresse complète"></textarea>
-                          </div>
-                          <button type="submit" class="btn-primary">Passer la commande</button>
-                        </form>
-
-                      </div>
-
-                    </div>
-                `;
-
-
-                document.getElementById("order-form").addEventListener("submit", async function (e) {
-                  e.preventDefault();
-
-                  const quantity = parseInt(document.getElementById("quantity").value);
-
-                  const orderValues = {
-                      fullName: document.getElementById("fullName").value,
-                      phoneNumber: document.getElementById("phone").value,
-                      quantity: quantity,
-                      address: document.getElementById("address").value,
-                      productName: product.name,
-                      price: product.price * quantity,
-                      date: new Date().toISOString().split('T')[0] ,
-                      status: "canceled"
-                  }
-
-                  try{
-                      const response = await fetch('http://localhost:8080/api/command', {
-                          method: 'POST',
-                          headers: {
-                              "Content-Type": "application/json",
-                          },
-                          body: JSON.stringify(orderValues),
-                      });
-
-                      if (!response.ok) {
-                          const errorText = await response.text();
-                          throw new Error(errorText || 'Request failed');
-                      }
-
-                      const result = await response.json();
-                      console.log("Success:", result);
-                      alert("Commande passée avec succès!");
-                      this.reset();
-                  }catch (error) {
-                      console.error("Error:", error);
-                      alert("Erreur: " + error.message);
-                  }
+            try{
+                const response = await fetch('http://localhost:8080/api/command', {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(orderValues),
                 });
 
-                })
-                .catch(error => {
-                container.innerHTML = `<div class="error">Erreur: ${error.message}</div>`;
-                console.error(error);
-                });
-            });
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(errorText || 'Request failed');
+                }
 
+                const result = await response.json();
+                console.log("Success:", result);
+                alert("Commande passée avec succès!");
+                this.reset();
+            }catch (error) {
+                console.error("Error:", error);
+                alert("Erreur: " + error.message);
+            }
+          });
+        })
+        .catch(error => {
+        container.innerHTML = `<div class="error">Erreur: ${error.message}</div>`;
+        console.error(error);
+        });
+      });
     </script>
   </body>
 </html>
