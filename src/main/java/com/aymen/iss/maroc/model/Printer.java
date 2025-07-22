@@ -1,39 +1,34 @@
 package com.aymen.iss.maroc.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Computer {
+public class Printer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private long id;
     private String name;
     private String brand;
-    private String type;
-    private String processor;
-    private String memory;
-    private String storage;
-    private String storageType;
+    private String speedPrinting;
+    private String resolution;
+    private String workCycle;
+    private String rectoVerso;
     private String price;
     private String stock;
+    private String connectivity;
 
     @ElementCollection
-    @CollectionTable(name = "computer_images", joinColumns = @JoinColumn(name = "computer_id"))
+    @CollectionTable(name = "printer_images", joinColumns = @JoinColumn(name = "printer_id"))
     @Column(name = "imageUrl")
     private List<String> imageUrls = new ArrayList<>();
 
-    // Getters methods
+    // Getters
 
-    public long getId() {
+    public long getId(){
         return this.id;
     }
 
@@ -45,24 +40,20 @@ public class Computer {
         return this.brand;
     }
 
-    public String getType(){
-        return this.type;
+    public String getSpeedPrinting(){
+        return this.speedPrinting;
     }
 
-    public String getProcessor(){
-        return this.processor;
+    public String getResolution(){
+        return this.resolution;
     }
 
-    public String getMemory(){
-        return this.memory;
+    public String getWorkCycle(){
+        return this.workCycle;
     }
 
-    public String getStorage(){
-        return this.storage;
-    }
-
-    public String getStorageType(){
-        return this.storageType;
+    public String getRectoVerso(){
+        return this.rectoVerso;
     }
 
     public String getPrice(){
@@ -73,11 +64,19 @@ public class Computer {
         return this.stock;
     }
 
+    public String getConnectivity(){
+        return this.connectivity;
+    }
+
     public List<String> getImageUrls(){
         return this.imageUrls;
     }
 
-    // Setters methods
+    // Setters
+
+    public void setId(long id){
+        this.id = id;
+    }
 
     public void setName(String name){
         this.name = name;
@@ -87,24 +86,20 @@ public class Computer {
         this.brand = brand;
     }
 
-    public void setType(String type){
-        this.type = type;
+    public void setSpeedPrinting(String speedPrinting){
+        this.speedPrinting = speedPrinting;
     }
 
-    public void setProcessor(String processor){
-        this.processor = processor;
+    public void setResolution(String resolution){
+        this.resolution = resolution;
     }
 
-    public void setMemory(String memory){
-        this.memory = memory;
+    public void setWorkCycle(String workCycle){
+        this.workCycle = workCycle;
     }
 
-    public void setStorage(String storage){
-        this.storage =  storage;
-    }
-
-    public void setStorageType(String storageType){
-        this.storageType = storageType;
+    public void setRectoVerso(String rectoVerso){
+        this.rectoVerso = rectoVerso;
     }
 
     public void setPrice(String price){
@@ -115,8 +110,11 @@ public class Computer {
         this.stock = stock;
     }
 
+    public void setConnectivity(String connectivity){
+        this.connectivity = connectivity;
+    }
+
     public void setImageUrls(List<String> imageUrls){
         this.imageUrls = imageUrls;
     }
-
 }
