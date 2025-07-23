@@ -13,13 +13,13 @@ public class Printer {
     private long id;
     private String name;
     private String brand;
-    private String speedPrinting;
+    private String printSpeed;
     private String resolution;
     private String workCycle;
     private String rectoVerso;
     private String price;
     private String stock;
-    private String connectivity;
+    private List<String> connectivity;
 
     @ElementCollection
     @CollectionTable(name = "printer_images", joinColumns = @JoinColumn(name = "printer_id"))
@@ -40,8 +40,8 @@ public class Printer {
         return this.brand;
     }
 
-    public String getSpeedPrinting(){
-        return this.speedPrinting;
+    public String getPrintSpeed(){
+        return this.printSpeed;
     }
 
     public String getResolution(){
@@ -64,7 +64,7 @@ public class Printer {
         return this.stock;
     }
 
-    public String getConnectivity(){
+    public List<String> getConnectivity(){
         return this.connectivity;
     }
 
@@ -86,8 +86,8 @@ public class Printer {
         this.brand = brand;
     }
 
-    public void setSpeedPrinting(String speedPrinting){
-        this.speedPrinting = speedPrinting;
+    public void setPrintSpeed(String printSpeed){
+        this.printSpeed = printSpeed;
     }
 
     public void setResolution(String resolution){
@@ -110,7 +110,7 @@ public class Printer {
         this.stock = stock;
     }
 
-    public void setConnectivity(String connectivity){
+    public void setConnectivity(List<String> connectivity){
         this.connectivity = connectivity;
     }
 
