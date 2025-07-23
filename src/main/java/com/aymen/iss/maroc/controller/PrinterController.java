@@ -48,8 +48,8 @@ public class PrinterController {
             @RequestParam("duplexPrinting") String rectoVerso,
             @RequestParam("price") String price,
             @RequestParam("stockQuantity") String stock,
-            @RequestParam("connectivity[]") List<String> connectivity,
-            @RequestParam("scannerImages[]") MultipartFile[] images
+            @RequestParam("connectivity") List<String> connectivity,
+            @RequestParam("scannerImages") MultipartFile[] images
     ){
 
 

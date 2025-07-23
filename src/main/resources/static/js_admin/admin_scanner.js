@@ -118,44 +118,7 @@ function removeImage(button, fileName) {
     selectedFiles = selectedFiles.filter(file => file.name !== fileName);
 }
 
-// Form submission
-document.getElementById('addScannerForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Create FormData object
-    const formData = new FormData();
-    
-    // Add form fields
-    formData.append('scannerName', document.getElementById('scannerName').value);
-    formData.append('brand', document.getElementById('brand').value);
-    formData.append('printSpeed', document.getElementById('printSpeed').value);
-    formData.append('printResolution', document.getElementById('printResolution').value);
-    formData.append('monthlyDutyCycle', document.getElementById('monthlyDutyCycle').value);
-    formData.append('duplexPrinting', document.getElementById('duplexPrinting').value);
-    formData.append('price', document.getElementById('price').value);
-    formData.append('stockQuantity', document.getElementById('stockQuantity').value);
-    
-    // Add connectivity options
-    const connectivityOptions = [];
-    document.querySelectorAll('input[name="connectivity[]"]:checked').forEach(checkbox => {
-        connectivityOptions.push(checkbox.value);
-    });
-    formData.append('connectivity', JSON.stringify(connectivityOptions));
-    
-    // Add images
-    selectedFiles.forEach((file, index) => {
-        formData.append(`scannerImages[${index}]`, file);
-    });
-    
-    // Here you would send the formData to your backend
-    console.log('Scanner data ready for backend:', formData);
-    
-    // Show success message
-    alert('Scanner ajouté avec succès! (Connectez votre backend pour sauvegarder)');
-    
-    // Reset form
-    resetForm();
-});
+
 
 // Reset form
 function resetForm() {

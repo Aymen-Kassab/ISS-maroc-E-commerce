@@ -1,567 +1,630 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ISS MAROC - Gestion des Scanners</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="css_admin/admin_scanner.css">
-</head>
-<body>
-    <!-- Sidebar Overlay -->
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ISS MAROC - Gestion des Scanners</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="stylesheet" href="css_admin/admin_scanner.css">
+    </head>
+    <body>
+        <!-- Sidebar Overlay -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <a href="#" class="sidebar-logo">
-                <i class="fas fa-store"></i>
-                ISS MAROC
-            </a>
-        </div>
-        
-        <nav class="sidebar-nav">
-            <div class="nav-item">
-                <a href="admin_home.html" class="nav-link">
-                    <i class="fas fa-home"></i>
-                    <span>Accueil</span>
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="#" class="sidebar-logo">
+                    <i class="fas fa-store"></i>
+                    ISS MAROC
                 </a>
             </div>
-            <div class="nav-item">
-                <a href="admin_news.html" class="nav-link">
-                    <i class="fas fa-star"></i>
-                    <span>Nouveautés</span>
-                </a>
-            </div>
-            <div class="nav-item">
-                <a href="admin_computer.html" class="nav-link">
-                    <i class="fas fa-laptop"></i>
-                    <span>Ordinateurs</span>
-                </a>
-            </div>
-            <div class="nav-item">
-                <a href="#" class="nav-link active">
-                    <i class="fas fa-print"></i>
-                    <span>Imprimantes</span>
-                </a>
-            </div>
-            <div class="nav-item">
-                <a href="admin_network.html" class="nav-link">
-                    <i class="fas fa-network-wired"></i>
-                    <span>Réseaux</span>
-                </a>
-            </div>
-            <div class="nav-item">
-                <a href="admin_command.html" class="nav-link">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span>Commandes</span>
-                </a>
-            </div>
-            <div class="nav-item">
-                <a href="admin_messages.html" class="nav-link">
-                    <i class="fas fa-envelope"></i>
-                    <span>Messages</span>
-                </a>
-            </div>
-        </nav>
-    </aside>
-
-    <!-- Main Content -->
-    <main class="main-content" id="mainContent">
-        <!-- Top Header -->
-        <header class="top-header">
-            <div class="header-left">
-                <button class="mobile-toggle" id="mobileToggle">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <h1 class="page-title" id="pageTitle">Scanners</h1>
-            </div>
-            <div class="header-right">
-                <div class="user-profile">
-                    <div class="user-avatar">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <span class="user-name">Admin</span>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-item">
+                    <a href="admin_home.html" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        <span>Accueil</span>
+                    </a>
                 </div>
-            </div>
-        </header>
+                <div class="nav-item">
+                    <a href="admin_news.html" class="nav-link">
+                        <i class="fas fa-star"></i>
+                        <span>Nouveautés</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin_computer.html" class="nav-link">
+                        <i class="fas fa-laptop"></i>
+                        <span>Ordinateurs</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link active">
+                        <i class="fas fa-print"></i>
+                        <span>Imprimantes</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin_network.html" class="nav-link">
+                        <i class="fas fa-network-wired"></i>
+                        <span>Réseaux</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin_command.html" class="nav-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Commandes</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="admin_messages.html" class="nav-link">
+                        <i class="fas fa-envelope"></i>
+                        <span>Messages</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
 
-        <!-- Dashboard Content -->
-        <div class="dashboard-content" id="dashboardContent">
-            <!-- Scanners Section -->
-            <div class="scanners-section">
-                <!-- Add Scanner Form -->
-                <div class="section-card">
-                    <div class="card-header">
-                        <h2><i class="fas fa-plus-circle"></i> Ajouter un Nouveau Scanner</h2>
-                        <p>Remplissez les informations ci-dessous pour ajouter un nouveau scanner à votre catalogue</p>
+        <!-- Main Content -->
+        <main class="main-content" id="mainContent">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="mobile-toggle" id="mobileToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="page-title" id="pageTitle">Scanners</h1>
+                </div>
+                <div class="header-right">
+                    <div class="user-profile">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <span class="user-name">Admin</span>
                     </div>
-                    
-                    <div class="card-content">
-                        <form id="addScannerForm" enctype="multipart/form-data">
-                            <div class="form-grid">
-                                <!-- Scanner Name -->
-                                <div class="form-group">
-                                    <label class="form-label" for="scannerName">
-                                        <i class="fas fa-scanner"></i> Nom du Scanner *
-                                    </label>
-                                    <input type="text" id="scannerName" name="scannerName" class="form-input" 
-                                           placeholder="Ex: Canon CanoScan LiDE 400" required>
-                                </div>
+                </div>
+            </header>
 
-                                <!-- Brand -->
-                                <div class="form-group">
-                                    <label class="form-label" for="brand">
-                                        <i class="fas fa-copyright"></i> Marque *
-                                    </label>
-                                    <select id="brand" name="brand" class="form-select" required>
-                                        <option value="">Sélectionner une marque</option>
-                                        <option value="Canon">Canon</option>
-                                        <option value="Epson">Epson</option>
-                                        <option value="HP">HP</option>
-                                        <option value="Brother">Brother</option>
-                                        <option value="Fujitsu">Fujitsu</option>
-                                        <option value="Kodak">Kodak</option>
-                                        <option value="Plustek">Plustek</option>
-                                        <option value="Autre">Autre</option>
-                                    </select>
-                                </div>
+            <!-- Dashboard Content -->
+            <div class="dashboard-content" id="dashboardContent">
+                <!-- Scanners Section -->
+                <div class="scanners-section">
+                    <!-- Add Scanner Form -->
+                    <div class="section-card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-plus-circle"></i> Ajouter un Nouveau Scanner</h2>
+                            <p>Remplissez les informations ci-dessous pour ajouter un nouveau scanner à votre catalogue</p>
+                        </div>
+                        
+                        <div class="card-content">
+                            <form id="addScannerForm" enctype="multipart/form-data">
+                                <div class="form-grid">
+                                    <!-- Scanner Name -->
+                                    <div class="form-group">
+                                        <label class="form-label" for="scannerName">
+                                            <i class="fas fa-scanner"></i> Nom du Scanner *
+                                        </label>
+                                        <input type="text" id="scannerName" name="scannerName" class="form-input" 
+                                            placeholder="Ex: Canon CanoScan LiDE 400" required>
+                                    </div>
 
-                                <!-- Print Speed -->
-                                <div class="form-group">
-                                    <label class="form-label" for="printSpeed">
-                                        <i class="fas fa-tachometer-alt"></i> Vitesse d'impression *
-                                    </label>
-                                    <input type="text" id="printSpeed" name="printSpeed" class="form-input" 
-                                           placeholder="Ex: 8 sec/page, 15 ppm" required>
-                                </div>
+                                    <!-- Brand -->
+                                    <div class="form-group">
+                                        <label class="form-label" for="brand">
+                                            <i class="fas fa-copyright"></i> Marque *
+                                        </label>
+                                        <select id="brand" name="brand" class="form-select" required>
+                                            <option value="">Sélectionner une marque</option>
+                                            <option value="Canon">Canon</option>
+                                            <option value="Epson">Epson</option>
+                                            <option value="HP">HP</option>
+                                            <option value="Brother">Brother</option>
+                                            <option value="Fujitsu">Fujitsu</option>
+                                            <option value="Kodak">Kodak</option>
+                                            <option value="Plustek">Plustek</option>
+                                            <option value="Autre">Autre</option>
+                                        </select>
+                                    </div>
 
-                                <!-- Print Resolution -->
-                                <div class="form-group">
-                                    <label class="form-label" for="printResolution">
-                                        <i class="fas fa-expand-arrows-alt"></i> Résolution de Numérisation *
-                                    </label>
-                                    <select id="printResolution" name="printResolution" class="form-select" required>
-                                        <option value="">Sélectionner la résolution</option>
-                                        <option value="600x600 dpi">600 x 600 dpi</option>
-                                        <option value="1200x1200 dpi">1200 x 1200 dpi</option>
-                                        <option value="2400x2400 dpi">2400 x 2400 dpi</option>
-                                        <option value="4800x4800 dpi">4800 x 4800 dpi</option>
-                                        <option value="9600x9600 dpi">9600 x 9600 dpi</option>
-                                        <option value="19200x19200 dpi">19200 x 19200 dpi</option>
-                                    </select>
-                                </div>
+                                    <!-- Print Speed -->
+                                    <div class="form-group">
+                                        <label class="form-label" for="printSpeed">
+                                            <i class="fas fa-tachometer-alt"></i> Vitesse d'impression *
+                                        </label>
+                                        <input type="text" id="printSpeed" name="printSpeed" class="form-input" 
+                                            placeholder="Ex: 8 sec/page, 15 ppm" required>
+                                    </div>
 
-                                <!-- Monthly Duty Cycle -->
-                                <div class="form-group">
-                                    <label class="form-label" for="monthlyDutyCycle">
-                                        <i class="fas fa-calendar-alt"></i> Cycle de Travail Mensuel *
-                                    </label>
-                                    <input type="text" id="monthlyDutyCycle" name="monthlyDutyCycle" class="form-input" 
-                                           placeholder="Ex: 1000 pages/mois, 5000 numérisations/mois" required>
-                                </div>
+                                    <!-- Print Resolution -->
+                                    <div class="form-group">
+                                        <label class="form-label" for="printResolution">
+                                            <i class="fas fa-expand-arrows-alt"></i> Résolution de Numérisation *
+                                        </label>
+                                        <select id="printResolution" name="printResolution" class="form-select" required>
+                                            <option value="">Sélectionner la résolution</option>
+                                            <option value="600x600 dpi">600 x 600 dpi</option>
+                                            <option value="1200x1200 dpi">1200 x 1200 dpi</option>
+                                            <option value="2400x2400 dpi">2400 x 2400 dpi</option>
+                                            <option value="4800x4800 dpi">4800 x 4800 dpi</option>
+                                            <option value="9600x9600 dpi">9600 x 9600 dpi</option>
+                                            <option value="19200x19200 dpi">19200 x 19200 dpi</option>
+                                        </select>
+                                    </div>
 
-                                <!-- Duplex Printing -->
-                                <div class="form-group">
-                                    <label class="form-label" for="duplexPrinting">
-                                        <i class="fas fa-copy"></i> Numérisation Recto-Verso *
-                                    </label>
-                                    <select id="duplexPrinting" name="duplexPrinting" class="form-select" required>
-                                        <option value="">Sélectionner l'option</option>
-                                        <option value="Oui">Oui - Automatique</option>
-                                        <option value="Manuel">Oui - Manuel</option>
-                                        <option value="Non">Non</option>
-                                    </select>
-                                </div>
+                                    <!-- Monthly Duty Cycle -->
+                                    <div class="form-group">
+                                        <label class="form-label" for="monthlyDutyCycle">
+                                            <i class="fas fa-calendar-alt"></i> Cycle de Travail Mensuel *
+                                        </label>
+                                        <input type="text" id="monthlyDutyCycle" name="monthlyDutyCycle" class="form-input" 
+                                            placeholder="Ex: 1000 pages/mois, 5000 numérisations/mois" required>
+                                    </div>
 
-                                <!-- Price -->
-                                <div class="form-group">
-                                    <label class="form-label" for="price">
-                                        <i class="fas fa-money-bill"></i> Prix (DH) *
-                                    </label>
-                                    <input type="number" id="price" name="price" class="form-input" 
-                                           placeholder="Ex: 1500" min="0" step="0.01" required>
-                                </div>
+                                    <!-- Duplex Printing -->
+                                    <div class="form-group">
+                                        <label class="form-label" for="duplexPrinting">
+                                            <i class="fas fa-copy"></i> Numérisation Recto-Verso *
+                                        </label>
+                                        <select id="duplexPrinting" name="duplexPrinting" class="form-select" required>
+                                            <option value="">Sélectionner l'option</option>
+                                            <option value="Oui">Oui - Automatique</option>
+                                            <option value="Manuel">Oui - Manuel</option>
+                                            <option value="Non">Non</option>
+                                        </select>
+                                    </div>
 
-                                <!-- Stock Quantity -->
-                                <div class="form-group">
-                                    <label class="form-label" for="stockQuantity">
-                                        <i class="fas fa-boxes"></i> Quantité en Stock *
-                                    </label>
-                                    <input type="number" id="stockQuantity" name="stockQuantity" class="form-input" 
-                                           placeholder="Ex: 25" min="0" required>
-                                </div>
+                                    <!-- Price -->
+                                    <div class="form-group">
+                                        <label class="form-label" for="price">
+                                            <i class="fas fa-money-bill"></i> Prix (DH) *
+                                        </label>
+                                        <input type="number" id="price" name="price" class="form-input" 
+                                            placeholder="Ex: 1500" min="0" step="0.01" required>
+                                    </div>
 
-                                <!-- Connectivity Options -->
-                                <div class="form-group full-width">
-                                    <label class="form-label">
-                                        <i class="fas fa-plug"></i> Options de Connectivité
-                                    </label>
-                                    <div class="connectivity-options">
-                                        <div class="connectivity-item" onclick="toggleConnectivity(this)">
-                                            <input type="checkbox" id="usb" name="connectivity[]" value="USB">
-                                            <i class="fas fa-usb"></i>
-                                            <span>USB</span>
+                                    <!-- Stock Quantity -->
+                                    <div class="form-group">
+                                        <label class="form-label" for="stockQuantity">
+                                            <i class="fas fa-boxes"></i> Quantité en Stock *
+                                        </label>
+                                        <input type="number" id="stockQuantity" name="stockQuantity" class="form-input" 
+                                            placeholder="Ex: 25" min="0" required>
+                                    </div>
+
+                                    <!-- Connectivity Options -->
+                                    <div class="form-group full-width">
+                                        <label class="form-label">
+                                            <i class="fas fa-plug"></i> Options de Connectivité
+                                        </label>
+                                        <div class="connectivity-options">
+                                            <div class="connectivity-item" onclick="toggleConnectivity(this)">
+                                                <input type="checkbox" id="usb" name="connectivity[]" value="USB">
+                                                <i class="fas fa-usb"></i>
+                                                <span>USB</span>
+                                            </div>
+                                            <div class="connectivity-item" onclick="toggleConnectivity(this)">
+                                                <input type="checkbox" id="ethernet" name="connectivity[]" value="Ethernet">
+                                                <i class="fas fa-ethernet"></i>
+                                                <span>Ethernet</span>
+                                            </div>
+                                            <div class="connectivity-item" onclick="toggleConnectivity(this)">
+                                                <input type="checkbox" id="wifi" name="connectivity[]" value="WiFi">
+                                                <i class="fas fa-wifi"></i>
+                                                <span>WiFi</span>
+                                            </div>
                                         </div>
-                                        <div class="connectivity-item" onclick="toggleConnectivity(this)">
-                                            <input type="checkbox" id="ethernet" name="connectivity[]" value="Ethernet">
-                                            <i class="fas fa-ethernet"></i>
-                                            <span>Ethernet</span>
+                                    </div>
+
+                                    <!-- Image Upload Section -->
+                                    <div class="form-group full-width">
+                                        <label class="form-label">
+                                            <i class="fas fa-images"></i> Images du Scanner
+                                        </label>
+                                        <div class="image-upload-section" id="imageUploadSection">
+                                            <div class="upload-icon">
+                                                <i class="fas fa-cloud-upload-alt"></i>
+                                            </div>
+                                            <div class="upload-text">
+                                                <h3>Glissez-déposez vos images ici</h3>
+                                                <p>ou cliquez pour sélectionner des fichiers</p>
+                                                <p><small>Formats acceptés: JPG, PNG, WebP (Max: 5MB par image)</small></p>
+                                            </div>
+                                            <input type="file" id="scannerImages" name="scannerImages[]" 
+                                                class="file-input" multiple accept="image/*">
+                                            <button type="button" class="upload-btn" onclick="document.getElementById('scannerImages').click()">
+                                                <i class="fas fa-plus"></i> Sélectionner des Images
+                                            </button>
                                         </div>
-                                        <div class="connectivity-item" onclick="toggleConnectivity(this)">
-                                            <input type="checkbox" id="wifi" name="connectivity[]" value="WiFi">
-                                            <i class="fas fa-wifi"></i>
-                                            <span>WiFi</span>
-                                        </div>
+                                        <div class="image-preview" id="imagePreview"></div>
                                     </div>
                                 </div>
 
-                                <!-- Image Upload Section -->
-                                <div class="form-group full-width">
-                                    <label class="form-label">
-                                        <i class="fas fa-images"></i> Images du Scanner
-                                    </label>
-                                    <div class="image-upload-section" id="imageUploadSection">
-                                        <div class="upload-icon">
-                                            <i class="fas fa-cloud-upload-alt"></i>
-                                        </div>
-                                        <div class="upload-text">
-                                            <h3>Glissez-déposez vos images ici</h3>
-                                            <p>ou cliquez pour sélectionner des fichiers</p>
-                                            <p><small>Formats acceptés: JPG, PNG, WebP (Max: 5MB par image)</small></p>
-                                        </div>
-                                        <input type="file" id="scannerImages" name="scannerImages[]" 
-                                               class="file-input" multiple accept="image/*">
-                                        <button type="button" class="upload-btn" onclick="document.getElementById('scannerImages').click()">
-                                            <i class="fas fa-plus"></i> Sélectionner des Images
+                                <!-- Form Actions -->
+                                <div class="form-actions">
+                                    <button type="button" class="btn btn-secondary" onclick="resetForm()">
+                                        <i class="fas fa-times"></i> Annuler
+                                    </button>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-save"></i> Ajouter le Scanner
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Scanner Inventory -->
+                    <div class="section-card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-scanner"></i> Inventaire des Scanners</h2>
+                            <p>Gérez vos scanners en stock avec possibilité de modification et suppression</p>
+                        </div>
+                        
+                        <div class="card-content">
+                            <!-- Search and Filter Controls -->
+                            <div class="inventory-controls">
+                                <div class="search-box">
+                                    <i class="fas fa-search search-icon"></i>
+                                    <input type="text" class="search-input" placeholder="Rechercher par nom, marque, résolution..." id="searchInput">
+                                </div>
+                                <select class="filter-select" id="brandFilter">
+                                    <option value="">Toutes les marques</option>
+                                    <option value="Canon">Canon</option>
+                                    <option value="Epson">Epson</option>
+                                    <option value="HP">HP</option>
+                                    <option value="Brother">Brother</option>
+                                    <option value="Fujitsu">Fujitsu</option>
+                                </select>
+                                <select class="filter-select" id="stockFilter">
+                                    <option value="">Tous les stocks</option>
+                                    <option value="in-stock">En stock</option>
+                                    <option value="low-stock">Stock faible</option>
+                                    <option value="out-of-stock">Rupture de stock</option>
+                                </select>
+                                <select class="filter-select" id="connectivityFilter">
+                                    <option value="">Toutes connectivités</option>
+                                    <option value="USB">USB</option>
+                                    <option value="Ethernet">Ethernet</option>
+                                    <option value="WiFi">WiFi</option>
+                                </select>
+                            </div>
+
+                            <!-- Scanner Inventory Grid -->
+                            <div class="scanner-inventory" id="scannerInventory">
+                                <!-- Sample Scanner Cards -->
+                                <div class="scanner-card" data-brand="Canon" data-stock="in-stock">
+                                    <img src="/placeholder.svg?height=200&width=380" alt="Canon CanoScan" class="scanner-image">
+                                    <div class="scanner-actions">
+                                        <button class="action-btn edit" onclick="editScanner(this)">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="action-btn delete" onclick="deleteScanner(this)">
+                                            <i class="fas fa-trash"></i>
                                         </button>
                                     </div>
-                                    <div class="image-preview" id="imagePreview"></div>
+                                    <div class="scanner-info">
+                                        <h3 class="scanner-name">Canon CanoScan LiDE 400</h3>
+                                        <span class="scanner-brand">Canon</span>
+                                        <div class="scanner-specs">
+                                            <div class="spec-item">
+                                                <i class="fas fa-tachometer-alt"></i>
+                                                <span>8 sec/page</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-expand-arrows-alt"></i>
+                                                <span>4800 x 4800 dpi</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-calendar-alt"></i>
+                                                <span>1000 pages/mois</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-copy"></i>
+                                                <span>Recto-Verso: Non</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-boxes"></i>
+                                                <span>Stock: 12 unités</span>
+                                            </div>
+                                        </div>
+                                        <div class="connectivity-badges">
+                                            <span class="connectivity-badge usb">USB</span>
+                                        </div>
+                                        <div class="scanner-price">1,850 DH</div>
+                                        <span class="stock-status in-stock">En stock (12 unités)</span>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <!-- Form Actions -->
-                            <div class="form-actions">
-                                <button type="button" class="btn btn-secondary" onclick="resetForm()">
-                                    <i class="fas fa-times"></i> Annuler
-                                </button>
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fas fa-save"></i> Ajouter le Scanner
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                                <div class="scanner-card" data-brand="Epson" data-stock="in-stock">
+                                    <img src="/placeholder.svg?height=200&width=380" alt="Epson Perfection" class="scanner-image">
+                                    <div class="scanner-actions">
+                                        <button class="action-btn edit" onclick="editScanner(this)">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="action-btn delete" onclick="deleteScanner(this)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                    <div class="scanner-info">
+                                        <h3 class="scanner-name">Epson Perfection V600 Photo</h3>
+                                        <span class="scanner-brand">Epson</span>
+                                        <div class="scanner-specs">
+                                            <div class="spec-item">
+                                                <i class="fas fa-tachometer-alt"></i>
+                                                <span>12 sec/page</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-expand-arrows-alt"></i>
+                                                <span>6400 x 9600 dpi</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-calendar-alt"></i>
+                                                <span>2000 pages/mois</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-copy"></i>
+                                                <span>Recto-Verso: Manuel</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-boxes"></i>
+                                                <span>Stock: 8 unités</span>
+                                            </div>
+                                        </div>
+                                        <div class="connectivity-badges">
+                                            <span class="connectivity-badge usb">USB</span>
+                                            <span class="connectivity-badge wifi">WiFi</span>
+                                        </div>
+                                        <div class="scanner-price">3,200 DH</div>
+                                        <span class="stock-status in-stock">En stock (8 unités)</span>
+                                    </div>
+                                </div>
 
-                <!-- Scanner Inventory -->
-                <div class="section-card">
-                    <div class="card-header">
-                        <h2><i class="fas fa-scanner"></i> Inventaire des Scanners</h2>
-                        <p>Gérez vos scanners en stock avec possibilité de modification et suppression</p>
-                    </div>
-                    
-                    <div class="card-content">
-                        <!-- Search and Filter Controls -->
-                        <div class="inventory-controls">
-                            <div class="search-box">
-                                <i class="fas fa-search search-icon"></i>
-                                <input type="text" class="search-input" placeholder="Rechercher par nom, marque, résolution..." id="searchInput">
-                            </div>
-                            <select class="filter-select" id="brandFilter">
-                                <option value="">Toutes les marques</option>
-                                <option value="Canon">Canon</option>
-                                <option value="Epson">Epson</option>
-                                <option value="HP">HP</option>
-                                <option value="Brother">Brother</option>
-                                <option value="Fujitsu">Fujitsu</option>
-                            </select>
-                            <select class="filter-select" id="stockFilter">
-                                <option value="">Tous les stocks</option>
-                                <option value="in-stock">En stock</option>
-                                <option value="low-stock">Stock faible</option>
-                                <option value="out-of-stock">Rupture de stock</option>
-                            </select>
-                            <select class="filter-select" id="connectivityFilter">
-                                <option value="">Toutes connectivités</option>
-                                <option value="USB">USB</option>
-                                <option value="Ethernet">Ethernet</option>
-                                <option value="WiFi">WiFi</option>
-                            </select>
-                        </div>
+                                <div class="scanner-card" data-brand="HP" data-stock="low-stock">
+                                    <img src="/placeholder.svg?height=200&width=380" alt="HP ScanJet" class="scanner-image">
+                                    <div class="scanner-actions">
+                                        <button class="action-btn edit" onclick="editScanner(this)">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="action-btn delete" onclick="deleteScanner(this)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                    <div class="scanner-info">
+                                        <h3 class="scanner-name">HP ScanJet Pro 2500 f1</h3>
+                                        <span class="scanner-brand">HP</span>
+                                        <div class="scanner-specs">
+                                            <div class="spec-item">
+                                                <i class="fas fa-tachometer-alt"></i>
+                                                <span>20 ppm</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-expand-arrows-alt"></i>
+                                                <span>1200 x 1200 dpi</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-calendar-alt"></i>
+                                                <span>3000 pages/mois</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-copy"></i>
+                                                <span>Recto-Verso: Automatique</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-boxes"></i>
+                                                <span>Stock: 3 unités</span>
+                                            </div>
+                                        </div>
+                                        <div class="connectivity-badges">
+                                            <span class="connectivity-badge usb">USB</span>
+                                            <span class="connectivity-badge ethernet">Ethernet</span>
+                                            <span class="connectivity-badge wifi">WiFi</span>
+                                        </div>
+                                        <div class="scanner-price">4,500 DH</div>
+                                        <span class="stock-status low-stock">Stock faible (3 unités)</span>
+                                    </div>
+                                </div>
 
-                        <!-- Scanner Inventory Grid -->
-                        <div class="scanner-inventory" id="scannerInventory">
-                            <!-- Sample Scanner Cards -->
-                            <div class="scanner-card" data-brand="Canon" data-stock="in-stock">
-                                <img src="/placeholder.svg?height=200&width=380" alt="Canon CanoScan" class="scanner-image">
-                                <div class="scanner-actions">
-                                    <button class="action-btn edit" onclick="editScanner(this)">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button class="action-btn delete" onclick="deleteScanner(this)">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </div>
-                                <div class="scanner-info">
-                                    <h3 class="scanner-name">Canon CanoScan LiDE 400</h3>
-                                    <span class="scanner-brand">Canon</span>
-                                    <div class="scanner-specs">
-                                        <div class="spec-item">
-                                            <i class="fas fa-tachometer-alt"></i>
-                                            <span>8 sec/page</span>
-                                        </div>
-                                        <div class="spec-item">
-                                            <i class="fas fa-expand-arrows-alt"></i>
-                                            <span>4800 x 4800 dpi</span>
-                                        </div>
-                                        <div class="spec-item">
-                                            <i class="fas fa-calendar-alt"></i>
-                                            <span>1000 pages/mois</span>
-                                        </div>
-                                        <div class="spec-item">
-                                            <i class="fas fa-copy"></i>
-                                            <span>Recto-Verso: Non</span>
-                                        </div>
-                                        <div class="spec-item">
-                                            <i class="fas fa-boxes"></i>
-                                            <span>Stock: 12 unités</span>
-                                        </div>
+                                <div class="scanner-card" data-brand="Brother" data-stock="in-stock">
+                                    <img src="/placeholder.svg?height=200&width=380" alt="Brother ADS" class="scanner-image">
+                                    <div class="scanner-actions">
+                                        <button class="action-btn edit" onclick="editScanner(this)">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="action-btn delete" onclick="deleteScanner(this)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
                                     </div>
-                                    <div class="connectivity-badges">
-                                        <span class="connectivity-badge usb">USB</span>
+                                    <div class="scanner-info">
+                                        <h3 class="scanner-name">Brother ADS-2700W</h3>
+                                        <span class="scanner-brand">Brother</span>
+                                        <div class="scanner-specs">
+                                            <div class="spec-item">
+                                                <i class="fas fa-tachometer-alt"></i>
+                                                <span>35 ppm</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-expand-arrows-alt"></i>
+                                                <span>1200 x 1200 dpi</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-calendar-alt"></i>
+                                                <span>5000 pages/mois</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-copy"></i>
+                                                <span>Recto-Verso: Automatique</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-boxes"></i>
+                                                <span>Stock: 6 unités</span>
+                                            </div>
+                                        </div>
+                                        <div class="connectivity-badges">
+                                            <span class="connectivity-badge usb">USB</span>
+                                            <span class="connectivity-badge ethernet">Ethernet</span>
+                                            <span class="connectivity-badge wifi">WiFi</span>
+                                        </div>
+                                        <div class="scanner-price">6,800 DH</div>
+                                        <span class="stock-status in-stock">En stock (6 unités)</span>
                                     </div>
-                                    <div class="scanner-price">1,850 DH</div>
-                                    <span class="stock-status in-stock">En stock (12 unités)</span>
                                 </div>
-                            </div>
 
-                            <div class="scanner-card" data-brand="Epson" data-stock="in-stock">
-                                <img src="/placeholder.svg?height=200&width=380" alt="Epson Perfection" class="scanner-image">
-                                <div class="scanner-actions">
-                                    <button class="action-btn edit" onclick="editScanner(this)">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button class="action-btn delete" onclick="deleteScanner(this)">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </div>
-                                <div class="scanner-info">
-                                    <h3 class="scanner-name">Epson Perfection V600 Photo</h3>
-                                    <span class="scanner-brand">Epson</span>
-                                    <div class="scanner-specs">
-                                        <div class="spec-item">
-                                            <i class="fas fa-tachometer-alt"></i>
-                                            <span>12 sec/page</span>
-                                        </div>
-                                        <div class="spec-item">
-                                            <i class="fas fa-expand-arrows-alt"></i>
-                                            <span>6400 x 9600 dpi</span>
-                                        </div>
-                                        <div class="spec-item">
-                                            <i class="fas fa-calendar-alt"></i>
-                                            <span>2000 pages/mois</span>
-                                        </div>
-                                        <div class="spec-item">
-                                            <i class="fas fa-copy"></i>
-                                            <span>Recto-Verso: Manuel</span>
-                                        </div>
-                                        <div class="spec-item">
-                                            <i class="fas fa-boxes"></i>
-                                            <span>Stock: 8 unités</span>
-                                        </div>
+                                <div class="scanner-card" data-brand="Fujitsu" data-stock="out-of-stock">
+                                    <img src="/placeholder.svg?height=200&width=380" alt="Fujitsu ScanSnap" class="scanner-image">
+                                    <div class="scanner-actions">
+                                        <button class="action-btn edit" onclick="editScanner(this)">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="action-btn delete" onclick="deleteScanner(this)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
                                     </div>
-                                    <div class="connectivity-badges">
-                                        <span class="connectivity-badge usb">USB</span>
-                                        <span class="connectivity-badge wifi">WiFi</span>
+                                    <div class="scanner-info">
+                                        <h3 class="scanner-name">Fujitsu ScanSnap iX1600</h3>
+                                        <span class="scanner-brand">Fujitsu</span>
+                                        <div class="scanner-specs">
+                                            <div class="spec-item">
+                                                <i class="fas fa-tachometer-alt"></i>
+                                                <span>40 ppm</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-expand-arrows-alt"></i>
+                                                <span>600 x 600 dpi</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-calendar-alt"></i>
+                                                <span>4000 pages/mois</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-copy"></i>
+                                                <span>Recto-Verso: Automatique</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-boxes"></i>
+                                                <span>Stock: 0 unité</span>
+                                            </div>
+                                        </div>
+                                        <div class="connectivity-badges">
+                                            <span class="connectivity-badge usb">USB</span>
+                                            <span class="connectivity-badge wifi">WiFi</span>
+                                        </div>
+                                        <div class="scanner-price">8,500 DH</div>
+                                        <span class="stock-status out-of-stock">Rupture de stock (0 unité)</span>
                                     </div>
-                                    <div class="scanner-price">3,200 DH</div>
-                                    <span class="stock-status in-stock">En stock (8 unités)</span>
                                 </div>
-                            </div>
 
-                            <div class="scanner-card" data-brand="HP" data-stock="low-stock">
-                                <img src="/placeholder.svg?height=200&width=380" alt="HP ScanJet" class="scanner-image">
-                                <div class="scanner-actions">
-                                    <button class="action-btn edit" onclick="editScanner(this)">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button class="action-btn delete" onclick="deleteScanner(this)">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </div>
-                                <div class="scanner-info">
-                                    <h3 class="scanner-name">HP ScanJet Pro 2500 f1</h3>
-                                    <span class="scanner-brand">HP</span>
-                                    <div class="scanner-specs">
-                                        <div class="spec-item">
-                                            <i class="fas fa-tachometer-alt"></i>
-                                            <span>20 ppm</span>
-                                        </div>
-                                        <div class="spec-item">
-                                            <i class="fas fa-expand-arrows-alt"></i>
-                                            <span>1200 x 1200 dpi</span>
-                                        </div>
-                                        <div class="spec-item">
-                                            <i class="fas fa-calendar-alt"></i>
-                                            <span>3000 pages/mois</span>
-                                        </div>
-                                        <div class="spec-item">
-                                            <i class="fas fa-copy"></i>
-                                            <span>Recto-Verso: Automatique</span>
-                                        </div>
-                                        <div class="spec-item">
-                                            <i class="fas fa-boxes"></i>
-                                            <span>Stock: 3 unités</span>
-                                        </div>
+                                <div class="scanner-card" data-brand="Canon" data-stock="in-stock">
+                                    <img src="/placeholder.svg?height=200&width=380" alt="Canon imageFORMULA" class="scanner-image">
+                                    <div class="scanner-actions">
+                                        <button class="action-btn edit" onclick="editScanner(this)">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="action-btn delete" onclick="deleteScanner(this)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
                                     </div>
-                                    <div class="connectivity-badges">
-                                        <span class="connectivity-badge usb">USB</span>
-                                        <span class="connectivity-badge ethernet">Ethernet</span>
-                                        <span class="connectivity-badge wifi">WiFi</span>
+                                    <div class="scanner-info">
+                                        <h3 class="scanner-name">Canon imageFORMULA R40</h3>
+                                        <span class="scanner-brand">Canon</span>
+                                        <div class="scanner-specs">
+                                            <div class="spec-item">
+                                                <i class="fas fa-tachometer-alt"></i>
+                                                <span>40 ppm</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-expand-arrows-alt"></i>
+                                                <span>600 x 600 dpi</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-calendar-alt"></i>
+                                                <span>6000 pages/mois</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-copy"></i>
+                                                <span>Recto-Verso: Automatique</span>
+                                            </div>
+                                            <div class="spec-item">
+                                                <i class="fas fa-boxes"></i>
+                                                <span>Stock: 4 unités</span>
+                                            </div>
+                                        </div>
+                                        <div class="connectivity-badges">
+                                            <span class="connectivity-badge usb">USB</span>
+                                        </div>
+                                        <div class="scanner-price">12,000 DH</div>
+                                        <span class="stock-status in-stock">En stock (4 unités)</span>
                                     </div>
-                                    <div class="scanner-price">4,500 DH</div>
-                                    <span class="stock-status low-stock">Stock faible (3 unités)</span>
-                                </div>
-                            </div>
-
-                            <div class="scanner-card" data-brand="Brother" data-stock="in-stock">
-                                <img src="/placeholder.svg?height=200&width=380" alt="Brother ADS" class="scanner-image">
-                                <div class="scanner-actions">
-                                    <button class="action-btn edit" onclick="editScanner(this)">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button class="action-btn delete" onclick="deleteScanner(this)">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </div>
-                                <div class="scanner-info">
-                                    <h3 class="scanner-name">Brother ADS-2700W</h3>
-                                    <span class="scanner-brand">Brother</span>
-                                    <div class="scanner-specs">
-                                        <div class="spec-item">
-                                            <i class="fas fa-tachometer-alt"></i>
-                                            <span>35 ppm</span>
-                                        </div>
-                                        <div class="spec-item">
-                                            <i class="fas fa-expand-arrows-alt"></i>
-                                            <span>1200 x 1200 dpi</span>
-                                        </div>
-                                        <div class="spec-item">
-                                            <i class="fas fa-calendar-alt"></i>
-                                            <span>5000 pages/mois</span>
-                                        </div>
-                                        <div class="spec-item">
-                                            <i class="fas fa-copy"></i>
-                                            <span>Recto-Verso: Automatique</span>
-                                        </div>
-                                        <div class="spec-item">
-                                            <i class="fas fa-boxes"></i>
-                                            <span>Stock: 6 unités</span>
-                                        </div>
-                                    </div>
-                                    <div class="connectivity-badges">
-                                        <span class="connectivity-badge usb">USB</span>
-                                        <span class="connectivity-badge ethernet">Ethernet</span>
-                                        <span class="connectivity-badge wifi">WiFi</span>
-                                    </div>
-                                    <div class="scanner-price">6,800 DH</div>
-                                    <span class="stock-status in-stock">En stock (6 unités)</span>
-                                </div>
-                            </div>
-
-                            <div class="scanner-card" data-brand="Fujitsu" data-stock="out-of-stock">
-                                <img src="/placeholder.svg?height=200&width=380" alt="Fujitsu ScanSnap" class="scanner-image">
-                                <div class="scanner-actions">
-                                    <button class="action-btn edit" onclick="editScanner(this)">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button class="action-btn delete" onclick="deleteScanner(this)">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </div>
-                                <div class="scanner-info">
-                                    <h3 class="scanner-name">Fujitsu ScanSnap iX1600</h3>
-                                    <span class="scanner-brand">Fujitsu</span>
-                                    <div class="scanner-specs">
-                                        <div class="spec-item">
-                                            <i class="fas fa-tachometer-alt"></i>
-                                            <span>40 ppm</span>
-                                        </div>
-                                        <div class="spec-item">
-                                            <i class="fas fa-expand-arrows-alt"></i>
-                                            <span>600 x 600 dpi</span>
-                                        </div>
-                                        <div class="spec-item">
-                                            <i class="fas fa-calendar-alt"></i>
-                                            <span>4000 pages/mois</span>
-                                        </div>
-                                        <div class="spec-item">
-                                            <i class="fas fa-copy"></i>
-                                            <span>Recto-Verso: Automatique</span>
-                                        </div>
-                                        <div class="spec-item">
-                                            <i class="fas fa-boxes"></i>
-                                            <span>Stock: 0 unité</span>
-                                        </div>
-                                    </div>
-                                    <div class="connectivity-badges">
-                                        <span class="connectivity-badge usb">USB</span>
-                                        <span class="connectivity-badge wifi">WiFi</span>
-                                    </div>
-                                    <div class="scanner-price">8,500 DH</div>
-                                    <span class="stock-status out-of-stock">Rupture de stock (0 unité)</span>
-                                </div>
-                            </div>
-
-                            <div class="scanner-card" data-brand="Canon" data-stock="in-stock">
-                                <img src="/placeholder.svg?height=200&width=380" alt="Canon imageFORMULA" class="scanner-image">
-                                <div class="scanner-actions">
-                                    <button class="action-btn edit" onclick="editScanner(this)">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button class="action-btn delete" onclick="deleteScanner(this)">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </div>
-                                <div class="scanner-info">
-                                    <h3 class="scanner-name">Canon imageFORMULA R40</h3>
-                                    <span class="scanner-brand">Canon</span>
-                                    <div class="scanner-specs">
-                                        <div class="spec-item">
-                                            <i class="fas fa-tachometer-alt"></i>
-                                            <span>40 ppm</span>
-                                        </div>
-                                        <div class="spec-item">
-                                            <i class="fas fa-expand-arrows-alt"></i>
-                                            <span>600 x 600 dpi</span>
-                                        </div>
-                                        <div class="spec-item">
-                                            <i class="fas fa-calendar-alt"></i>
-                                            <span>6000 pages/mois</span>
-                                        </div>
-                                        <div class="spec-item">
-                                            <i class="fas fa-copy"></i>
-                                            <span>Recto-Verso: Automatique</span>
-                                        </div>
-                                        <div class="spec-item">
-                                            <i class="fas fa-boxes"></i>
-                                            <span>Stock: 4 unités</span>
-                                        </div>
-                                    </div>
-                                    <div class="connectivity-badges">
-                                        <span class="connectivity-badge usb">USB</span>
-                                    </div>
-                                    <div class="scanner-price">12,000 DH</div>
-                                    <span class="stock-status in-stock">En stock (4 unités)</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </main>
+        </main>
+        <script>
+            document.getElementById("addScannerForm").addEventListener("submit", async function(e) {
+                e.preventDefault();
 
-    <script src="js_admin/admin_scanner.js"></script>
-</body>
+                // Collect checked connectivity options
+                const selectedConnectivity = Array.from(document.querySelectorAll('input[name="connectivity[]"]:checked'))
+                    .map(cb => cb.value);
+
+
+                const formValues = {
+                    scannerName : document.getElementById("scannerName").value,
+                    brand : document.getElementById("brand").value,
+                    printSpeed : document.getElementById("printSpeed").value,
+                    printResolution : document.getElementById("printResolution").value,
+                    monthlyDutyCycle : document.getElementById("monthlyDutyCycle").value,
+                    duplexPrinting : document.getElementById("duplexPrinting").value,
+                    price : document.getElementById("price").value,
+                    stockQuantity : document.getElementById("stockQuantity").value,
+                    connectivity: selectedConnectivity
+                }
+
+                const formData = new FormData();
+                for (const [key, value] of Object.entries(formValues)) {
+                    formData.append(key, value);
+                }
+
+                const imageFiles = document.getElementById("scannerImages").files;
+                for (let i = 0; i < imageFiles.length; i++) {
+                    formData.append("scannerImages", imageFiles[i]);
+                }
+
+                console.log("=== FINAL FORMDATA ===");
+                for (let [key, value] of formData.entries()) {
+                    console.log(key, value);
+                }
+
+                try {
+                    const response = await fetch('http://localhost:8080/api/printer', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                        throw new Error(errorText || 'Request failed');
+                    }
+                    
+                    const result = await response.json();
+                    console.log("Success:", result);
+                    alert("Imprimante ajouté avec succès !");
+                    this.reset();
+                    //loadPrinters();
+
+                    document.getElementById('imagePreview').innerHTML = '';
+                    document.getElementById('fileCount').style.display = 'none';
+                } catch (error) {
+                    console.error("Error:", error);
+                    alert("Erreur: " + error.message);
+                }
+            });
+        </script>
+        <script>
+            
+        </script>
+        <script src="js_admin/admin_scanner.js"></script>
+    </body>
 </html>
