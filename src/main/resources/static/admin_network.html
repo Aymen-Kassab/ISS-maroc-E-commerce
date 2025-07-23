@@ -560,7 +560,62 @@
                 </div>
             </div>
         </main>
-        
+        <script>
+            document.getElementById("addNetworkForm").addEventListener("submit", async function (e) {
+                e.preventDefault();
+
+                const formValues = {
+                    equipmentName : document.getElementById("equipmentName").value,
+                    brand : document.getElementById("brand").value,
+                    model : document.getElementById("model").value,
+                    equipmentType : document.getElementById("equipmentType").value,
+                    ports : document.getElementById("ports").value,
+                    speed : document.getElementById("speed").value,
+                    management : document.getElementById("management").value,
+                    price : document.getElementById("price").value,
+                    stockQuantity : document.getElementById("stockQuantity").value
+                }
+
+                const formData = new FormData();
+                for (const [key, value] of Object.entries(formValues)) {
+                    formData.append(key, value);
+                }
+
+                const imageFiles = document.getElementById("equipmentImages").files;
+                for (let i = 0; i < imageFiles.length; i++) {
+                    formData.append("equipmentImages", imageFiles[i]);
+                }
+
+                console.log("=== FINAL FORMDATA ===");
+                for (let [key, value] of formData.entries()) {
+                    console.log(key, value);
+                }
+
+                try {
+                    const response = await fetch('http://localhost:8080/api/network', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                        throw new Error(errorText || 'Request failed');
+                    }
+                    
+                    const result = await response.json();
+                    console.log("Success:", result);
+                    alert("Equipment est ajouté avec succès !");
+                    this.reset();
+                    //loadNetwork();
+
+                    document.getElementById('imagePreview').innerHTML = '';
+                    document.getElementById('fileCount').style.display = 'none';
+                } catch (error) {
+                    console.error("Error:", error);
+                    alert("Erreur: " + error.message);
+                }
+            })
+        </script>
         <script src="js_admin/admin_network.js"></script>
     </body>
 </html>

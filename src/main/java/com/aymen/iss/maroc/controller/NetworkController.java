@@ -49,7 +49,7 @@ public class NetworkController {
             @RequestParam("management") String managementType,
             @RequestParam("price") String price,
             @RequestParam("stockQuantity") String stock,
-            @RequestParam("pcImages") MultipartFile[] images) {
+            @RequestParam("equipmentImages") MultipartFile[] images) {
 
 
 
