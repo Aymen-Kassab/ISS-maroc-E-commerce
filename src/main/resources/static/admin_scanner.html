@@ -623,7 +623,86 @@
             });
         </script>
         <script>
-            
+            document.addEventListener("DOMContentLoaded", function () {
+                loadPrinters();
+            });
+
+            function loadPrinters() {
+                fetch("http://localhost:8080/api/printer")
+                .then (response => response.json())
+                .then (data => {
+                    const container = document.getElementById("scannerInventory");
+                    container.innerHTML = "";
+                    data.forEach(printer => renderPrinters(printer, container))
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error("Erreur lors du chargement :", error);
+                    container.innerHTML = `<div class="error">Erreur de chargement des données</div>`;
+                });
+            }
+
+            function renderPrinters(printer, container){
+                const printerCard = document.createElement('div');
+                printerCard.classList.add('scanner-card');
+                printerCard.setAttribute('data-brand', printer.brand);
+
+                // Better stock status calculation
+                const stockQty = parseInt(printer.stock) || 0;
+                const stockStatus = stockQty === 0 ? "out-of-stock" : 
+                                stockQty < 5 ? "low-stock" : "in-stock";
+                printerCard.setAttribute("data-stock", stockStatus);
+
+                // Fix image URL handling
+                const imageUrl = printer.imageUrls && printer.imageUrls.length > 0 ? `http://localhost:8080${printer.imageUrls[0]}` : '/placeholder.svg?height=200&width=350';
+
+                printerCard.innerHTML = `
+                    <img src="${imageUrl}" alt="${printer.name}" class="scanner-image">
+                    <div class="scanner-actions">
+                        <button class="action-btn edit" onclick="editScanner(this)">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="action-btn delete" onclick="deleteScanner(this)">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                    <div class="scanner-info">
+                        <h3 class="scanner-name">${printer.name}</h3>
+                        <span class="scanner-brand">${printer.brand}</span>
+                        <div class="scanner-specs">
+                            <div class="spec-item">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span>${printer.printSpeed} ppm</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-expand-arrows-alt"></i>
+                                <span>${printer.resolution} dpi</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>${printer.workCycle} pages/mois</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-copy"></i>
+                                <span>Recto-Verso: ${printer.rectoVerso}</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-boxes"></i>
+                                <span>Stock: ${stockQty} unité</span>
+                            </div>
+                        </div>
+                        <div class="connectivity-badges">
+                            <span class="connectivity-badge usb">${printer.connectivity[0] || 'N/A'}</span>
+                            <span class="connectivity-badge wifi">${printer.connectivity[1] || 'N/A'}</span>
+                            <span class="connectivity-badge wifi">${printer.connectivity[2] || 'N/A'}</span>
+                        </div>
+                        <div class="scanner-price">${printer.price} DH</div>
+                        <span class="stock-status out-of-stock">${stockStatus} (${stockQty} unité)</span>
+                    </div>
+                `;
+
+                container.appendChild(printerCard);
+            }
         </script>
         <script src="js_admin/admin_scanner.js"></script>
     </body>

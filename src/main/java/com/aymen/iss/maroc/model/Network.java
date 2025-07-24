@@ -68,6 +68,9 @@ public class Network {
         return this.stock;
     }
 
+    public List<String> getImageUrls(){
+        return this.imageUrls;
+    }
     // Setters
 
     public void setId(long id){

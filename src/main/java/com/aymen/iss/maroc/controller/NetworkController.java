@@ -1,6 +1,5 @@
 package com.aymen.iss.maroc.controller;
 
-import com.aymen.iss.maroc.model.Computer;
 import com.aymen.iss.maroc.model.Network;
 import com.aymen.iss.maroc.service.NetworkService;
 import org.springframework.beans.factory.annotation.Autowired;

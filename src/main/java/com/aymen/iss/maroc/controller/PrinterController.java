@@ -24,7 +24,7 @@ import java.util.UUID;
 public class PrinterController {
 
     private final PrinterService printerService;
-    private static final String UPLOAD_DIR = "/uploads";
+    private static final String UPLOAD_DIR = "uploads/";
     private static final int MAX_FILES = 20;
     private static final long MAX_FILE_SIZE = 10 * 1024 * 1024; //10MB
 

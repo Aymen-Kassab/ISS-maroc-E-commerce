@@ -244,7 +244,7 @@
                                                 <p>ou cliquez pour sélectionner des fichiers</p>
                                                 <p><small>Formats acceptés: JPG, PNG, WebP (Max: 5MB par image)</small></p>
                                             </div>
-                                            <input type="file" id="equipmentImages" name="equipmentImages[]" 
+                                            <input type="file" id="equipmentImages" name="equipmentImages" 
                                                 class="file-input" multiple accept="image/*">
                                             <button type="button" class="upload-btn" onclick="document.getElementById('equipmentImages').click()">
                                                 <i class="fas fa-plus"></i> Sélectionner des Images
@@ -309,251 +309,7 @@
                             <!-- Network Equipment Inventory Grid -->
                             <div class="network-inventory" id="networkInventory">
                                 <!-- Sample Network Equipment Cards -->
-                                <div class="network-card" data-brand="Cisco" data-stock="in-stock" data-type="Switch">
-                                    <img src="/placeholder.svg?height=200&width=350" alt="Cisco Switch" class="network-image">
-                                    <div class="network-actions">
-                                        <button class="action-btn edit" onclick="editNetwork(this)">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="action-btn delete" onclick="deleteNetwork(this)">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </div>
-                                    <div class="network-info">
-                                        <h3 class="network-name">Cisco Catalyst 2960-X Series</h3>
-                                        <span class="network-brand">Cisco</span>
-                                        <div class="network-specs">
-                                            <div class="spec-item">
-                                                <i class="fas fa-tag"></i>
-                                                <span>Modèle: WS-C2960X-24TS-L</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-plug"></i>
-                                                <span>24 ports Gigabit</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-tachometer-alt"></i>
-                                                <span>10/100/1000 Mbps</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-cogs"></i>
-                                                <span>Géré (Managed)</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-boxes"></i>
-                                                <span>Stock: 8 unités</span>
-                                            </div>
-                                        </div>
-                                        <span class="network-type switch">Switch</span>
-                                        <div class="network-price">12,500 DH</div>
-                                        <span class="stock-status in-stock">En stock (8 unités)</span>
-                                    </div>
-                                </div>
-
-                                <div class="network-card" data-brand="HP" data-stock="in-stock" data-type="Switch">
-                                    <img src="/placeholder.svg?height=200&width=350" alt="HP Switch" class="network-image">
-                                    <div class="network-actions">
-                                        <button class="action-btn edit" onclick="editNetwork(this)">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="action-btn delete" onclick="deleteNetwork(this)">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </div>
-                                    <div class="network-info">
-                                        <h3 class="network-name">HP ProCurve 1920S</h3>
-                                        <span class="network-brand">HP</span>
-                                        <div class="network-specs">
-                                            <div class="spec-item">
-                                                <i class="fas fa-tag"></i>
-                                                <span>Modèle: JL382A</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-plug"></i>
-                                                <span>48 ports Gigabit</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-tachometer-alt"></i>
-                                                <span>10/100/1000 Mbps</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-cogs"></i>
-                                                <span>Smart Managed</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-boxes"></i>
-                                                <span>Stock: 5 unités</span>
-                                            </div>
-                                        </div>
-                                        <span class="network-type switch">Switch</span>
-                                        <div class="network-price">8,900 DH</div>
-                                        <span class="stock-status in-stock">En stock (5 unités)</span>
-                                    </div>
-                                </div>
-
-                                <div class="network-card" data-brand="TP-Link" data-stock="low-stock" data-type="Switch">
-                                    <img src="/placeholder.svg?height=200&width=350" alt="TP-Link Switch" class="network-image">
-                                    <div class="network-actions">
-                                        <button class="action-btn edit" onclick="editNetwork(this)">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="action-btn delete" onclick="deleteNetwork(this)">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </div>
-                                    <div class="network-info">
-                                        <h3 class="network-name">TP-Link TL-SG1024D</h3>
-                                        <span class="network-brand">TP-Link</span>
-                                        <div class="network-specs">
-                                            <div class="spec-item">
-                                                <i class="fas fa-tag"></i>
-                                                <span>Modèle: TL-SG1024D</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-plug"></i>
-                                                <span>24 ports Gigabit</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-tachometer-alt"></i>
-                                                <span>10/100/1000 Mbps</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-cogs"></i>
-                                                <span>Non géré</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-boxes"></i>
-                                                <span>Stock: 3 unités</span>
-                                            </div>
-                                        </div>
-                                        <span class="network-type switch">Switch</span>
-                                        <div class="network-price">1,850 DH</div>
-                                        <span class="stock-status low-stock">Stock faible (3 unités)</span>
-                                    </div>
-                                </div>
-
-                                <div class="network-card" data-brand="Netgear" data-stock="in-stock" data-type="Routeur">
-                                    <img src="/placeholder.svg?height=200&width=350" alt="Netgear Router" class="network-image">
-                                    <div class="network-actions">
-                                        <button class="action-btn edit" onclick="editNetwork(this)">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="action-btn delete" onclick="deleteNetwork(this)">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </div>
-                                    <div class="network-info">
-                                        <h3 class="network-name">Netgear Nighthawk AX12</h3>
-                                        <span class="network-brand">Netgear</span>
-                                        <div class="network-specs">
-                                            <div class="spec-item">
-                                                <i class="fas fa-tag"></i>
-                                                <span>Modèle: RAX120</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-wifi"></i>
-                                                <span>WiFi 6 AX6000</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-plug"></i>
-                                                <span>5 ports Gigabit</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-shield-alt"></i>
-                                                <span>Sécurité avancée</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-boxes"></i>
-                                                <span>Stock: 12 unités</span>
-                                            </div>
-                                        </div>
-                                        <span class="network-type router">Routeur</span>
-                                        <div class="network-price">4,200 DH</div>
-                                        <span class="stock-status in-stock">En stock (12 unités)</span>
-                                    </div>
-                                </div>
-
-                                <div class="network-card" data-brand="Ubiquiti" data-stock="out-of-stock" data-type="Point d'Accès">
-                                    <img src="/placeholder.svg?height=200&width=350" alt="Ubiquiti Access Point" class="network-image">
-                                    <div class="network-actions">
-                                        <button class="action-btn edit" onclick="editNetwork(this)">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="action-btn delete" onclick="deleteNetwork(this)">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </div>
-                                    <div class="network-info">
-                                        <h3 class="network-name">Ubiquiti UniFi AP AC Pro</h3>
-                                        <span class="network-brand">Ubiquiti</span>
-                                        <div class="network-specs">
-                                            <div class="spec-item">
-                                                <i class="fas fa-tag"></i>
-                                                <span>Modèle: UAP-AC-PRO</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-wifi"></i>
-                                                <span>802.11ac Wave 2</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-tachometer-alt"></i>
-                                                <span>1.75 Gbps</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-users"></i>
-                                                <span>200+ utilisateurs</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-boxes"></i>
-                                                <span>Stock: 0 unité</span>
-                                            </div>
-                                        </div>
-                                        <span class="network-type access-point">Point d'Accès</span>
-                                        <div class="network-price">2,800 DH</div>
-                                        <span class="stock-status out-of-stock">Rupture de stock (0 unité)</span>
-                                    </div>
-                                </div>
-
-                                <div class="network-card" data-brand="Fortinet" data-stock="in-stock" data-type="Pare-feu">
-                                    <img src="/placeholder.svg?height=200&width=350" alt="Fortinet Firewall" class="network-image">
-                                    <div class="network-actions">
-                                        <button class="action-btn edit" onclick="editNetwork(this)">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="action-btn delete" onclick="deleteNetwork(this)">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </div>
-                                    <div class="network-info">
-                                        <h3 class="network-name">Fortinet FortiGate 60F</h3>
-                                        <span class="network-brand">Fortinet</span>
-                                        <div class="network-specs">
-                                            <div class="spec-item">
-                                                <i class="fas fa-tag"></i>
-                                                <span>Modèle: FG-60F</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-shield-alt"></i>
-                                                <span>Pare-feu UTM</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-tachometer-alt"></i>
-                                                <span>10 Gbps Firewall</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-plug"></i>
-                                                <span>7 ports internes</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-boxes"></i>
-                                                <span>Stock: 4 unités</span>
-                                            </div>
-                                        </div>
-                                        <span class="network-type firewall">Pare-feu</span>
-                                        <div class="network-price">15,600 DH</div>
-                                        <span class="stock-status in-stock">En stock (4 unités)</span>
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -606,7 +362,7 @@
                     console.log("Success:", result);
                     alert("Equipment est ajouté avec succès !");
                     this.reset();
-                    //loadNetwork();
+                    loadNetworks();
 
                     document.getElementById('imagePreview').innerHTML = '';
                     document.getElementById('fileCount').style.display = 'none';
@@ -615,6 +371,81 @@
                     alert("Erreur: " + error.message);
                 }
             })
+        </script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                loadNetworks();
+            })
+
+            function loadNetworks() {
+                fetch("http://localhost:8080/api/network")
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById("networkInventory");
+                    container.innerHTML = "";
+                    data.forEach(net => renderNetwork(net, container));
+                })
+                .catch(error => {
+                    console.error("Erreur lors du chargement :", error);
+                    container.innerHTML = `<div class="error">Erreur de chargement des données</div>`;
+                });
+            }
+
+            function renderNetwork(net, container){
+                const netCard = document.createElement('div');
+                netCard.classList.add('network-card');
+                netCard.setAttribute("data-brand", net.brand);
+
+                const stockQty = parseInt(net.stock) || 0;
+                const stockStatus = stockQty === 0 ? "out-of-stock" : 
+                                stockQty < 5 ? "low-stock" : "in-stock";
+                netCard.setAttribute("data-stock", stockStatus);
+
+                const imageUrl = net.imageUrls && net.imageUrls.length > 0 ? `http://localhost:8080${net.imageUrls[0]}` : '/placeholder.svg?height=200&width=350';
+
+                netCard.innerHTML = `
+                    <img src="${imageUrl}" alt="${net.name}" class="network-image">
+                    <div class="network-actions">
+                        <button class="action-btn edit" onclick="editNetwork(this)">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="action-btn delete" onclick="deleteNetwork(this)">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                    <div class="network-info">
+                        <h3 class="network-name">${net.name}</h3>
+                        <span class="network-brand">${net.brand}</span>
+                        <div class="network-specs">
+                            <div class="spec-item">
+                                <i class="fas fa-tag"></i>
+                                <span>Modèle: ${net.model}</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>${net.type}</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span>${net.speed} Gbps Firewall</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-plug"></i>
+                                <span>${net.portsNum} ports internes</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-boxes"></i>
+                                <span>Stock: ${stockQty} unités</span>
+                            </div>
+                        </div>
+                        <span class="network-type firewall">Pare-feu</span>
+                        <div class="network-price">15,600 DH</div>
+                        <span class="stock-status in-stock">${stockStatus} (${stockQty} unités)</span>
+                    </div>
+                `;
+
+                container.appendChild(netCard);
+            }
         </script>
         <script src="js_admin/admin_network.js"></script>
     </body>
