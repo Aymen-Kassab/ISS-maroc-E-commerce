@@ -445,6 +445,38 @@
                 `;
 
                 container.appendChild(netCard);
+
+                netCard.querySelector('.edit').addEventListener('click', () => editNet(net.id));
+                netCard.querySelector('.delete').addEventListener('click', (event) => {
+                const id = net.id
+                deleteNet(id);
+                });
+            }
+
+            function editNet(id) {
+                
+            }
+
+            function deleteNet(id) {
+                if (confirm("Voulez-vous vraiment supprimer cet equipement?")) {
+                    fetch(`http://localhost:8080/api/network/${id}`, {
+                        method: 'DELETE'
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            loadNetworks(); // Refresh the list
+                            alert("Equipement supprimé avec succès!");
+                        } else {
+                            throw new Error("Échec de la suppression");
+                            loadNetworks();
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+                        alert("Erreur lors de la suppression");
+                        loadNetworks();
+                    });
+                }
             }
         </script>
         <script src="js_admin/admin_network.js"></script>

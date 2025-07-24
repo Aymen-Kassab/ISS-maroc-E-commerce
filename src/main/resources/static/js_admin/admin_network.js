@@ -202,17 +202,6 @@ function editNetwork(button) {
     alert('Fonction d\'édition à implémenter avec votre backend');
 }
 
-// Delete Network Equipment function
-function deleteNetwork(button) {
-    const networkCard = button.closest('.network-card');
-    const networkName = networkCard.querySelector('.network-name').textContent;
-    
-    if (confirm(`Êtes-vous sûr de vouloir supprimer "${networkName}" ?`)) {
-        networkCard.remove();
-        // Here you would send delete request to backend
-        console.log('Équipement réseau supprimé:', networkName);
-    }
-}
 
 // Handle window resize
 window.addEventListener('resize', function() {

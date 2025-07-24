@@ -1,6 +1,7 @@
 package com.aymen.iss.maroc.controller;
 
 import com.aymen.iss.maroc.model.Network;
+import com.aymen.iss.maroc.model.Printer;
 import com.aymen.iss.maroc.service.NetworkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -109,5 +111,21 @@ public class NetworkController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Failed to save network: " + e.getMessage());
         }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteNetwork(@PathVariable Long id){
+        boolean deleted = networkService.deleteNetwork(id);
+
+        if(deleted){
+            return ResponseEntity.ok().build();
+        }else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Equipement introuvable");
+        }
+    }
+
+    @GetMapping("/{id}")
+    public Optional<Network> getNetwork(@PathVariable long id){
+        return networkService.getNetworkById(id);
     }
 }

@@ -183,17 +183,7 @@ function editScanner(button) {
     alert('Fonction d\'édition à implémenter avec votre backend');
 }
 
-// Delete Scanner function
-function deleteScanner(button) {
-    const scannerCard = button.closest('.scanner-card');
-    const scannerName = scannerCard.querySelector('.scanner-name').textContent;
-    
-    if (confirm(`Êtes-vous sûr de vouloir supprimer "${scannerName}" ?`)) {
-        scannerCard.remove();
-        // Here you would send delete request to backend
-        console.log('Scanner supprimé:', scannerName);
-    }
-}
+
 
 // Handle window resize
 window.addEventListener('resize', function() {

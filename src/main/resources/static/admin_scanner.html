@@ -634,7 +634,6 @@
                     const container = document.getElementById("scannerInventory");
                     container.innerHTML = "";
                     data.forEach(printer => renderPrinters(printer, container))
-                    console.log(data);
                 })
                 .catch(error => {
                     console.error("Erreur lors du chargement :", error);
@@ -702,6 +701,38 @@
                 `;
 
                 container.appendChild(printerCard);
+
+                printerCard.querySelector('.edit').addEventListener('click', () => editPrinter(printer.id));
+                printerCard.querySelector('.delete').addEventListener('click', (event) => {
+                const id = printer.id
+                deletePrinter(id);
+                });
+            }
+
+            function editPrinter(id) {
+                
+            }
+
+            function deletePrinter(id) {
+                if (confirm("Voulez-vous vraiment supprimer cet imprimante?")) {
+                    fetch(`http://localhost:8080/api/printer/${id}`, {
+                        method: 'DELETE'
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            loadPrinters(); // Refresh the list
+                            alert("Imprimanate supprimé avec succès!");
+                        } else {
+                            throw new Error("Échec de la suppression");
+                            loadPrinters();
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+                        alert("Erreur lors de la suppression");
+                        loadPrinters();
+                    });
+                }
             }
         </script>
         <script src="js_admin/admin_scanner.js"></script>
