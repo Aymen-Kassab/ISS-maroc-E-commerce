@@ -401,7 +401,76 @@
 
         <!-- Overlay for mobile -->
         <div class="overlay" id="overlay" onclick="closeMobileMenu()"></div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                loadNetwork();
+            });
 
+            function loadNetwork() {
+                const container = document.getElementById("productsGrid");
+                fetch("http://localhost:8080/api/network")
+                .then(response => response.json())
+                .then(data => {
+                    container.innerHTML = "";
+
+                    if (!data || data.length === 0) {
+                        container.innerHTML = `<div class="no-results">Aucun produit trouvé</div>`;
+                        return;
+                    }
+
+                    data.forEach(net => {
+                        const card = createNetworkCard(net);
+                        container.appendChild(card);
+                    });
+                })
+                .catch(error => {
+                    console.error("Fetch error:", error);
+                    container.innerHTML = `<div class="error">Erreur de chargement: ${error.message}</div>`;
+                });
+            }
+
+            function createNetworkCard(net){
+                const card = document.createElement('div');
+                card.className = "product-card";
+
+                card.dataset.brand = net.brand;
+                card.dataset.type = net.type;
+                card.dataset.price = net.price;
+
+                let imageUrl = '/placeholder.svg';
+                if (net.imageUrls && net.imageUrls.length > 0) {
+                    imageUrl = net.imageUrls[0].startsWith('http') 
+                        ? net.imageUrls[0] 
+                        : `http://localhost:8080${net.imageUrls[0]}`;
+                }
+
+                card.innerHTML = `
+                    <div class="product-image">
+                        <img src="${imageUrl}" alt="${net.name}">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">${net.type}</div>
+                        <h3 class="product-title">${net.name}</h3>
+                        <div class="product-specs">WiFi 5, ${net.speed} Mbps, ${net.postsNum} ports, Montage plafond</div>
+                        <div class="product-price">
+                            <span class="price-current">${net.price} DH</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn-primary">
+                                <i class="fas fa-shopping-cart"></i> Ajouter
+                            </button>
+                            <button class="btn-secondary">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                
+                return card;
+                
+            }
+        </script>
         <script src="js_client/client_network.js"></script>
     </body>
 </html>
