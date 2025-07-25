@@ -236,37 +236,65 @@
 
                 card.innerHTML = `
                     <div class="product-image">
-                                <img src="${imageUrl}" alt="Samsung Laser">
-                            </div>
-                            <div class="product-info">
-                                <div class="product-category">Imprimante Laser</div>
-                                <h3 class="product-title">Samsung Xpress M2020W</h3>
-                                <div class="product-specs">Laser N&B, 20 ppm, WiFi, NFC</div>
-                                <div class="product-price">
-                                    <span class="price-current">3,800 DH</span>
-                                </div>
-                                <div class="product-actions">
-                                    <button class="btn-primary add-to-cart">
-                                        <i class="fas fa-shopping-cart"></i> Ajouter
-                                    </button>
-                                    <button class="btn-secondary wishlist">
-                                        <i class="fas fa-heart"></i>
-                                    </button>
-                                </div>
-                            </div>
+                        <img src="${imageUrl}" alt="Samsung Laser">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">${printer.model}</div>
+                        <h3 class="product-title">Samsung Xpress M2020W</h3>
+                        <div class="product-specs">Laser N&B, 20 ppm, WiFi, NFC</div>
+                        <div class="product-price">
+                            <span class="price-current">3,800 DH</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-shopping-cart"></i> Ajouter
+                            </button>
+                            <button class="btn-secondary wishlist">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
                 `;
 
-                card.querySelector('.add-to-cart').addEventListener('click', () => addToCart(printer.id));
+                card.querySelector('.add-to-cart').addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    addToCart(printer, imageUrl);
+                });
+                
                 card.querySelector('.wishlist').addEventListener('click', () => addToWishlist(printer.id));
 
                 card.style.cursor = "pointer";
-                    card.addEventListener("click", () => {
-                        window.location.href = `/client_prn"_det.html?id=${printer.id}`;
-                    });
-                
-                
+                card.addEventListener("click", () => {
+                    window.location.href = `/client_prn_det.html?id=${printer.id}`;
+                });
+
+
+                function addToCart(printer, imageUrl) {
+                    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+                    const existingItem = cart.find(item => item.id === printer.id && item.category === "printer");
+
+                    if (existingItem) {
+                        existingItem.quantity += 1;
+                    } else {
+                        cart.push({
+                            id: printer.id,
+                            name: printer.name,
+                            category: 'printer',
+                            price: printer.price,
+                            description: `${printer.brand} || ${printer.printSpeed} || ${printer.resolution} || ${printer.workCycle} || ${printer.rectoVerso} || ${printer.connectivity}`,
+                            quantity: 1,
+                            image: imageUrl,
+                            addedAt: Date.now()
+                        });
+                    }
+
+                    localStorage.setItem("cart", JSON.stringify(cart));
+                    alert("Produit ajouté au panier !");
+                    console.log("Cart:", cart);
+                }
+
                 return card;
-                
             }
         </script>
         <script src="js_client/client_scanner.js"></script>

@@ -261,7 +261,10 @@
                     </div>
                 `;
                 
-                card.querySelector('.add-to-cart').addEventListener('click', () => addToCart(net.id));
+                card.querySelector('.add-to-cart').addEventListener('click', (e) => {
+                    e.stopPropagation(); // ⛔ Prevent the parent .card click
+                    addToCart(net.id);
+                });
                 card.querySelector('.wishlist').addEventListener('click', () => addToWishlist(net.id));
 
                 card.style.cursor = "pointer";
@@ -271,6 +274,28 @@
                 
                 return card;
                 
+            }
+        </script>
+        <script>        
+            function addToCart(netId) {
+                const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+                // Check if item already exists
+                const existingItem = cart.find(item => item.id === netId && item.type === "net");
+
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        id: netId,
+                        type: "net",
+                        quantity: 1
+                    });
+                }
+
+                localStorage.setItem("cart", JSON.stringify(cart));
+                alert("Produit ajouté au panier !");
+                console.log("Cart:", cart); // Debug log
             }
         </script>
         <script src="js_client/client_network.js"></script>
