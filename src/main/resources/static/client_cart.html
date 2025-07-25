@@ -1,102 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Your Cart - ISS MAROC</title>
-    <link rel="stylesheet" href="css_client/client_cart.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    
-</head>
-<body>
-    <header class="header">
-        <div class="header-container">
-            <a href="client_home.html" class="logo">ISS MAROC</a>
-            <div class="search-container">
-                <input type="text" class="search-bar" placeholder="Search..." />
-                <button class="search-btn"><i class="fas fa-search"></i></button>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Your Cart - ISS MAROC</title>
+        <link rel="stylesheet" href="css_client/client_cart.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+        
+    </head>
+    <body>
+        <header class="header">
+            <div class="header-container">
+                <a href="client_home.html" class="logo">ISS MAROC</a>
+                <div class="search-container">
+                    <input type="text" class="search-bar" placeholder="Search..." />
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="header-icons">
+                    <button class="icon-btn"><i class="fas fa-user"></i></button>
+                    <button class="icon-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-badge">2</span>
+                    </button>
+                </div>
             </div>
-            <div class="header-icons">
-                <button class="icon-btn"><i class="fas fa-user"></i></button>
-                <button class="icon-btn">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="cart-badge">2</span>
+        </header>
+        <main class="cart-container">
+            <div class="cart-header">
+                <h1 class="cart-title">Your Shopping Cart</h1>
+                <div class="cart-count">2 items</div>
+            </div>
+
+            <div class="cart-summary" id="cartSummary">
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span>25,998 DH</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping</span>
+                    <span>Free</span>
+                </div>
+                <div class="summary-row summary-total">
+                    <span>Total</span>
+                    <span>25,998 DH</span>
+                </div>
+            </div>
+
+            <div class="cart-items" id="cartItems">
+                <!-- Cart Item 1 -->
+                
+            </div>
+
+            <div class="cart-actions">
+                <a href="client_home.html" class="btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Continue Shopping
+                </a>
+                <button class="btn-primary">
+                    Proceed to Checkout <i class="fas fa-arrow-right"></i>
                 </button>
             </div>
-        </div>
-    </header>
+        </main>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                renderCartItems();
+            });
 
-    <main class="cart-container">
-        <div class="cart-header">
-            <h1 class="cart-title">Your Shopping Cart</h1>
-            <div class="cart-count">2 items</div>
-        </div>
+            function renderCartItems() {
+                const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+                const container = document.getElementById("cartItems");
+                const totalContainer = document.getElementById("cartSummary");
+                
+                container.innerHTML = "";
+                totalContainer.innerHTML = "";
 
-        <div class="cart-summary">
-            <div class="summary-row">
-                <span>Subtotal</span>
-                <span>25,998 DH</span>
-            </div>
-            <div class="summary-row">
-                <span>Shipping</span>
-                <span>Free</span>
-            </div>
-            <div class="summary-row summary-total">
-                <span>Total</span>
-                <span>25,998 DH</span>
-            </div>
-        </div>
+                if (cartItems.length === 0) {
+                    container.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-cart" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                        <h2>Your cart is empty</h2>
+                        <p>Start shopping to add items to your cart</p>
+                        <br>
+                        <a href="client_home.html" class="btn-primary" style="margin-top: 1rem;">Shop Now</a>
+                     </div>
+                    `;
+                    return;
+                }
 
-        <div class="cart-items">
-            <!-- Cart Item 1 -->
-            <div class="cart-item">
-                <img src="https://via.placeholder.com/100x80" alt="Product" class="cart-item-img">
-                <div class="cart-item-details">
-                    <h3 class="cart-item-title">Acer Predator Helios 300</h3>
-                    <p class="cart-item-category">Laptop</p>
-                </div>
-                <div class="cart-item-price">12,999 DH</div>
-                <div class="quantity-control">
-                    <button class="quantity-btn">-</button>
-                    <input type="number" value="1" min="1" class="quantity-input">
-                    <button class="quantity-btn">+</button>
-                </div>
-                <button class="remove-item"><i class="fas fa-trash-alt"></i></button>
-            </div>
+                let totalPrice = 0;
 
-            <!-- Cart Item 2 -->
-            <div class="cart-item">
-                <img src="https://via.placeholder.com/100x80" alt="Product" class="cart-item-img">
-                <div class="cart-item-details">
-                    <h3 class="cart-item-title">Logitech G Pro X</h3>
-                    <p class="cart-item-category">Gaming Headset</p>
-                </div>
-                <div class="cart-item-price">1,299 DH</div>
-                <div class="quantity-control">
-                    <button class="quantity-btn">-</button>
-                    <input type="number" value="1" min="1" class="quantity-input">
-                    <button class="quantity-btn">+</button>
-                </div>
-                <button class="remove-item"><i class="fas fa-trash-alt"></i></button>
-            </div>
-        </div>
+                cartItems.forEach(item => {
+                    const itemTotal = parseFloat(item.price) * item.quantity;
+                    totalPrice += itemTotal;
 
-        <div class="cart-actions">
-            <a href="client_home.html" class="btn-secondary">
-                <i class="fas fa-arrow-left"></i> Continue Shopping
-            </a>
-            <button class="btn-primary">
-                Proceed to Checkout <i class="fas fa-arrow-right"></i>
-            </button>
-        </div>
+                    const card = document.createElement("div");
+                    card.className = "cart-item";
+                    card.innerHTML = `
+                        <div class="cart-item">
+                            <img src="${item.image}" alt="Product" class="cart-item-img">
+                            <div class="cart-item-details">
+                                <h3 class="cart-item-title">Acer Predator Helios 300</h3>
+                                <p class="cart-item-category">${item.category}</p>
+                            </div>
+                            <div class="cart-item-price">12,999 DH</div>
+                            <div class="quantity-control">
+                                <button class="quantity-btn">-</button>
+                                <input type="number" value="1" min="1" class="quantity-input">
+                                <button class="quantity-btn">+</button>
+                            </div>
+                            <button class="remove-item"><i class="fas fa-trash-alt" onclick="${removeFromCart(item.id, item.category)}"></i></button>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
 
-        <!-- Empty Cart State (hidden by default) -->
-        <!-- <div class="empty-cart">
-            <i class="fas fa-shopping-cart" style="font-size: 3rem; margin-bottom: 1rem;"></i>
-            <h2>Your cart is empty</h2>
-            <p>Start shopping to add items to your cart</p>
-            <a href="client_home.html" class="btn-primary" style="margin-top: 1rem;">Shop Now</a>
-        </div> -->
-    </main>
-</body>
+                totalContainer.innerHTML = `
+                    <div class="cart-summary" id="cartSummary">
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span>${totalPrice} DH</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Shipping</span>
+                            <span>Gratuit</span>
+                        </div>
+                        <div class="summary-row summary-total">
+                            <span>Total</span>
+                            <span>${totalPrice} DH</span>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Remove item by id + category
+            function removeFromCart(id, category) {
+                let cart = JSON.parse(localStorage.getItem("cart")) || [];
+                cart = cart.filter(item => !(item.id === id && item.category === category));
+                localStorage.setItem("cart", JSON.stringify(cart));
+                renderCartItems();
+            }
+
+            // Checkout placeholder
+            function checkout() {
+                alert("Fonction de commande non implémentée encore !");
+            }
+        </script>
+    </body>
 </html>
