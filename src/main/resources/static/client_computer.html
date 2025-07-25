@@ -305,40 +305,43 @@
                 
                 // Add event listeners
                 card.querySelector('.add-to-cart').addEventListener('click', (e) => {
-                    e.stopPropagation(); // ⛔ Prevent the parent .card click
-                    addToCart(computer.id);
+                    e.stopPropagation(); 
+                    addToCart(computer, imageUrl);
                 });
                 card.querySelector('.wishlist').addEventListener('click', () => addToWishlist(computer.id));
 
 
                 card.style.cursor = "pointer";
-                    card.addEventListener("click", () => {
-                        window.location.href = `/client_comp_det.html?id=${computer.id}`;
-                    });
+                card.addEventListener("click", () => {
+                    window.location.href = `/client_comp_det.html?id=${computer.id}`;
+                });
+
+                function addToCart(computer, imageUrl) {
+                    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+                    const existingItem = cart.find(item => item.id === computer.id && item.category === "computer");
+
+                    if (existingItem) {
+                        existingItem.quantity += 1;
+                    } else {
+                        cart.push({
+                            id: computer.id,
+                            name: computer.name,
+                            category: 'printer',
+                            price: computer.price,
+                            description: `${computer.brand} || ${computer.processor} || ${computer.memory} || ${computer.storage} ${computer.storageType}`,
+                            quantity: 1,
+                            image: imageUrl,
+                            addedAt: Date.now()
+                        });
+                    }
+
+                    localStorage.setItem("cart", JSON.stringify(cart));
+                    alert("Produit ajouté au panier !");
+                    console.log("Cart:", cart);
+                }
                 
                 return card;
-            }
-        </script>
-        <script>        
-            function addToCart(computerId) {
-                const cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-                // Check if item already exists
-                const existingItem = cart.find(item => item.id === computerId && item.type === "computer");
-
-                if (existingItem) {
-                    existingItem.quantity += 1;
-                } else {
-                    cart.push({
-                        id: computerId,
-                        type: "computer",
-                        quantity: 1
-                    });
-                }
-
-                localStorage.setItem("cart", JSON.stringify(cart));
-                alert("Produit ajouté au panier !");
-                console.log("Cart:", cart); // Debug log
             }
         </script>
         <script src="js_client/client_computer.js"></script>

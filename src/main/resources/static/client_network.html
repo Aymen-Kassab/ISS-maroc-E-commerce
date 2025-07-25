@@ -262,40 +262,42 @@
                 `;
                 
                 card.querySelector('.add-to-cart').addEventListener('click', (e) => {
-                    e.stopPropagation(); // ⛔ Prevent the parent .card click
-                    addToCart(net.id);
+                    e.stopPropagation(); 
+                    addToCart(net, imageUrl);
                 });
                 card.querySelector('.wishlist').addEventListener('click', () => addToWishlist(net.id));
 
                 card.style.cursor = "pointer";
-                    card.addEventListener("click", () => {
-                        window.location.href = `/client_net_det.html?id=${net.id}`;
-                    });
-                
-                return card;
-                
-            }
-        </script>
-        <script>        
-            function addToCart(netId) {
-                const cart = JSON.parse(localStorage.getItem("cart")) || [];
+                card.addEventListener("click", () => {
+                    window.location.href = `/client_net_det.html?id=${net.id}`;
+                });
 
-                // Check if item already exists
-                const existingItem = cart.find(item => item.id === netId && item.type === "net");
+                function addToCart(net, imageUrl) {
+                    const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-                if (existingItem) {
-                    existingItem.quantity += 1;
-                } else {
-                    cart.push({
-                        id: netId,
-                        type: "net",
-                        quantity: 1
-                    });
+                    const existingItem = cart.find(item => item.id === net.id && item.category === "net");
+
+                    if (existingItem) {
+                        existingItem.quantity += 1;
+                    } else {
+                        cart.push({
+                            id: net.id,
+                            name: net.name,
+                            category: 'net',
+                            price: net.price,
+                            description: `${net.brand} || ${net.model} || ${net.type} || ${net.portsNum} || ${net.speed} || Management type : ${net.managementType}`,
+                            quantity: 1,
+                            image: imageUrl,
+                            addedAt: Date.now()
+                        });
+                    }
+
+                    localStorage.setItem("cart", JSON.stringify(cart));
+                    alert("Produit ajouté au panier !");
+                    console.log("Cart:", cart);
                 }
-
-                localStorage.setItem("cart", JSON.stringify(cart));
-                alert("Produit ajouté au panier !");
-                console.log("Cart:", cart); // Debug log
+            
+                return card;
             }
         </script>
         <script src="js_client/client_network.js"></script>
