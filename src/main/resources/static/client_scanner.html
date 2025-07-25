@@ -246,15 +246,23 @@
                                     <span class="price-current">3,800 DH</span>
                                 </div>
                                 <div class="product-actions">
-                                    <button class="btn-primary">
+                                    <button class="btn-primary add-to-cart">
                                         <i class="fas fa-shopping-cart"></i> Ajouter
                                     </button>
-                                    <button class="btn-secondary">
+                                    <button class="btn-secondary wishlist">
                                         <i class="fas fa-heart"></i>
                                     </button>
                                 </div>
                             </div>
                 `;
+
+                card.querySelector('.add-to-cart').addEventListener('click', () => addToCart(printer.id));
+                card.querySelector('.wishlist').addEventListener('click', () => addToWishlist(printer.id));
+
+                card.style.cursor = "pointer";
+                    card.addEventListener("click", () => {
+                        window.location.href = `/client_prn_det.html?id=${printer.id}`;
+                    });
                 
                 
                 return card;
