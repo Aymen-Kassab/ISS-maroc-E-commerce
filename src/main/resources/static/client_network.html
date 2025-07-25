@@ -251,8 +251,8 @@
                             <span class="price-current">${net.price} DH</span>
                         </div>
                         <div class="product-actions">
-                            <button class="btn-primary">
-                                <i class="fas fa-shopping-cart"></i> Ajouter
+                            <button class="btn-primary add-to-cart">
+                                <i class="fas fa-shopping-cart wishlist"></i> Ajouter
                             </button>
                             <button class="btn-secondary">
                                 <i class="fas fa-heart"></i>
@@ -261,6 +261,13 @@
                     </div>
                 `;
                 
+                card.querySelector('.add-to-cart').addEventListener('click', () => addToCart(net.id));
+                card.querySelector('.wishlist').addEventListener('click', () => addToWishlist(net.id));
+
+                card.style.cursor = "pointer";
+                    card.addEventListener("click", () => {
+                        window.location.href = `/client_net_det.html?id=${net.id}`;
+                    });
                 
                 return card;
                 
