@@ -72,15 +72,6 @@ function toggleFAQ(button) {
     }
 }
 
-// Search functionality
-document.querySelector('.search-bar').addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') {
-        performSearch();
-    }
-});
-
-document.querySelector('.search-btn').addEventListener('click', performSearch);
-
 function performSearch() {
     const searchTerm = document.querySelector('.search-bar').value;
     if (searchTerm.trim()) {

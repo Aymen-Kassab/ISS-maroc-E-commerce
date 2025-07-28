@@ -6,6 +6,7 @@
         <title>ISS MAROC - Ordinateurs</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
         <link rel="stylesheet" href="css_client/client_computer.css">
+        <link rel="icon" href="data:,">
     </head>
     <body>
         <!-- Header (Same as before) -->
@@ -26,11 +27,8 @@
                 
                 <div class="header-icons">
                     <button class="icon-btn">
-                        <i class="fas fa-user"></i>
-                    </button>
-                    <button class="icon-btn">
                         <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-badge">3</span>
+                        <span class="cart-badge">0</span>
                     </button>
                 </div>
             </div>
@@ -211,15 +209,6 @@
                         <!-- Sample Computer Products -->
                         
                     </div>
-
-                    <!-- Pagination -->
-                    <div class="pagination">
-                        <button disabled><i class="fas fa-chevron-left"></i></button>
-                        <button class="active">1</button>
-                        <button>2</button>
-                        <button>3</button>
-                        <button><i class="fas fa-chevron-right"></i></button>
-                    </div>
                 </div>
             </main>
         </div>
@@ -286,7 +275,7 @@
                         <div class="product-specs">
                             ${computer.processor ? `<span class="spec-highlight">${computer.processor}</span>` : ''}
                             ${computer.memory ? ` • ${computer.memory} RAM` : ''}
-                            ${computer.storage ? ` • ${computer.storage}` : ''}
+                            ${computer.storage ? ` • ${computer.storage} ${computer.storageType}` : ''}
                         </div>
                         <div class="product-price">
                             <span class="price-current">${computer.price} DH</span>
@@ -295,9 +284,6 @@
                         <div class="product-actions">
                             <button class="btn-primary add-to-cart">
                                 <i class="fas fa-shopping-cart"></i> Ajouter
-                            </button>
-                            <button class="btn-secondary wishlist">
-                                <i class="fas fa-heart"></i>
                             </button>
                         </div>
                     </div>
@@ -308,7 +294,6 @@
                     e.stopPropagation(); 
                     addToCart(computer, imageUrl);
                 });
-                card.querySelector('.wishlist').addEventListener('click', () => addToWishlist(computer.id));
 
 
                 card.style.cursor = "pointer";

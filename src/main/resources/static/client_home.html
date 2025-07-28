@@ -6,6 +6,7 @@
         <title>ISS MAROC - Accueil</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
         <link rel="stylesheet" href="css_client/client_home.css">
+        <link rel="icon" href="data:,">
     </head>
     <body>
         <header class="header">
@@ -16,17 +17,7 @@
             
                 <a href="#" class="logo">ISS MAROC</a>
             
-                <div class="search-container">
-                    <input type="text" class="search-bar" placeholder="Rechercher des produits...">
-                    <button class="search-btn">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-            
                 <div class="header-icons">
-                    <button class="icon-btn">
-                        <a href="client_cart.html" style="color: #ffffff;"><i class="fas fa-user"></i></a>
-                    </button>
                    <a href="client_cart.html"><button class="icon-btn">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-badge">0</span>
@@ -49,21 +40,18 @@
                         <a href="client_computer.html" onclick="toggleExpandableSidebar('ordinateur')">
                             <i class="fas fa-desktop"></i>
                             Ordinateur
-                            <i class="fas fa-chevron-right" style="margin-left: auto;"></i>
                         </a>
                     </li>
                     <li>
                         <a href="client_scanner.html" onclick="toggleExpandableSidebar('imprimants')">
                             <i class="fas fa-print"></i>
                             Imprimants
-                            <i class="fas fa-chevron-right" style="margin-left: auto;"></i>
                         </a>
                     </li>
                     <li>
                         <a href="client_network.html" onclick="toggleExpandableSidebar('reseau')">
                             <i class="fas fa-network-wired"></i>
                             Réseau
-                            <i class="fas fa-chevron-right" style="margin-left: auto;"></i>
                         </a>
                     </li>
                     <li>
@@ -82,15 +70,6 @@
                          Ordinateur Bureau
                         <i class="fas fa-chevron-down"></i>
                     </button>
-                    <div class="category-content" id="bureau">
-                        <ul class="subcategory-list">
-                            <li><a href="#">x</a></li>
-                            <li><a href="#">x</a></li>
-                            <li><a href="#">x</a></li>
-                            <li><a href="#">x</a></li>
-                            <li><a href="#">x</a></li>
-                        </ul>
-                    </div>
                 </div>
 
                 <div class="category-section">
@@ -98,15 +77,6 @@
                         Ordinateur Portable
                         <i class="fas fa-chevron-down"></i>
                     </button>
-                    <div class="category-content" id="portable">
-                        <ul class="subcategory-list">
-                            <li><a href="#">x</a></li>
-                            <li><a href="#">x</a></li>
-                            <li><a href="#">x</a></li>
-                            <li><a href="#">x</a></li>
-                            <li><a href="#">x</a></li>
-                        </ul>
-                    </div>
                 </div>
 
                 <div class="category-section">
@@ -114,15 +84,6 @@
                         Impression et Imagerie
                         <i class="fas fa-chevron-down"></i>
                     </button>
-                    <div class="category-content" id="impression">
-                        <ul class="subcategory-list">
-                            <li><a href="#">x</a></li>
-                            <li><a href="#">x</a></li>
-                            <li><a href="#">x</a></li>
-                            <li><a href="#">x</a></li>
-                            <li><a href="#">x</a></li>
-                        </ul>
-                    </div>
                 </div>
 
                 <div class="category-section">
@@ -130,15 +91,6 @@
                         Réseau
                         <i class="fas fa-chevron-down"></i>
                     </button>
-                    <div class="category-content" id="reseauSub">
-                        <ul class="subcategory-list">
-                            <li><a href="#">x</a></li>
-                            <li><a href="#">x</a></li>
-                            <li><a href="#">x</a></li>
-                            <li><a href="#">x</a></li>
-                            <li><a href="#">x</a></li>
-                        </ul>
-                    </div>
                 </div>
             </div>
 
@@ -190,7 +142,6 @@
             function loadNews() {
                 const sliderContainer = document.querySelector(".slider-container");
                 
-                // Clear existing content
                 sliderContainer.innerHTML = "";
 
                 fetch("http://localhost:8080/api/news")
@@ -228,7 +179,6 @@
                 const slides = document.querySelectorAll(".slider-container img");
                 if (slides.length === 0) return;
 
-                // Set up arrow navigation
                 document.querySelector(".prev-arrow").addEventListener("click", prevSlide);
                 document.querySelector(".next-arrow").addEventListener("click", nextSlide);
 
@@ -245,7 +195,7 @@
 
             function goToSlide(index) {
                 const slides = document.querySelectorAll(".slider-container img");
-                currentIndex = (index + slides.length) % slides.length; // Handle wrap-around
+                currentIndex = (index + slides.length) % slides.length;
                 document.querySelector(".slider-container").style.transform = `translateX(-${currentIndex * 100}%)`;
             }
 
