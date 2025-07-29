@@ -36,7 +36,7 @@ function applyFilters() {
         }
                 
         // Processor filter
-        if (processorFilter && product.dataset.processor !== processorFilter) {
+        if (processorFilter && !product.dataset.processor.toLowerCase().includes(processorFilter.toLowerCase())) {
             show = false;
         }
                 
