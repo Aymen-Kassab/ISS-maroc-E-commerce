@@ -24,22 +24,24 @@ public class NewsController {
     private NewsRepository newsRepository;
 
     @PostMapping
-    public ResponseEntity<?> uploadNewsImage(@RequestParam("image")MultipartFile file){
-        try{
+    public ResponseEntity<?> uploadNewsImage(@RequestParam("image") MultipartFile file) {
+        try {
             String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+            // Store in a location accessible by the web server
             String uploadDir = "src/main/resources/static/news_pictures/";
+
             Path path = Paths.get(uploadDir);
-            if (!Files.exists(path)){
+            if (!Files.exists(path)) {
                 Files.createDirectories(path);
             }
 
             Path filePath = path.resolve(fileName);
             Files.copy(file.getInputStream(), filePath);
 
-            String imageUrl = "news_pictures/" + fileName;
-            News news =  new News(imageUrl);
+            // Return complete URL in the response
+            String imageUrl = "http://localhost:8080/news_pictures/" + fileName;
+            News news = new News(imageUrl);
             newsRepository.save(news);
-
 
             return ResponseEntity.ok(news);
         } catch (IOException e) {
@@ -47,9 +49,18 @@ public class NewsController {
         }
     }
 
+
+
     @GetMapping
-    public List<News> getAllNews(){
-        return newsRepository.findAll();
+    public List<News> getAllNews() {
+        List<News> newsList = newsRepository.findAll();
+        // Transform relative paths to absolute URLs
+        newsList.forEach(news -> {
+            if (!news.getImageUrl().startsWith("http")) {
+                news.setImageUrl("http://localhost:8080/" + news.getImageUrl());
+            }
+        });
+        return newsList;
     }
 
     @DeleteMapping("/{id}")

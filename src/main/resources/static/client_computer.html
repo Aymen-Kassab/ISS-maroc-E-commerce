@@ -54,7 +54,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="client_scanner.html">
+                        <a href="client_printer.html">
                             <i class="fas fa-print"></i>
                             Imprimants
                         </a>
@@ -109,16 +109,16 @@
                             <label class="filter-label">Processeur</label>
                             <select class="filter-select" id="processorFilter" onchange="applyFilters()">
                                 <option value="">Tous les processeurs</option>
-                                <option value="intel-i3">Intel Core i3</option>
-                                <option value="intel-i5">Intel Core i5</option>
-                                <option value="intel-i7">Intel Core i7</option>
-                                <option value="intel-i9">Intel Core i9</option>
-                                <option value="amd-ryzen3">AMD Ryzen 3</option>
-                                <option value="amd-ryzen5">AMD Ryzen 5</option>
-                                <option value="amd-ryzen7">AMD Ryzen 7</option>
-                                <option value="amd-ryzen9">AMD Ryzen 9</option>
-                                <option value="intel-celeron">Intel Celeron</option>
-                                <option value="intel-pentium">Intel Pentium</option>
+                                <option value="intel i3">Intel Core i3</option>
+                                <option value="intel i5">Intel Core i5</option>
+                                <option value="intel i7">Intel Core i7</option>
+                                <option value="intel i9">Intel Core i9</option>
+                                <option value="amd ryzen3">AMD Ryzen 3</option>
+                                <option value="amd ryzen5">AMD Ryzen 5</option>
+                                <option value="amd ryzen7">AMD Ryzen 7</option>
+                                <option value="amd ryzen9">AMD Ryzen 9</option>
+                                <option value="intel celeron">Intel Celeron</option>
+                                <option value="intel pentium">Intel Pentium</option>
                             </select>
                         </div>
                         
@@ -167,11 +167,11 @@
                             <label class="filter-label">Stockage</label>
                             <select class="filter-select" id="storageFilter" onchange="applyFilters()">
                                 <option value="">Tout le stockage</option>
-                                <option value="256gb-ssd">256 GB SSD</option>
-                                <option value="512gb-ssd">512 GB SSD</option>
-                                <option value="1tb-ssd">1 TB SSD</option>
-                                <option value="1tb-hdd">1 TB HDD</option>
-                                <option value="2tb-hdd">2 TB HDD</option>
+                                <option value="256GB">256 GB SSD</option>
+                                <option value="512GB">512 GB SSD</option>
+                                <option value="1TB">1 TB SSD</option>
+                                <option value="1TB">1 TB HDD</option>
+                                <option value="2TB">2 TB HDD</option>
                             </select>
                         </div>
                     </div>
@@ -256,6 +256,9 @@
                 card.dataset.brand = computer.brand;
                 card.dataset.type = computer.type;
                 card.dataset.price = computer.price;
+                card.dataset.processor = computer.processor || "";
+                card.dataset.ram = computer.memory || "";
+                card.dataset.storage = computer.storage ? `${computer.storage}` : "";
                 
                 // Handle image URL
                 let imageUrl = '/placeholder.svg';

@@ -61,46 +61,6 @@ function handleFiles(files) {
     }
 }
 
-// Upload images function
-function uploadImages() {
-    if (selectedFiles.length === 0) {
-        alert('Veuillez sélectionner au moins une image');
-        return;
-    }
-
-    const selectedType = document.querySelector('input[name="imageType"]:checked').value;
-    
-    // Create FormData object
-    const formData = new FormData();
-    formData.append('imageType', selectedType);
-    
-    selectedFiles.forEach((file, index) => {
-        formData.append(`newsImages[${index}]`, file);
-    });
-    
-    // Here you would send to your backend
-    console.log('Uploading images:', {
-        type: selectedType,
-        count: selectedFiles.length,
-        formData: formData
-    });
-    
-    // Show success message
-    const typeNames = {
-        'ordinateurs': 'Ordinateurs',
-        'imprimantes': 'Imprimantes',
-        'reseaux': 'Réseaux',
-        'promotion': 'Promotion',
-        'solde': 'Solde',
-        'banniere': 'Bannière'
-    };
-    
-    alert(`${selectedFiles.length} image(s) de type "${typeNames[selectedType]}" ajoutée(s) avec succès!`);
-    
-    // Reset
-    clearAll();
-}
-
 // Clear all function
 function clearAll() {
     selectedFiles = [];

@@ -45,7 +45,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="client_scanner.html" onclick="toggleExpandableSidebar('imprimants')">
+                        <a href="client_printer.html" onclick="toggleExpandableSidebar('imprimants')">
                             <i class="fas fa-print"></i>
                             Imprimants
                         </a>
@@ -159,10 +159,27 @@
 
                         // Create image slides
                         data.forEach(news => {
-                            const img = document.createElement("img");
+                            const slide = document.createElement("div");
+                            slide.className = "slide";
+                            
+                            const img = new Image();
                             img.src = news.imageUrl;
                             img.alt = news.title || "Actualité ISS MAROC";
-                            sliderContainer.appendChild(img);
+                            img.style.display = 'block'; // Ensure proper rendering
+                            
+                            img.onload = function() {
+                                slide.appendChild(img);
+                                sliderContainer.appendChild(slide);
+                                // Only initialize slider after last image loads
+                                if (document.querySelectorAll('.slide').length === data.length) {
+                                    initSlider();
+                                }
+                            };
+                            
+                            img.onerror = function() {
+                                slide.innerHTML = '<div class="error-placeholder"></div>';
+                                sliderContainer.appendChild(slide);
+                            };
                         });
 
                         // Initialize slider functionality
@@ -185,13 +202,13 @@
                 document.querySelector(".next-arrow").addEventListener("click", nextSlide);
 
                 // Start auto-sliding
-                slideInterval = setInterval(nextSlide, 3000);
+                slideInterval = setInterval(nextSlide, 2000);
                 
                 // Pause on hover
                 const slider = document.querySelector(".image-slider");
                 slider.addEventListener("mouseenter", () => clearInterval(slideInterval));
                 slider.addEventListener("mouseleave", () => {
-                    slideInterval = setInterval(nextSlide, 3000);
+                    slideInterval = setInterval(nextSlide, 2000);
                 });
             }
 
