@@ -15,4 +15,36 @@ public class Admin {
     private String username;
     private String email;
     private String password;
+
+    //Getters
+
+    public long getId(){
+        return this.id;
+    }
+
+    public String getUsername(){
+        return this.username;
+    }
+
+    public String getEmail(){
+        return this.email;
+    }
+
+    public String getPassword(){
+        return this.password;
+    }
+
+    //Setters
+
+    public void setId(long id){
+        this.id = id;
+    }
+
+    public void setUsername(String username){
+        this.username = username;
+    }
+
+    public void setPassword(String password){
+        this.password = password;
+    }
 }

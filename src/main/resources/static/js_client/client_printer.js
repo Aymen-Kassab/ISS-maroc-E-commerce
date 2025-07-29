@@ -29,17 +29,17 @@ function applyFilters() {
         let show = true;
         
         // Category filter
-        if (categoryFilter && product.dataset.category !== categoryFilter) {
+        if (categoryFilter && product.dataset.category.toLowerCase() !== categoryFilter.toLowerCase()) {
             show = false;
         }
         
         // Brand filter
-        if (brandFilter && product.dataset.brand !== brandFilter) {
+        if (brandFilter && product.dataset.brand.toLowerCase() !== brandFilter.toLowerCase()) {
             show = false;
         }
         
         // Print type filter
-        if (printTypeFilter && product.dataset.printType !== printTypeFilter) {
+        if (printTypeFilter && product.dataset.printType.toLowerCase() !== printTypeFilter.toLowerCase()) {
             show = false;
         }
         

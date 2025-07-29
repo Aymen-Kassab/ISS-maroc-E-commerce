@@ -245,9 +245,6 @@
                             <button class="btn-primary add-to-cart">
                                 <i class="fas fa-shopping-cart wishlist"></i> Ajouter
                             </button>
-                            <button class="btn-secondary">
-                                <i class="fas fa-heart"></i>
-                            </button>
                         </div>
                     </div>
                 `;
@@ -256,7 +253,6 @@
                     e.stopPropagation(); 
                     addToCart(net, imageUrl);
                 });
-                card.querySelector('.wishlist').addEventListener('click', () => addToWishlist(net.id));
 
                 card.style.cursor = "pointer";
                 card.addEventListener("click", () => {

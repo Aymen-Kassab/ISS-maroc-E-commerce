@@ -20,7 +20,7 @@
                 <button class="icon-btn"><i class="fas fa-user"></i></button>
                 <button class="icon-btn">
                 <i class="fas fa-shopping-cart"></i>
-                <span class="cart-badge">2</span>
+                <span class="cart-badge">0</span>
                 </button>
             </div>
             </div>
@@ -30,41 +30,6 @@
             <div class="product-details-card">
             <div class="product-details-grid">
 
-                <!-- Product Image -->
-                <div class="product-image-large">
-                <img src="https://via.placeholder.com/600x400" alt="Product Image" />
-                <span class="product-badge gaming">Gaming</span>
-                </div>
-
-                <!-- Product Info -->
-                <div class="product-details-info">
-                <p class="product-category">Laptop</p>
-                <h2 class="product-title">Acer Predator Helios 300</h2>
-
-                <p class="product-specs">
-                    <span class="spec-highlight">Intel Core i7</span> |
-                    <span class="spec-highlight">16GB RAM</span> |
-                    <span class="spec-highlight">512GB SSD</span> |
-                    <span class="spec-highlight">RTX 3060</span>
-                </p>
-
-                <div class="product-price">
-                    <span class="price-current">13,999 DH</span>
-                    <span class="price-old">15,999 DH</span>
-                </div>
-
-                <div class="product-actions">
-                    <button class="btn-primary">Add to Cart</button>
-                    <button class="btn-secondary">Buy Now</button>
-                </div>
-
-                <div class="product-description">
-                    <h3>Description</h3>
-                    <p>
-                    The Acer Predator Helios 300 is a powerful gaming laptop equipped with high-end specs including the Intel Core i7, NVIDIA RTX 3060, and fast SSD storage. Perfect for gaming, content creation, and performance-demanding tasks.
-                    </p>
-                </div>
-                </div>
 
             </div>
             </div>
@@ -110,6 +75,16 @@
                     product.graphicsCard
                 ].filter(Boolean).map(spec => `<span class="spec-highlight">${spec}</span>`).join(" | ");
 
+                product.description = `
+                    <strong>Nom :</strong> ${product.name || 'Non spécifié'}<br>
+                    <strong>Processeur :</strong> ${product.processor || 'Non spécifié'}<br>
+                    <strong>Mémoire RAM :</strong> ${product.memory || 'Non spécifié'}<br>
+                    <strong>Stockage :</strong> ${product.storage || 'Non spécifié'}<br>
+                    <strong>Carte Graphique :</strong> ${product.graphicsCard || 'Non spécifiée'}<br>
+                    <strong>Catégorie :</strong> ${product.category || 'Non spécifiée'}<br>
+                    <strong>Type :</strong> ${product.type || 'Non spécifié'}
+                `;
+
                 container.innerHTML = `
                     <div class="product-details-grid">
 
@@ -135,7 +110,6 @@
                         <button class="btn-primary">Add to Cart</button>
                         <button class="btn-secondary" onclick="buyNow(${product.id})">Buy Now</button>
                         </div>
-
                         <div class="product-description">
                         <h3>Description</h3>
                         <p>${product.description || 'Description non disponible.'}</p>
@@ -144,15 +118,41 @@
 
                     </div>
                 `;
-                document.querySelector(".btn-secondary").addEventListener("click", () => {
-                            addToCart(product.id);
+                document.querySelector(".btn-primary").addEventListener("click", (e) => {
+                            e.stopPropagation(); 
+                            addToCart(product, imageUrl);
                         });
 
                 document.querySelector(".btn-secondary").addEventListener("click", (e) => {
                     e.preventDefault();
-                    // Use the product.id from the fetched product data
                     window.location.href = `/client_comp_purchase.html?id=${product.id}`;
                 });
+
+                function addToCart(computer, imageUrl) {
+                    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+                    const existingItem = cart.find(item => item.id === computer.id && item.category === "computer");
+
+                    if (existingItem) {
+                        existingItem.quantity += 1;
+                    } else {
+                        cart.push({
+                            id: computer.id,
+                            name: computer.name,
+                            category: 'Ordinateur',
+                            price: computer.price,
+                            description: `${computer.brand} || ${computer.processor} || ${computer.memory} || ${computer.storage} ${computer.storageType}`,
+                            quantity: 1,
+                            image: imageUrl,
+                            addedAt: Date.now()
+                        });
+                    }
+
+                    localStorage.setItem("cart", JSON.stringify(cart));
+                    alert("Produit ajouté au panier !");
+                    console.log("Cart:", cart);
+                }
+            
                 })
                 .catch(error => {
                 container.innerHTML = `<div class="error">Erreur: ${error.message}</div>`;
