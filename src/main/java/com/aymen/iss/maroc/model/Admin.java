@@ -1,5 +1,6 @@
 package com.aymen.iss.maroc.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,6 +31,7 @@ public class Admin {
         return this.email;
     }
 
+    @JsonIgnore
     public String getPassword(){
         return this.password;
     }
