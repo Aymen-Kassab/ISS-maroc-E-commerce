@@ -90,7 +90,7 @@
                     </label>
                 </div>
 
-                <button type="submit" class="signup-btn" id="signupBtn">
+                <button type="button" class="signup-btn" id="signupBtn" onclick="registerAdmin()">
                     <span class="btn-text">Créer le compte administrateur</span>
                     <div class="btn-loading" id="btnLoading">
                         <div class="spinner"></div>
@@ -106,8 +106,42 @@
             </div>
         </div>
         <script>
-            
-        </script>
-        <script src="js_admin/admin_signup.js"></script>
+            async function registerAdmin() {
+                const adminData = {
+                    username: document.getElementById('username').value,
+                    email: document.getElementById('email').value,
+                    password: document.getElementById('password').value
+                };
+
+                // Show loading state
+                document.getElementById('btnLoading').style.display = 'flex';
+                document.getElementById('signupBtn').disabled = true;
+
+                try {
+                    const response = await fetch('http://localhost:8080/api/admin/signup', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(adminData)
+                    });
+
+                    const result = await response.json();
+                    
+                    if (response.ok) {
+                        document.getElementById('successMessage').textContent = result.message || "Registration successful";
+                        setTimeout(() => window.location.href = 'admin_login.html', 1500);
+                    } else {
+                        document.getElementById('errorMessage').textContent = result.message || "Registration failed";
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    document.getElementById('errorMessage').textContent = "Network error occurred";
+                } finally {
+                    document.getElementById('btnLoading').style.display = 'none';
+                    document.getElementById('signupBtn').disabled = false;
+                }
+            }
+                    </script>
     </body>
 </html>

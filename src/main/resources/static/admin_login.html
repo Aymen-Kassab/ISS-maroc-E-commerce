@@ -93,7 +93,40 @@
                 </p>
             </div>
         </div>
+        <script>
+            async function loginAdmin() {
+                const loginData = {
+                    email: document.getElementById('email').value,
+                    password: document.getElementById('password').value
+                };
 
+                try {
+                    const response = await fetch('http://localhost:8080/api/admin/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(loginData)
+                    });
+
+                    const result = await response.json();
+                    
+                    if (response.ok) {
+                        // Store admin data in sessionStorage
+                        sessionStorage.setItem('adminEmail', result.email);
+                        sessionStorage.setItem('adminUsername', result.username);
+                        
+                        // Redirect to admin dashboard
+                        window.location.href = '/admin/dashboard.html';
+                    } else {
+                        alert(result.message || 'Login failed');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Login failed');
+                }
+            }
+        </script>
         <script src="js_admin/admin_login.js"></script>
     </body>
 </html>

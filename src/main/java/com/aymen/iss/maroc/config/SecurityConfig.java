@@ -11,16 +11,13 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable()) // Disable CSRF for simplicity (enable in production)
+                .csrf(csrf -> csrf.disable()) // Disable CSRF
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/admin/register", "/api/admin/login").permitAll()
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll() // Allow EVERYTHING temporarily
                 );
-
         return http.build();
     }
 
