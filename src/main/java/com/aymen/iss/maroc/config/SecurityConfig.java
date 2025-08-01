@@ -70,8 +70,6 @@ public class SecurityConfig {
                         .deleteCookies("JSESSIONID")             // Clear session cookie
                         .permitAll()
                 );
-
-
         return http.build();
     }
 

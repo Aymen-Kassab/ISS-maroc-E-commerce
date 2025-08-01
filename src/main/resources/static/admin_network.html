@@ -77,11 +77,11 @@
                     <h1 class="page-title" id="pageTitle">Équipements Réseau</h1>
                 </div>
                 <div class="header-right">
-                    <div class="user-profile">
-                        <div class="user-avatar">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <span class="user-name">Admin</span>
+                   <div class="user-profile">
+                        <form id="logoutForm" action="/logout" method="post" style="display:none;">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                        </form>
+                        <span class="user-name"><button onclick="document.getElementById('logoutForm').submit();">Se déconnecter</button></span>
                     </div>
                 </div>
             </header>
