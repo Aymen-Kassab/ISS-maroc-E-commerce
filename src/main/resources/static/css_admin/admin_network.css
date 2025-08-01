@@ -167,21 +167,13 @@ body {
     background: #e9ecef;
 }
 
-.user-avatar {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1rem;
-}
-
-.user-name {
-    font-weight: 500;
+.logout {
+    font-weight: bold;
+    font-size: 1.1em;
     color: #333;
+    border: none;
+    background-color: transparent;
+    color: #1e3c72;
 }
 
 /* Dashboard Content */

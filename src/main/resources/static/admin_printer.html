@@ -81,7 +81,7 @@
                         <form id="logoutForm" action="/logout" method="post" style="display:none;">
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                         </form>
-                        <span class="user-name"><button onclick="document.getElementById('logoutForm').submit();">Se déconnecter</button></span>
+                        <button class="logout" onclick="document.getElementById('logoutForm').submit();">Se déconnecter</button>
                     </div>
                 </div>
             </header>

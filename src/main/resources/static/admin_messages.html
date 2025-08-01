@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>ISS MAROC - Gestion des Messages</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-        <link rel="stylesheet" href="css_admin/admin_message.css">
+        <link rel="stylesheet" href="css_admin/admin_messages.css">
     </head>
     <body>
         <!-- Sidebar Overlay -->
@@ -81,7 +81,7 @@
                         <form id="logoutForm" action="/logout" method="post" style="display:none;">
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                         </form>
-                        <span class="user-name"><button onclick="document.getElementById('logoutForm').submit();">Se déconnecter</button></span>
+                        <button class="logout" onclick="document.getElementById('logoutForm').submit();">Se déconnecter</button>
                     </div>
                 </div>
             </header>
