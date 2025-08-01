@@ -22,6 +22,13 @@ public class SecurityConfig {
                                 "/admin_login.html",
                                 "/admin_signup.html",
                                 "/admin/signup",
+                                "/auth/signup",
+                                "/css_admin/**",
+                                "/js_admin/**",
+                                "/css_client/**",
+                                "/js_client/**",
+                                "/uploads/**",
+                                "/news_pictures/**",
                                 "/client_home.html",
                                 "/client_cart.html",
                                 "/client_comp_det.html",
@@ -39,37 +46,25 @@ public class SecurityConfig {
                                 "/api/printer/**",
                                 "/api/news/**",
                                 "/api/contact/**",
-                                "/api/admin/**",
-                                "/css_admin/**",
-                                "/js_admin/**",
-                                "/auth/signup",
-                                "/css_client/**",
-                                "/js_client/**",
-                                "/uploads/**",
-                                "/news_pictures/**"
+                                "/api/admin/**"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                        .loginPage("/admin_login.html")      // your HTML page
-                        .loginProcessingUrl("/do-login")     // form action
-                        .defaultSuccessUrl("/admin_home.html", true)  // after successful login
-                        .failureUrl("/admin_login.html?error=true")
+                        .loginPage("/admin_login.html")                  // Custom login page (static)
+                        .loginProcessingUrl("/do-login")                 // Form action
+                        .defaultSuccessUrl("/admin_home.html", true)     // Redirect after login success
+                        .failureUrl("/admin_login.html?error=true")      // Redirect with ?error=true
                         .permitAll()
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("/admin_login.html?logout=true")
-                        .permitAll()
-                )
-                // other config ...
-                .logout(logout -> logout
-                        .logoutUrl("/logout")                    // URL to trigger logout (POST by default)
-                        .logoutSuccessUrl("/admin_login.html")   // Where to redirect after logout
-                        .invalidateHttpSession(true)             // Clear session
-                        .deleteCookies("JSESSIONID")             // Clear session cookie
+                        .logoutSuccessUrl("/admin_login.html?logout=true")  // Redirect with ?logout=true
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")
                         .permitAll()
                 );
+
         return http.build();
     }
 

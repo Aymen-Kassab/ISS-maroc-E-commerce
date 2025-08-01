@@ -67,21 +67,6 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-label" for="confirmPassword">
-                        <i class="fas fa-lock"></i>
-                        Confirmer le mot de passe *
-                    </label>
-                    <div style="position: relative;">
-                        <input type="password" id="confirmPassword" name="confirmPassword" class="form-input" 
-                            placeholder="Confirmez votre mot de passe" required>
-                        <i class="fas fa-lock input-icon"></i>
-                        <button type="button" class="password-toggle" id="confirmPasswordToggle">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                    </div>
-                </div>
-                
                 <button type="submit" class="signup-btn" id="signupBtn">
                     <span class="btn-text">Créer le compte administrateur</span>
                     <div class="btn-loading" id="btnLoading">
@@ -97,6 +82,49 @@
                 </p>
             </div>
         </div>
-        <script src="js_admin/admin_signup.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const signupForm = document.getElementById("signupForm");
+                const errorMessage = document.getElementById("errorMessage");
+                const successMessage = document.getElementById("successMessage");
+
+                signupForm.addEventListener("submit", async function (e) {
+                    e.preventDefault();
+
+                    errorMessage.style.display = "none";
+                    errorMessage.textContent = "";
+                    successMessage.style.display = "none";
+                    successMessage.textContent = "";
+
+                    const username = document.getElementById("username").value.trim();
+                    const email = document.getElementById("email").value.trim();
+
+                    try {
+                        const response = await fetch("/api/admin/check", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({ username, email }),
+                        });
+
+                        const data = await response.json();
+
+                        if (response.ok) {
+                            
+                            signupForm.submit();
+                        } else {
+                            // ❌ Show message (from backend)
+                            errorMessage.textContent = data.message || "Erreur inconnue.";
+                            errorMessage.style.display = "block";
+                        }
+                    } catch (error) {
+                        console.error("Erreur:", error);
+                        errorMessage.textContent = "Erreur réseau ou serveur.";
+                        errorMessage.style.display = "block";
+                    }
+                });
+            });
+        </script>
     </body>
 </html>

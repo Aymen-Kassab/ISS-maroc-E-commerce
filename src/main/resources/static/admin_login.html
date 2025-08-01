@@ -73,6 +73,20 @@
                 </p>
             </div>
         </div>
-        
+        <script>
+            window.addEventListener('DOMContentLoaded', function () {
+                const params = new URLSearchParams(window.location.search);
+                const errorMessage = document.getElementById('errorMessage');
+
+                if (params.has('error')) {
+                    errorMessage.textContent = "Email ou mot de passe incorrect.";
+                    errorMessage.style.display = "block";
+                } else if (params.has('logout')) {
+                    errorMessage.textContent = "Déconnecté avec succès.";
+                    errorMessage.style.display = "block";
+                    errorMessage.style.color = "green";
+                }
+            });
+        </script>
     </body>
 </html>
