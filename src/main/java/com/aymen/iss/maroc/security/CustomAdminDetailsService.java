@@ -1,9 +1,8 @@
-package com.aymen.iss.maroc.service;
+package com.aymen.iss.maroc.security;
 
 import com.aymen.iss.maroc.model.Admin;
 import com.aymen.iss.maroc.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -16,14 +15,9 @@ public class CustomAdminDetailsService implements UserDetailsService {
     private AdminRepository adminRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Admin admin = adminRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("Admin not found"));
-
-        return User.builder()
-                .username(admin.getUsername())
-                .password(admin.getPassword()) // already hashed
-                .roles("ADMIN") // optional
-                .build();
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Admin admin = adminRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("Admin not found with email: " + email));
+        return new CustomAdminDetails(admin);
     }
 }
