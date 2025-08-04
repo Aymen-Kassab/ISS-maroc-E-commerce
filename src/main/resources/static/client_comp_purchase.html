@@ -11,16 +11,11 @@
 
     <header class="header">
       <div class="header-container">
-        <a href="#" class="logo">ISS MAROC</a>
-        <div class="search-container">
-          <input type="text" class="search-bar" placeholder="Search..." />
-          <button class="search-btn"><i class="fas fa-search"></i></button>
-        </div>
+        <a href="client_home.html" class="logo">ISS MAROC</a>
         <div class="header-icons">
-          <button class="icon-btn"><i class="fas fa-user"></i></button>
           <button class="icon-btn">
             <i class="fas fa-shopping-cart"></i>
-            <span class="cart-badge">2</span>
+            <span class="cart-badge">0</span>
           </button>
         </div>
       </div>
@@ -72,11 +67,6 @@
 
           container.innerHTML = `
             <div class="product-details-grid">
-
-              <div class="product-image-large">
-                <img src="${imageUrl}" alt="Product Image" />
-                <span class="product-badge ${product.category}">${product.category}</span>
-              </div>
 
               <div class="product-details-info">
                 <p class="product-category">${product.type}</p>

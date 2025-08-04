@@ -38,9 +38,6 @@
                 <a href="client_home.html" class="btn-secondary">
                     <i class="fas fa-arrow-left"></i> Retourner à la boutique
                 </a>
-                <button class="btn-primary">
-                    Valider la commande <i class="fas fa-arrow-right"></i>
-                </button>
             </div>
         </main>
         <script>
@@ -78,21 +75,20 @@
                     const card = document.createElement("div");
                     card.className = "cart-item";
                     card.innerHTML = `
-                        <div class="cart-item">
-                            <img src="${item.image}" alt="Product" class="cart-item-img">
-                            <div class="cart-item-details">
-                                <h3 class="cart-item-title">Acer Predator Helios 300</h3>
-                                <p class="cart-item-category">${item.category}</p>
-                            </div>
-                            <div class="cart-item-price">12,999 DH</div>
-                            <div class="quantity-control">
-                                <button class="quantity-btn">-</button>
-                                <input type="number" value="1" min="1" class="quantity-input">
-                                <button class="quantity-btn">+</button>
-                            </div>
-                            <button class="remove-item"><i class="fas fa-trash-alt"></i></button>
+                        <img src="${item.image}" alt="Product" class="cart-item-img">
+                        <div class="cart-item-details">
+                            <h3 class="cart-item-title">${item.name}</h3>
+                            <p class="cart-item-category">${item.category}</p>
                         </div>
+                        <div class="cart-item-price">${item.price} DH</div>
+                        <div class="quantity-control">
+                            <button class="btn-secondary" onclick="buyNow('${item.category}', ${item.id})">Acheter maintenant</button>
+                        </div>
+                        <button class="remove-item" onclick="removeFromCart(${item.id}, '${item.category}')">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
                     `;
+
                     container.appendChild(card);
                 });
 
@@ -122,10 +118,27 @@
                 renderCartItems();
             }
 
-            // Checkout placeholder
-            function checkout() {
-                alert("Fonction de commande non implémentée encore !");
+            function buyNow(category, id) {
+                let targetPage = "";
+
+                switch (category.toLowerCase()) {
+                    case "ordinateur":
+                        targetPage = `client_comp_purchase.html?id=${id}`;
+                        break;
+                    case "printer":
+                        targetPage = `client_printer_purchase.html?${id}`;
+                        break;
+                    case "network":
+                        targetPage = `client_net_purchase.html?${id}`;
+                        break;
+                    default:
+                        alert("Aucune page de commande définie pour cette catégorie !");
+                        return;
+                }
+
+                window.location.href = targetPage;
             }
+
         </script>
     </body>
 </html>

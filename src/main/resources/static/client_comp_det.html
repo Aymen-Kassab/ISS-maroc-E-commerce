@@ -12,12 +12,7 @@
         <header class="header">
             <div class="header-container">
             <a href="client_home.html" class="logo">ISS MAROC</a>
-            <div class="search-container">
-                <input type="text" class="search-bar" placeholder="Search..." />
-                <button class="search-btn"><i class="fas fa-search"></i></button>
-            </div>
             <div class="header-icons">
-                <button class="icon-btn"><i class="fas fa-user"></i></button>
                 <button class="icon-btn">
                 <i class="fas fa-shopping-cart"></i>
                 <span class="cart-badge">0</span>
@@ -81,8 +76,7 @@
                     <strong>Mémoire RAM :</strong> ${product.memory || 'Non spécifié'}<br>
                     <strong>Stockage :</strong> ${product.storage || 'Non spécifié'}<br>
                     <strong>Carte Graphique :</strong> ${product.graphicsCard || 'Non spécifiée'}<br>
-                    <strong>Catégorie :</strong> ${product.category || 'Non spécifiée'}<br>
-                    <strong>Type :</strong> ${product.type || 'Non spécifié'}
+                    <strong>Catégorie :</strong> ${product.type || 'Non spécifiée'}<br>
                 `;
 
                 container.innerHTML = `
@@ -107,8 +101,8 @@
                         </div>
 
                         <div class="product-actions">
-                        <button class="btn-primary">Add to Cart</button>
-                        <button class="btn-secondary" onclick="buyNow(${product.id})">Buy Now</button>
+                        <button class="btn-primary">Ajouter au panier</button>
+                        <button class="btn-secondary" onclick="buyNow(${product.id})">Acheter maintenant</button>
                         </div>
                         <div class="product-description">
                         <h3>Description</h3>
