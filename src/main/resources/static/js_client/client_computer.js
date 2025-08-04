@@ -183,3 +183,23 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('resultsCount').textContent = 
         document.querySelectorAll('.product-card').length;
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+  const filterToggleBtn = document.getElementById('filterToggleBtn');
+  const filterGrid = document.querySelector('.filter-grid');
+  
+  if (filterToggleBtn && filterGrid) {
+    filterToggleBtn.addEventListener('click', () => {
+      const isOpen = filterGrid.classList.toggle('open');
+      filterToggleBtn.setAttribute('aria-expanded', isOpen);
+      
+      // Rotate icon when open/closed
+      const icon = filterToggleBtn.querySelector('i');
+      if (isOpen) {
+        icon.style.transform = 'rotate(180deg)';
+      } else {
+        icon.style.transform = 'rotate(0deg)';
+      }
+    });
+  }
+});

@@ -121,6 +121,9 @@
                         <button class="clear-filters" onclick="clearAllFilters()">
                             <i class="fas fa-times"></i> Effacer les filtres
                         </button>
+                        <button id="filterToggleBtn" class="filter-toggle-btn" aria-expanded="false" aria-controls="filterGrid" aria-label="Toggle filters">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
                     </div>
                     
                     <div class="filter-grid">
@@ -287,27 +290,27 @@
             }
 
             function filterComputers(computers) {
-    const typeFilter = document.getElementById('typeFilter').value.toLowerCase();
-    
-    let filtered = computers;
-    
-    // EXACT MATCH filtering (changed from includes() to ===)
-    if (typeFilter) {
-        filtered = computers.filter(computer => 
-            computer.type && computer.type.toLowerCase() === typeFilter
-        );
-    }
-    
-    // Other filters remain the same
-    const processorFilter = document.getElementById('processorFilter').value.toLowerCase();
-    if (processorFilter) {
-        filtered = filtered.filter(computer => 
-            computer.processor && computer.processor.toLowerCase().includes(processorFilter)
-        );
-    }
-    
-    return filtered;
-}
+                const typeFilter = document.getElementById('typeFilter').value.toLowerCase();
+                
+                let filtered = computers;
+                
+                // EXACT MATCH filtering (changed from includes() to ===)
+                if (typeFilter) {
+                    filtered = computers.filter(computer => 
+                        computer.type && computer.type.toLowerCase() === typeFilter
+                    );
+                }
+                
+                // Other filters remain the same
+                const processorFilter = document.getElementById('processorFilter').value.toLowerCase();
+                if (processorFilter) {
+                    filtered = filtered.filter(computer => 
+                        computer.processor && computer.processor.toLowerCase().includes(processorFilter)
+                    );
+                }
+                
+                return filtered;
+            }
 
             function displayFilteredComputers(computers) {
                 const container = document.getElementById("productsGrid");

@@ -674,3 +674,33 @@ body {
     margin-right: 0.5rem;
     color: #1e3c72;
 }
+/* Hide toggle button by default */
+.filter-toggle-btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #1e3c72;
+  margin-left: 10px;
+  transition: transform 0.3s ease;
+}
+
+/* Show toggle button on smaller screens */
+@media (max-width: 992px) {
+  .filter-toggle-btn {
+    display: inline-block;
+  }
+  
+  /* Hide filter grid by default */
+  .filter-grid {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  
+  /* When filter is open, expand the filter grid */
+  .filter-grid.open {
+    max-height: 1000px; /* sufficiently large */
+  }
+}
