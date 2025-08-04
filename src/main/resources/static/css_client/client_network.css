@@ -633,3 +633,48 @@ body {
         margin-right: 0;
     }
 }
+
+/* Dropdown Base Styles */
+.sidebar-menu .has-dropdown {
+    position: relative;
+}
+
+.sidebar-menu .dropdown-icon {
+    margin-left: auto;
+    transition: transform 0.3s;
+}
+
+.sidebar-menu .dropdown-menu {
+    max-height: 0;
+    overflow: hidden;
+    padding-left: 1rem;
+    transition: max-height 0.3s ease-out;
+    background-color: rgba(30, 60, 114, 0.05);
+}
+
+/* Hover Behavior - Works on ALL devices */
+.sidebar-menu .has-dropdown:hover .dropdown-menu {
+    max-height: 500px;
+}
+.sidebar-menu .has-dropdown:hover .dropdown-icon {
+    transform: rotate(180deg);
+}
+
+/* Dropdown Item Styles */
+.sidebar-menu .dropdown-menu li {
+    border-bottom: none;
+}
+.sidebar-menu .dropdown-menu a {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+    color: #555;
+}
+.sidebar-menu .dropdown-menu a:hover {
+    background-color: rgba(30, 60, 114, 0.1);
+    color: #1e3c72;
+}
+.sidebar-menu .dropdown-menu i {
+    width: 20px;
+    margin-right: 0.5rem;
+    color: #1e3c72;
+}

@@ -42,29 +42,60 @@
             <nav class="main-sidebar" id="mainSidebar">
                 <ul class="sidebar-menu">
                     <li>
-                        <a href="client_home.html">
+                        <a href="#" class="active">
                             <i class="fas fa-home"></i>
                             Accueil
                         </a>
                     </li>
-                    <li>
+                    
+                    <!-- Computer Section with Dropdown -->
+                    <li class="has-dropdown">
                         <a href="client_computer.html">
                             <i class="fas fa-desktop"></i>
                             Ordinateur
+                            <i class="fas fa-chevron-down dropdown-icon"></i>
                         </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="client_computer.html?category=Bureau"><i class="fas fa-desktop"></i> PC Bureau</a></li>
+                            <li><a href="client_computer.html?category=Portable"><i class="fas fa-laptop"></i> PC Portable</a></li>
+                            <li><a href="client_computer.html?category=All-in-One"><i class="fas fa-gamepad"></i> PC Gaming</a></li>
+                            <li><a href="client_computer.html?category=Mini PC"><i class="fas fa-server"></i> Serveurs</a></li>
+                            <li><a href="client_computer.html?category=Workstation"><i class="fas fa-keyboard"></i> Accessoires</a></li>
+                        </ul>
                     </li>
-                    <li>
-                        <a href="#" class="active">
+                    
+                    <!-- Printer Section with Dropdown -->
+                    <li class="has-dropdown">
+                        <a href="client_printer.html">
                             <i class="fas fa-print"></i>
                             Imprimants
+                            <i class="fas fa-chevron-down dropdown-icon"></i>
                         </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><i class="fas fa-print"></i> Imprimantes Laser</a></li>
+                            <li><a href="#"><i class="fas fa-print"></i> Imprimantes Jet d'encre</a></li>
+                            <li><a href="#"><i class="fas fa-print"></i> Imprimantes Multifonctions</a></li>
+                            <li><a href="#"><i class="fas fa-tint"></i> Cartouches</a></li>
+                            <li><a href="#"><i class="fas fa-scanner"></i> Scanners</a></li>
+                        </ul>
                     </li>
-                    <li>
+                    
+                    <!-- Network Section with Dropdown -->
+                    <li class="has-dropdown">
                         <a href="client_network.html">
                             <i class="fas fa-network-wired"></i>
                             Réseau
+                            <i class="fas fa-chevron-down dropdown-icon"></i>
                         </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><i class="fas fa-wifi"></i> Routeurs WiFi</a></li>
+                            <li><a href="#"><i class="fas fa-ethernet"></i> Switchs</a></li>
+                            <li><a href="#"><i class="fas fa-server"></i> Serveurs NAS</a></li>
+                            <li><a href="#"><i class="fas fa-shield-alt"></i> Pare-feu</a></li>
+                            <li><a href="#"><i class="fas fa-plug"></i> Câbles Réseau</a></li>
+                        </ul>
                     </li>
+                    
                     <li>
                         <a href="client_contact.html">
                             <i class="fas fa-envelope"></i>
