@@ -81,3 +81,16 @@ window.addEventListener('resize', function() {
         closeMobileMenu();
     }
 });
+
+function getCartProductCount() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let total = 0;
+
+    for (let item of cart) {
+        total += item.quantity;
+    }
+
+    return total;
+}
+
+document.querySelector(".cart-badge").innerText = getCartProductCount();

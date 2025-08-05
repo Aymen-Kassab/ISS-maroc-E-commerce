@@ -348,11 +348,10 @@
                         <div class="product-info">
                             <div class="product-category">${computer.type}</div>
                             <h3 class="product-title">${computer.name}</h3>
-                            <div class="product-specs">
-                                ${computer.processor ? `<span class="spec-highlight">${computer.processor}</span>` : ''}
-                                ${computer.memory ? ` • ${computer.memory} RAM` : ''}
-                                ${computer.storage ? ` • ${computer.storage} ${computer.storageType}` : ''}
-                            </div>
+                            <div class="product-specs">Processeur: ${computer.processor}</div>
+                            <div class="product-specs">RAM: ${computer.memory}</div>
+                            <div class="product-specs">Stockage: ${computer.storage} ${computer.storageType}</div>
+                            <div class="product-specs">Carte graphique: ${computer.graphics}</div>
                             <div class="product-price">
                                 <span class="price-current">${computer.price} DH</span>
                                 ${computer.oldPrice ? `<span class="price-old">${computer.oldPrice} DH</span>` : ''}
