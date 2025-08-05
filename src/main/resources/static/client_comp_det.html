@@ -62,14 +62,6 @@
                 // Prepare badge category with a lowercase class safe for CSS
                 const badgeClass = product.category ? product.category.toLowerCase().replace(/\s+/g, '-') : "";
 
-                // Build specs string with highlights
-                const specs = [
-                    product.processor,
-                    product.memory ? product.memory + " RAM" : null,
-                    product.storage,
-                    product.graphicsCard
-                ].filter(Boolean).map(spec => `<span class="spec-highlight">${spec}</span>`).join(" | ");
-
                 product.description = `
                     <strong>Nom :</strong> ${product.name || 'Non spécifié'}<br>
                     <strong>Processeur :</strong> ${product.processor || 'Non spécifié'}<br>
@@ -92,8 +84,6 @@
                     <div class="product-details-info">
                         <p class="product-category">${product.type || ''}</p>
                         <h2 class="product-title">${product.name || ''}</h2>
-
-                        <p class="product-specs">${specs}</p>
 
                         <div class="product-price">
                         <span class="price-current">${product.price} DH</span>

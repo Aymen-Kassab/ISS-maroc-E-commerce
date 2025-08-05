@@ -175,6 +175,8 @@
                     let unread = 0;
                     let archived = 0;
 
+                    // Sort messages by ID in descending order (highest ID first)
+                    data.sort((a, b) => b.id - a.id);
 
                     data.forEach(comp => {
                         if (comp.status === "read") read++;

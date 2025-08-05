@@ -12,16 +12,11 @@
         <header class="header">
             <div class="header-container">
             <a href="client_home.html" class="logo">ISS MAROC</a>
-            <div class="search-container">
-                <input type="text" class="search-bar" placeholder="Search..." />
-                <button class="search-btn"><i class="fas fa-search"></i></button>
-            </div>
             <div class="header-icons">
-                <button class="icon-btn"><i class="fas fa-user"></i></button>
-                <button class="icon-btn">
+                <a href="client_cart.html"><button class="icon-btn">
                 <i class="fas fa-shopping-cart"></i>
-                <span class="cart-badge">2</span>
-                </button>
+                <span class="cart-badge">0</span>
+                </button></a>
             </div>
             </div>
         </header>
@@ -29,43 +24,7 @@
         <main class="content-area">
             <div class="product-details-card">
             <div class="product-details-grid">
-
                 <!-- Product Image -->
-                <div class="product-image-large">
-                <img src="https://via.placeholder.com/600x400" alt="Product Image" />
-                <span class="product-badge gaming">Gaming</span>
-                </div>
-
-                <!-- Product Info -->
-                <div class="product-details-info">
-                <p class="product-category">Laptop</p>
-                <h2 class="product-title">Acer Predator Helios 300</h2>
-
-                <p class="product-specs">
-                    <span class="spec-highlight">Intel Core i7</span> |
-                    <span class="spec-highlight">16GB RAM</span> |
-                    <span class="spec-highlight">512GB SSD</span> |
-                    <span class="spec-highlight">RTX 3060</span>
-                </p>
-
-                <div class="product-price">
-                    <span class="price-current">13,999 DH</span>
-                    <span class="price-old">15,999 DH</span>
-                </div>
-
-                <div class="product-actions">
-                    <button class="btn-primary">Add to Cart</button>
-                    <button class="btn-secondary">Buy Now</button>
-                </div>
-
-                <div class="product-description">
-                    <h3>Description</h3>
-                    <p>
-                    The Acer Predator Helios 300 is a powerful gaming laptop equipped with high-end specs including the Intel Core i7, NVIDIA RTX 3060, and fast SSD storage. Perfect for gaming, content creation, and performance-demanding tasks.
-                    </p>
-                </div>
-                </div>
-
             </div>
             </div>
         </main>
@@ -102,14 +61,14 @@
                 // Prepare badge category with a lowercase class safe for CSS
                 const badgeClass = product.category ? product.category.toLowerCase().replace(/\s+/g, '-') : "";
 
-                // Build specs string with highlights
-                const specs = [
-                    product.printSpeed,
-                    product.resolution,
-                    product.workCycle,
-                    product.rectoVerso,
-                    product.connectivity
-                ].filter(Boolean).map(spec => `<span class="spec-highlight">${spec}</span>`).join(" | ");
+                product.description = `
+                    <strong>Nom :</strong> ${product.name || 'Non spécifié'}<br>
+                    <strong>Vitesse d'impression :</strong> ${product.printSpeed || 'Non spécifié'}<br>
+                    <strong>Qualité d'impression :</strong> ${product.resolution || 'Non spécifié'}<br>
+                    <strong>Impression recto/verso :</strong> ${product.rectoVerso || 'Non spécifié'}<br>
+                    <strong>Connectivité :</strong> ${product.connectivity || 'Non spécifiée'}<br>
+                    <strong>Catégorie :</strong> ${product.type || 'Non spécifiée'}<br>
+                `;
 
                 container.innerHTML = `
                     <div class="product-details-grid">
@@ -125,16 +84,14 @@
                         <p class="product-category">${product.brand || ''}</p>
                         <h2 class="product-title">${product.name || ''}</h2>
 
-                        <p class="product-specs">${specs}</p>
-
                         <div class="product-price">
                         <span class="price-current">${product.price} DH</span>
                         ${product.oldPrice ? `<span class="price-old">${product.oldPrice} DH</span>` : ''}
                         </div>
 
                         <div class="product-actions">
-                        <button class="btn-primary">Add to Cart</button>
-                        <button class="btn-secondary" onclick="buyNow(${product.id})">Buy Now</button>
+                        <button class="btn-primary">Ajouter au panier</button>
+                        <button class="btn-secondary" onclick="buyNow(${product.id})">Acheter maintenant</button>
                         </div>
 
                         <div class="product-description">

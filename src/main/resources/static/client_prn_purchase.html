@@ -11,16 +11,11 @@
 
     <header class="header">
       <div class="header-container">
-        <a href="#" class="logo">ISS MAROC</a>
-        <div class="search-container">
-          <input type="text" class="search-bar" placeholder="Search..." />
-          <button class="search-btn"><i class="fas fa-search"></i></button>
-        </div>
+        <a href="client_home.html" class="logo">ISS MAROC</a>
         <div class="header-icons">
-          <button class="icon-btn"><i class="fas fa-user"></i></button>
           <button class="icon-btn">
             <i class="fas fa-shopping-cart"></i>
-            <span class="cart-badge">2</span>
+            <span class="cart-badge">0</span>
           </button>
         </div>
       </div>
@@ -79,24 +74,16 @@
                 <h2 class="product-title">${product.name}</h2>
 
                 <p class="product-specs">
-                  <span class="spec-highlight">${product.printSpeed}</span> |
-                  <span class="spec-highlight">${product.workCycle} </span> |
-                  <span class="spec-highlight">${product.rectoVerso}</span> |
-                  <span class="spec-highlight">${product.connectivity}</span> |
-                  <span class="spec-highlight">Stock : ${product.stock}</span>
+                  Vitesse d'impression :<span class="spec-highlight">${product.printSpeed}</span><br>
+                  Qualité d'impression :<span class="spec-highlight">${product.resolution} </span><br>
+                  Impression recto/verso :<span class="spec-highlight">${product.rectoVerso}</span><br>
+                  Connectivité :<span class="spec-highlight">${product.connectivity}</span><br>
+                  Stock :<span class="spec-highlight">${product.stock}</span>
                 </p>
 
                 <div class="product-price">
                   <span class="price-current">${product.price} DH</span>
                 </div>
-
-                <div class="product-description">
-                  <h3>Description</h3>
-                  <p>
-                    Le Acer Predator Helios 300 est un ordinateur portable de jeu puissant équipé de composants haut de gamme. Parfait pour les jeux, la création de contenu, et les tâches intensives.
-                  </p>
-                </div>
-
                 <form id="order-form" class="order-form">
                   <h3>Commander ce produit</h3>
                   <div class="form-group">
