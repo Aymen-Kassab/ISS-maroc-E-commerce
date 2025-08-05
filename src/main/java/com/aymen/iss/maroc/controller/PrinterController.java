@@ -44,7 +44,7 @@ public class PrinterController {
             @RequestParam("brand") String brand,
             @RequestParam("printSpeed") String printSpeed,
             @RequestParam("printResolution") String resolution,
-            @RequestParam("monthlyDutyCycle") String workCycle,
+            @RequestParam("type") String type,
             @RequestParam("duplexPrinting") String rectoVerso,
             @RequestParam("price") String price,
             @RequestParam("stockQuantity") String stock,
@@ -65,7 +65,7 @@ public class PrinterController {
         printer.setBrand(brand);
         printer.setPrintSpeed(printSpeed);
         printer.setResolution(resolution);
-        printer.setWorkCycle(workCycle);
+        printer.setType(type);
         printer.setRectoVerso(rectoVerso);
         printer.setPrice(price);
         printer.setStock(stock);

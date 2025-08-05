@@ -15,7 +15,7 @@ public class Printer {
     private String brand;
     private String printSpeed;
     private String resolution;
-    private String workCycle;
+    private String type;
     private String rectoVerso;
     private String price;
     private String stock;
@@ -48,8 +48,8 @@ public class Printer {
         return this.resolution;
     }
 
-    public String getWorkCycle(){
-        return this.workCycle;
+    public String getType(){
+        return this.type;
     }
 
     public String getRectoVerso(){
@@ -94,8 +94,8 @@ public class Printer {
         this.resolution = resolution;
     }
 
-    public void setWorkCycle(String workCycle){
-        this.workCycle = workCycle;
+    public void setType(String type){
+        this.type = type;
     }
 
     public void setRectoVerso(String rectoVerso){

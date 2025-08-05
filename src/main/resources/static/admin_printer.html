@@ -74,7 +74,7 @@
                     <button class="mobile-toggle" id="mobileToggle">
                         <i class="fas fa-bars"></i>
                     </button>
-                    <h1 class="page-title" id="pageTitle">Scanners</h1>
+                    <h1 class="page-title" id="pageTitle">Imprimantes</h1>
                 </div>
                 <div class="header-right">
                     <div class="user-profile">
@@ -93,8 +93,8 @@
                     <!-- Add Scanner Form -->
                     <div class="section-card">
                         <div class="card-header">
-                            <h2><i class="fas fa-plus-circle"></i> Ajouter un Nouveau Scanner</h2>
-                            <p>Remplissez les informations ci-dessous pour ajouter un nouveau scanner à votre catalogue</p>
+                            <h2><i class="fas fa-plus-circle"></i> Ajouter une Nouvelle Imprimante</h2>
+                            <p>Remplissez les informations ci-dessous pour ajouter une nouvelle imprimante à votre catalogue</p>
                         </div>
                         
                         <div class="card-content">
@@ -103,7 +103,7 @@
                                     <!-- Scanner Name -->
                                     <div class="form-group">
                                         <label class="form-label" for="scannerName">
-                                            <i class="fas fa-scanner"></i> Nom du Scanner *
+                                            <i class="fas fa-scanner"></i> Nom d'imprimante *
                                         </label>
                                         <input type="text" id="scannerName" name="scannerName" class="form-input" 
                                             placeholder="Ex: Canon CanoScan LiDE 400" required>
@@ -127,6 +127,26 @@
                                         </select>
                                     </div>
 
+                                    <!-- Printer Type -->
+                                    <div class="form-group">
+                                        <label class="form-label" for="type">
+                                            <i class="fas fa-calendar-alt"></i> Type d'imprimante *
+                                        </label>
+                                        <select id="type" name="type" class="form-select" required>
+                                            <option value="">Sélectionner le type d'imprimante</option>
+                                            <option value="Imprimante à réservoirs rechargeables">Imprimante à réservoirs rechargeables</option>
+                                            <option value="Multifonction Jet d'encre">Multifonction Jet d'encre</option>
+                                            <option value="Imprimante Jet d'encre">Imprimante Jet d'encre</option>
+                                            <option value="Imprimante Laser">Imprimante Laser</option>
+                                            <option value="Multifonction Laser">Multifonction Laser</option>
+                                            <option value="Traceur">Traceur</option>
+                                            <option value="Imprimante A3 / A3+">Imprimante A3 / A3+</option>
+                                            <option value="Imprimante matricielle">Imprimante matricielle</option>
+                                            <option value="Imprimante Photo">Imprimante Photo</option>
+                                            <option value="Autre">Autre</option>
+                                        </select>
+                                    </div>
+
                                     <!-- Print Speed -->
                                     <div class="form-group">
                                         <label class="form-label" for="printSpeed">
@@ -139,7 +159,7 @@
                                     <!-- Print Resolution -->
                                     <div class="form-group">
                                         <label class="form-label" for="printResolution">
-                                            <i class="fas fa-expand-arrows-alt"></i> Résolution de Numérisation *
+                                            <i class="fas fa-expand-arrows-alt"></i> Qualité d'impression *
                                         </label>
                                         <select id="printResolution" name="printResolution" class="form-select" required>
                                             <option value="">Sélectionner la résolution</option>
@@ -150,15 +170,6 @@
                                             <option value="9600x9600 dpi">9600 x 9600 dpi</option>
                                             <option value="19200x19200 dpi">19200 x 19200 dpi</option>
                                         </select>
-                                    </div>
-
-                                    <!-- Monthly Duty Cycle -->
-                                    <div class="form-group">
-                                        <label class="form-label" for="monthlyDutyCycle">
-                                            <i class="fas fa-calendar-alt"></i> Cycle de Travail Mensuel *
-                                        </label>
-                                        <input type="text" id="monthlyDutyCycle" name="monthlyDutyCycle" class="form-input" 
-                                            placeholder="Ex: 1000 pages/mois, 5000 numérisations/mois" required>
                                     </div>
 
                                     <!-- Duplex Printing -->
@@ -172,24 +183,6 @@
                                             <option value="Manuel">Oui - Manuel</option>
                                             <option value="Non">Non</option>
                                         </select>
-                                    </div>
-
-                                    <!-- Price -->
-                                    <div class="form-group">
-                                        <label class="form-label" for="price">
-                                            <i class="fas fa-money-bill"></i> Prix (DH) *
-                                        </label>
-                                        <input type="number" id="price" name="price" class="form-input" 
-                                            placeholder="Ex: 1500" min="0" step="0.01" required>
-                                    </div>
-
-                                    <!-- Stock Quantity -->
-                                    <div class="form-group">
-                                        <label class="form-label" for="stockQuantity">
-                                            <i class="fas fa-boxes"></i> Quantité en Stock *
-                                        </label>
-                                        <input type="number" id="stockQuantity" name="stockQuantity" class="form-input" 
-                                            placeholder="Ex: 25" min="0" required>
                                     </div>
 
                                     <!-- Connectivity Options -->
@@ -214,6 +207,24 @@
                                                 <span>WiFi</span>
                                             </div>
                                         </div>
+                                    </div>
+
+                                    <!-- Price -->
+                                    <div class="form-group">
+                                        <label class="form-label" for="price">
+                                            <i class="fas fa-money-bill"></i> Prix (DH) *
+                                        </label>
+                                        <input type="number" id="price" name="price" class="form-input" 
+                                            placeholder="Ex: 1500" min="0" step="0.01" required>
+                                    </div>
+
+                                    <!-- Stock Quantity -->
+                                    <div class="form-group">
+                                        <label class="form-label" for="stockQuantity">
+                                            <i class="fas fa-boxes"></i> Quantité en Stock *
+                                        </label>
+                                        <input type="number" id="stockQuantity" name="stockQuantity" class="form-input" 
+                                            placeholder="Ex: 25" min="0" required>
                                     </div>
 
                                     <!-- Image Upload Section -->
@@ -334,227 +345,6 @@
                                         <span class="stock-status in-stock">En stock (12 unités)</span>
                                     </div>
                                 </div>
-
-                                <div class="scanner-card" data-brand="Epson" data-stock="in-stock">
-                                    <img src="/placeholder.svg?height=200&width=380" alt="Epson Perfection" class="scanner-image">
-                                    <div class="scanner-actions">
-                                        <button class="action-btn edit" onclick="editScanner(this)">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="action-btn delete" onclick="deleteScanner(this)">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </div>
-                                    <div class="scanner-info">
-                                        <h3 class="scanner-name">Epson Perfection V600 Photo</h3>
-                                        <span class="scanner-brand">Epson</span>
-                                        <div class="scanner-specs">
-                                            <div class="spec-item">
-                                                <i class="fas fa-tachometer-alt"></i>
-                                                <span>12 sec/page</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-expand-arrows-alt"></i>
-                                                <span>6400 x 9600 dpi</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-calendar-alt"></i>
-                                                <span>2000 pages/mois</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-copy"></i>
-                                                <span>Recto-Verso: Manuel</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-boxes"></i>
-                                                <span>Stock: 8 unités</span>
-                                            </div>
-                                        </div>
-                                        <div class="connectivity-badges">
-                                            <span class="connectivity-badge usb">USB</span>
-                                            <span class="connectivity-badge wifi">WiFi</span>
-                                        </div>
-                                        <div class="scanner-price">3,200 DH</div>
-                                        <span class="stock-status in-stock">En stock (8 unités)</span>
-                                    </div>
-                                </div>
-
-                                <div class="scanner-card" data-brand="HP" data-stock="low-stock">
-                                    <img src="/placeholder.svg?height=200&width=380" alt="HP ScanJet" class="scanner-image">
-                                    <div class="scanner-actions">
-                                        <button class="action-btn edit" onclick="editScanner(this)">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="action-btn delete" onclick="deleteScanner(this)">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </div>
-                                    <div class="scanner-info">
-                                        <h3 class="scanner-name">HP ScanJet Pro 2500 f1</h3>
-                                        <span class="scanner-brand">HP</span>
-                                        <div class="scanner-specs">
-                                            <div class="spec-item">
-                                                <i class="fas fa-tachometer-alt"></i>
-                                                <span>20 ppm</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-expand-arrows-alt"></i>
-                                                <span>1200 x 1200 dpi</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-calendar-alt"></i>
-                                                <span>3000 pages/mois</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-copy"></i>
-                                                <span>Recto-Verso: Automatique</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-boxes"></i>
-                                                <span>Stock: 3 unités</span>
-                                            </div>
-                                        </div>
-                                        <div class="connectivity-badges">
-                                            <span class="connectivity-badge usb">USB</span>
-                                            <span class="connectivity-badge ethernet">Ethernet</span>
-                                            <span class="connectivity-badge wifi">WiFi</span>
-                                        </div>
-                                        <div class="scanner-price">4,500 DH</div>
-                                        <span class="stock-status low-stock">Stock faible (3 unités)</span>
-                                    </div>
-                                </div>
-
-                                <div class="scanner-card" data-brand="Brother" data-stock="in-stock">
-                                    <img src="/placeholder.svg?height=200&width=380" alt="Brother ADS" class="scanner-image">
-                                    <div class="scanner-actions">
-                                        <button class="action-btn edit" onclick="editScanner(this)">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="action-btn delete" onclick="deleteScanner(this)">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </div>
-                                    <div class="scanner-info">
-                                        <h3 class="scanner-name">Brother ADS-2700W</h3>
-                                        <span class="scanner-brand">Brother</span>
-                                        <div class="scanner-specs">
-                                            <div class="spec-item">
-                                                <i class="fas fa-tachometer-alt"></i>
-                                                <span>35 ppm</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-expand-arrows-alt"></i>
-                                                <span>1200 x 1200 dpi</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-calendar-alt"></i>
-                                                <span>5000 pages/mois</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-copy"></i>
-                                                <span>Recto-Verso: Automatique</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-boxes"></i>
-                                                <span>Stock: 6 unités</span>
-                                            </div>
-                                        </div>
-                                        <div class="connectivity-badges">
-                                            <span class="connectivity-badge usb">USB</span>
-                                            <span class="connectivity-badge ethernet">Ethernet</span>
-                                            <span class="connectivity-badge wifi">WiFi</span>
-                                        </div>
-                                        <div class="scanner-price">6,800 DH</div>
-                                        <span class="stock-status in-stock">En stock (6 unités)</span>
-                                    </div>
-                                </div>
-
-                                <div class="scanner-card" data-brand="Fujitsu" data-stock="out-of-stock">
-                                    <img src="/placeholder.svg?height=200&width=380" alt="Fujitsu ScanSnap" class="scanner-image">
-                                    <div class="scanner-actions">
-                                        <button class="action-btn edit" onclick="editScanner(this)">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="action-btn delete" onclick="deleteScanner(this)">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </div>
-                                    <div class="scanner-info">
-                                        <h3 class="scanner-name">Fujitsu ScanSnap iX1600</h3>
-                                        <span class="scanner-brand">Fujitsu</span>
-                                        <div class="scanner-specs">
-                                            <div class="spec-item">
-                                                <i class="fas fa-tachometer-alt"></i>
-                                                <span>40 ppm</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-expand-arrows-alt"></i>
-                                                <span>600 x 600 dpi</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-calendar-alt"></i>
-                                                <span>4000 pages/mois</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-copy"></i>
-                                                <span>Recto-Verso: Automatique</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-boxes"></i>
-                                                <span>Stock: 0 unité</span>
-                                            </div>
-                                        </div>
-                                        <div class="connectivity-badges">
-                                            <span class="connectivity-badge usb">USB</span>
-                                            <span class="connectivity-badge wifi">WiFi</span>
-                                        </div>
-                                        <div class="scanner-price">8,500 DH</div>
-                                        <span class="stock-status out-of-stock">Rupture de stock (0 unité)</span>
-                                    </div>
-                                </div>
-
-                                <div class="scanner-card" data-brand="Canon" data-stock="in-stock">
-                                    <img src="/placeholder.svg?height=200&width=380" alt="Canon imageFORMULA" class="scanner-image">
-                                    <div class="scanner-actions">
-                                        <button class="action-btn edit" onclick="editScanner(this)">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="action-btn delete" onclick="deleteScanner(this)">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </div>
-                                    <div class="scanner-info">
-                                        <h3 class="scanner-name">Canon imageFORMULA R40</h3>
-                                        <span class="scanner-brand">Canon</span>
-                                        <div class="scanner-specs">
-                                            <div class="spec-item">
-                                                <i class="fas fa-tachometer-alt"></i>
-                                                <span>40 ppm</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-expand-arrows-alt"></i>
-                                                <span>600 x 600 dpi</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-calendar-alt"></i>
-                                                <span>6000 pages/mois</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-copy"></i>
-                                                <span>Recto-Verso: Automatique</span>
-                                            </div>
-                                            <div class="spec-item">
-                                                <i class="fas fa-boxes"></i>
-                                                <span>Stock: 4 unités</span>
-                                            </div>
-                                        </div>
-                                        <div class="connectivity-badges">
-                                            <span class="connectivity-badge usb">USB</span>
-                                        </div>
-                                        <div class="scanner-price">12,000 DH</div>
-                                        <span class="stock-status in-stock">En stock (4 unités)</span>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -575,7 +365,7 @@
                     brand : document.getElementById("brand").value,
                     printSpeed : document.getElementById("printSpeed").value,
                     printResolution : document.getElementById("printResolution").value,
-                    monthlyDutyCycle : document.getElementById("monthlyDutyCycle").value,
+                    type : document.getElementById("type").value,
                     duplexPrinting : document.getElementById("duplexPrinting").value,
                     price : document.getElementById("price").value,
                     stockQuantity : document.getElementById("stockQuantity").value,
@@ -615,7 +405,6 @@
                     //loadPrinters();
 
                     document.getElementById('imagePreview').innerHTML = '';
-                    document.getElementById('fileCount').style.display = 'none';
                 } catch (error) {
                     console.error("Error:", error);
                     alert("Erreur: " + error.message);

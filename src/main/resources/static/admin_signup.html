@@ -100,7 +100,7 @@
                     const email = document.getElementById("email").value.trim();
 
                     try {
-                        const response = await fetch("/api/admin/check", {
+                        const response = await fetch("/auth/api/admin/check", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",
