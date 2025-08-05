@@ -59,8 +59,8 @@
                             <li><a href="client_computer.html?category=Bureau"><i class="fas fa-desktop"></i> PC Bureau</a></li>
                             <li><a href="client_computer.html?category=Portable"><i class="fas fa-laptop"></i> PC Portable</a></li>
                             <li><a href="client_computer.html?category=All-in-One"><i class="fas fa-gamepad"></i> PC Gaming</a></li>
-                            <li><a href="client_computer.html?category=Mini PC"><i class="fas fa-server"></i> Serveurs</a></li>
-                            <li><a href="client_computer.html?category=Workstation"><i class="fas fa-keyboard"></i> Accessoires</a></li>
+                            <li><a href="client_computer.html?category=Mini PC"><i class="fas fa-server"></i> Mini PC</a></li>
+                            <li><a href="client_computer.html?category=Workstation"><i class="fas fa-keyboard"></i> Workstation</a></li>
                         </ul>
                     </li>
                     
@@ -72,11 +72,15 @@
                             <i class="fas fa-chevron-down dropdown-icon"></i>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#"><i class="fas fa-print"></i> Imprimantes Laser</a></li>
-                            <li><a href="#"><i class="fas fa-print"></i> Imprimantes Jet d'encre</a></li>
-                            <li><a href="#"><i class="fas fa-print"></i> Imprimantes Multifonctions</a></li>
-                            <li><a href="#"><i class="fas fa-tint"></i> Cartouches</a></li>
-                            <li><a href="#"><i class="fas fa-scanner"></i> Scanners</a></li>
+                            <li><a href="client_printer.html?category=Imprimante à réservoirs rechargeables"><i class="fas fa-print"></i> Imprimante à réservoirs rechargeables</a></li>
+                            <li><a href="client_printer.html?category=Multifonction Jet d'encre"><i class="fas fa-print"></i> Multifonction Jet d'encre</a></li>
+                            <li><a href="client_printer.html?category=Imprimante Jet d'encre"><i class="fas fa-print"></i> Imprimante Jet d'encre</a></li>
+                            <li><a href="client_printer.html?category=Imprimante Laser"><i class="fas fa-print"></i> Imprimante Laser</a></li>
+                            <li><a href="client_printer.html?category=Multifonction Laser"><i class="fas fa-print"></i> Multifonction Laser</a></li>
+                            <li><a href="client_printer.html?category=Traceur"><i class="fas fa-print"></i> Traceur</a></li>
+                            <li><a href="client_printer.html?category=Imprimante A3 / A3+"><i class="fas fa-print"></i> Imprimante A3 / A3+</a></li>
+                            <li><a href="client_printer.html?category=Imprimante matricielle"><i class="fas fa-print"></i> Imprimante matricielle</a></li>
+                            <li><a href="client_printer.html?category=Imprimante Photo"><i class="fas fa-print"></i> Imprimante Photo</a></li>
                         </ul>
                     </li>
                     
@@ -131,12 +135,16 @@
                         <div class="filter-group">
                             <label class="filter-label">Catégorie</label>
                             <select class="filter-select" id="categoryFilter" onchange="applyFilters()">
-                                <option value="">Toutes les catégories</option>
-                                <option value="jet-encre">Imprimante Jet d'encre</option>
-                                <option value="laser">Imprimante Laser</option>
-                                <option value="multifonction">Imprimante Multifonction</option>
-                                <option value="photo">Imprimante Photo</option>
-                                <option value="3d">Imprimante 3D</option>
+                                <option value="">Sélectionner le type d'imprimante</option>
+                                <option value="Imprimante à réservoirs rechargeables">Imprimante à réservoirs rechargeables</option>
+                                <option value="Multifonction Jet d'encre">Multifonction Jet d'encre</option>
+                                <option value="Imprimante Jet d'encre">Imprimante Jet d'encre</option>
+                                <option value="Imprimante Laser">Imprimante Laser</option>
+                                <option value="Multifonction Laser">Multifonction Laser</option>
+                                <option value="Traceur">Traceur</option>
+                                <option value="Imprimante A3 / A3+">Imprimante A3 / A3+</option>
+                                <option value="Imprimante matricielle">Imprimante matricielle</option>
+                                <option value="Imprimante Photo">Imprimante Photo</option>
                             </select>
                         </div>
                         
@@ -218,41 +226,74 @@
         <!-- Overlay for mobile -->
         <div class="overlay" id="overlay" onclick="closeMobileMenu()"></div>
         <script>
-            document.addEventListener("DOMContentLoaded", function () {
+           // client_printer.js
+            document.addEventListener("DOMContentLoaded", function() {
+                // Load printers and apply any URL filters
                 loadPrinters();
+                
+                // Initialize filter functionality
+                setupFilters();
+                
+                // Initialize cart badge
+                updateCartBadge();
             });
 
             function loadPrinters() {
                 const container = document.getElementById("productsGrid");
+                
                 fetch("http://localhost:8080/api/printer")
-                .then(response => response.json())
-                .then(data => {
-                    container.innerHTML = "";
+                    .then(response => {
+                        if (!response.ok) throw new Error("Erreur de chargement des imprimantes");
+                        return response.json();
+                    })
+                    .then(data => {
+                        container.innerHTML = ""; // Clear existing content
 
-                    if (!data || data.length === 0) {
-                        container.innerHTML = `<div class="no-results">Aucune imprimante trouvé</div>`;
-                        return;
-                    }
+                        if (!data || data.length === 0) {
+                            container.innerHTML = `<div class="no-results">Aucune imprimante trouvée</div>`;
+                            return;
+                        }
 
-                    data.forEach(printer => {
-                        const card = createPrinterCard(printer);
-                        container.appendChild(card);
+                        // Create printer cards
+                        data.forEach(printer => {
+                            const card = createPrinterCard(printer);
+                            container.appendChild(card);
+                        });
+
+                        // Check for URL filters and apply them
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const category = urlParams.get('category');
+                        
+                        if (category) {
+                            document.getElementById('categoryFilter').value = category;
+                            applyFilters();
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Fetch error:", error);
+                        container.innerHTML = `<div class="error">Erreur de chargement: ${error.message}</div>`;
                     });
-                })
-                .catch(error => {
-                    console.error("Fetch error:", error);
-                    container.innerHTML = `<div class="error">Erreur de chargement: ${error.message}</div>`;
-                });
             }
 
-            function createPrinterCard(printer){
+            function createPrinterCard(printer) {
                 const card = document.createElement('div');
                 card.className = "product-card";
-
-                card.dataset.brand = printer.brand;
-                card.dataset.type = printer.type;
+                
+                // Set data attributes for filtering
+                card.dataset.category = printer.type;
+                card.dataset.brand = printer.brand.toLowerCase();
                 card.dataset.price = printer.price;
+                
+                // Determine print type (adjust based on your data structure)
+                if (printer.type.toLowerCase().includes('photo')) {
+                    card.dataset.printType = 'photo';
+                } else if (printer.type.toLowerCase().includes('3d')) {
+                    card.dataset.printType = '3d';
+                } else {
+                    card.dataset.printType = printer.isColor ? 'couleur' : 'noir-blanc';
+                }
 
+                // Set image URL (fallback to placeholder)
                 let imageUrl = '/placeholder.svg';
                 if (printer.imageUrls && printer.imageUrls.length > 0) {
                     imageUrl = printer.imageUrls[0].startsWith('http') 
@@ -260,14 +301,18 @@
                         : `http://localhost:8080${printer.imageUrls[0]}`;
                 }
 
+                // Create card HTML (same structure as your original)
                 card.innerHTML = `
                     <div class="product-image">
-                        <img src="${imageUrl}" alt="Samsung Laser">
+                        <img src="${imageUrl}" alt="${printer.name}" loading="lazy">
                     </div>
                     <div class="product-info">
-                        <div class="product-category">${printer.model}</div>
+                        <div class="product-category">${printer.type}</div>
                         <h3 class="product-title">${printer.name}</h3>
-                        <div class="product-specs">Laser N&B, 20 ppm, WiFi, NFC</div>
+                        <div class="product-specs">Vitesse d'impression: ${printer.printSpeed}</div>
+                        <div class="product-specs">Qualité d'impression: ${printer.resolution}</div>
+                        <div class="product-specs">Impression recto/verso: ${printer.rectoVerso}</div>
+                        <div class="product-specs">Connectivité: ${printer.connectivity}</div>
                         <div class="product-price">
                             <span class="price-current">${printer.price} DH</span>
                         </div>
@@ -275,48 +320,177 @@
                             <button class="btn-primary add-to-cart">
                                 <i class="fas fa-shopping-cart"></i> Ajouter
                             </button>
-                            
                         </div>
                     </div>
                 `;
 
-                card.querySelector('.add-to-cart').addEventListener('click', (e) => {
+                // Add click event for product details
+                card.addEventListener("click", (e) => {
+                    if (!e.target.closest('.add-to-cart')) {
+                        window.location.href = `/client_prn_det.html?id=${printer.id}`;
+                    }
+                });
+
+                // Add to cart functionality
+                card.querySelector('.add-to-cart').addEventListener('click', function(e) {
                     e.stopPropagation();
                     addToCart(printer, imageUrl);
                 });
 
-                card.style.cursor = "pointer";
-                card.addEventListener("click", () => {
-                    window.location.href = `/client_prn_det.html?id=${printer.id}`;
-                });
+                return card;
+            }
 
+            function setupFilters() {
+                // Set up filter change events
+                document.getElementById('categoryFilter').addEventListener('change', applyFilters);
+                document.getElementById('priceFilter').addEventListener('change', applyFilters);
+                document.getElementById('brandFilter').addEventListener('change', applyFilters);
+                document.getElementById('printTypeFilter').addEventListener('change', applyFilters);
+                
+                // Clear filters button
+                document.querySelector('.clear-filters').addEventListener('click', clearAllFilters);
+                
+                // Sort functionality
+                document.getElementById('sortSelect').addEventListener('change', sortProducts);
+                
+                // View toggle buttons
+                document.querySelector('.view-toggle button:first-child').addEventListener('click', () => toggleView('grid'));
+                document.querySelector('.view-toggle button:last-child').addEventListener('click', () => toggleView('list'));
+            }
 
-                function addToCart(printer, imageUrl) {
-                    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-                    const existingItem = cart.find(item => item.id === printer.id && item.category === "printer");
-
-                    if (existingItem) {
-                        existingItem.quantity += 1;
-                    } else {
-                        cart.push({
-                            id: printer.id,
-                            name: printer.name,
-                            category: 'printer',
-                            price: printer.price,
-                            description: `${printer.brand} || ${printer.printSpeed} || ${printer.resolution} || ${printer.workCycle} || ${printer.rectoVerso} || ${printer.connectivity}`,
-                            quantity: 1,
-                            image: imageUrl,
-                            addedAt: Date.now()
-                        });
+            function applyFilters() {
+                const category = document.getElementById('categoryFilter').value;
+                const priceRange = document.getElementById('priceFilter').value;
+                const brand = document.getElementById('brandFilter').value;
+                const printType = document.getElementById('printTypeFilter').value;
+                
+                const cards = document.querySelectorAll('.product-card');
+                let visibleCount = 0;
+                
+                cards.forEach(card => {
+                    const cardCategory = card.dataset.category;
+                    const cardBrand = card.dataset.brand;
+                    const cardPrice = parseFloat(card.dataset.price);
+                    const cardPrintType = card.dataset.printType;
+                    
+                    // Check each filter condition
+                    const categoryMatch = !category || cardCategory === category;
+                    const brandMatch = !brand || cardBrand === brand.toLowerCase();
+                    const printTypeMatch = !printType || cardPrintType === printType;
+                    
+                    // Check price range
+                    let priceMatch = true;
+                    if (priceRange) {
+                        const [min, max] = priceRange.split('-').map(Number);
+                        if (max) {
+                            priceMatch = cardPrice >= min && cardPrice <= max;
+                        } else {
+                            priceMatch = cardPrice >= min;
+                        }
                     }
+                    
+                    // Show or hide card based on filters
+                    if (categoryMatch && brandMatch && printTypeMatch && priceMatch) {
+                        card.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                // Update results count
+                document.getElementById('resultsCount').textContent = visibleCount;
+                
+                // Show no results message if needed
+                const noResults = document.querySelector('.no-results');
+                if (visibleCount === 0) {
+                    if (!noResults) {
+                        const container = document.getElementById('productsGrid');
+                        const message = document.createElement('div');
+                        message.className = 'no-results';
+                        message.textContent = 'Aucune imprimante ne correspond à vos critères de recherche.';
+                        container.appendChild(message);
+                    }
+                } else if (noResults) {
+                    noResults.remove();
+                }
+            }
 
-                    localStorage.setItem("cart", JSON.stringify(cart));
-                    alert("Produit ajouté au panier !");
-                    console.log("Cart:", cart);
+            function clearAllFilters() {
+                document.getElementById('categoryFilter').value = '';
+                document.getElementById('priceFilter').value = '';
+                document.getElementById('brandFilter').value = '';
+                document.getElementById('printTypeFilter').value = '';
+                
+                applyFilters();
+            }
+
+            function sortProducts() {
+                const sortValue = document.getElementById('sortSelect').value;
+                const container = document.getElementById('productsGrid');
+                const cards = Array.from(container.querySelectorAll('.product-card[style*="block"]'));
+                
+                cards.sort((a, b) => {
+                    const aPrice = parseFloat(a.dataset.price);
+                    const bPrice = parseFloat(b.dataset.price);
+                    const aName = a.querySelector('.product-title').textContent;
+                    const bName = b.querySelector('.product-title').textContent;
+                    
+                    switch(sortValue) {
+                        case 'price-low': return aPrice - bPrice;
+                        case 'price-high': return bPrice - aPrice;
+                        case 'name': return aName.localeCompare(bName);
+                        case 'newest': return (b.dataset.id || 0) - (a.dataset.id || 0);
+                        default: return 0;
+                    }
+                });
+                
+                // Re-append sorted cards
+                cards.forEach(card => container.appendChild(card));
+            }
+
+            function toggleView(viewType) {
+                const grid = document.getElementById('productsGrid');
+                const viewBtns = document.querySelectorAll('.view-toggle button');
+                
+                viewBtns.forEach(btn => btn.classList.remove('active'));
+                event.currentTarget.classList.add('active');
+                
+                if (viewType === 'list') {
+                    grid.classList.add('list-view');
+                } else {
+                    grid.classList.remove('list-view');
+                }
+            }
+
+            function addToCart(printer, imageUrl) {
+                const cart = JSON.parse(localStorage.getItem("cart")) || [];
+                const existingItem = cart.find(item => item.id === printer.id && item.category === "printer");
+
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        id: printer.id,
+                        name: printer.name,
+                        category: 'printer',
+                        price: printer.price,
+                        description: `${printer.brand} ${printer.type} - ${printer.printSpeed} - ${printer.resolution}`,
+                        quantity: 1,
+                        image: imageUrl,
+                        addedAt: Date.now()
+                    });
                 }
 
-                return card;
+                localStorage.setItem("cart", JSON.stringify(cart));
+                updateCartBadge();
+                alert("Produit ajouté au panier !");
+            }
+
+            function updateCartBadge() {
+                const cart = JSON.parse(localStorage.getItem("cart")) || [];
+                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                document.querySelector('.cart-badge').textContent = totalItems;
             }
         </script>
         <script src="js_client/client_printer.js"></script>
