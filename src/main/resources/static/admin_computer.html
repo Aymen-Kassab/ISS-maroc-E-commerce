@@ -135,11 +135,9 @@
                                         </label>
                                         <select id="pcType" name="pcType" class="form-select" required>
                                             <option value="">Sélectionner le type</option>
-                                            <option value="Portable">PC Portable</option>
-                                            <option value="Bureau">PC de Bureau</option>
-                                            <option value="All-in-One">All-in-One</option>
-                                            <option value="Mini PC">Mini PC</option>
-                                            <option value="Workstation">Workstation</option>
+                                            <option value="Pc Portable">Pc Portable</option>
+                                            <option value="Pc de Bureau">PC de Bureau</option>
+                                            <option value="Serveur">Serveur</option>
                                         </select>
                                     </div>
 
@@ -159,12 +157,12 @@
                                         </label>
                                         <select id="ram" name="ram" class="form-select" required>
                                             <option value="">Sélectionner la RAM</option>
-                                            <option value="4GB">4 GB</option>
-                                            <option value="8GB">8 GB</option>
-                                            <option value="16GB">16 GB</option>
-                                            <option value="32GB">32 GB</option>
-                                            <option value="64GB">64 GB</option>
-                                            <option value="128GB">128 GB</option>
+                                            <option value="4GB">4GB</option>
+                                            <option value="8GB">8GB</option>
+                                            <option value="16GB">16GB</option>
+                                            <option value="32GB">32GB</option>
+                                            <option value="64GB">64GB</option>
+                                            <option value="128GB">128GB</option>
                                         </select>
                                     </div>
 
@@ -174,7 +172,7 @@
                                             <i class="fas fa-hdd"></i> Stockage *
                                         </label>
                                         <input type="text" id="stockage" name="stockage" class="form-input" 
-                                            placeholder="Ex: 512GB SSD, 1TB HDD" required>
+                                            placeholder="Ex: 512GB, 1TB" required>
                                     </div>
 
                                     <!-- Storage Type -->
@@ -267,6 +265,10 @@
                                     <option value="HP">HP</option>
                                     <option value="Lenovo">Lenovo</option>
                                     <option value="Asus">Asus</option>
+                                    <option value="Acer">Acer</option>
+                                    <option value="MSI">MSI</option>
+                                    <option value="Samsung">Samsung</option>
+                                    <option value="Autre">Autre</option>
                                 </select>
                                 <select class="filter-select" id="stockFilter">
                                     <option value="">Tous les stocks</option>
@@ -276,11 +278,9 @@
                                 </select>
                                 <select class="filter-select" id="typeFilter">
                                     <option value="">Tous les types</option>
-                                    <option value="Portable">PC Portable</option>
-                                    <option value="Bureau">PC de Bureau</option>
-                                    <option value="All-in-One">All-in-One</option>
-                                    <option value="Mini PC">Mini PC</option>
-                                    <option value="Workstation">Workstation</option>
+                                    <option value="Pc Portable">PC Portable</option>
+                                    <option value="Pc de Bureau">PC de Bureau</option>
+                                    <option value="Serveur">Serveur</option>
                                 </select>
                                 <select class="filter-select" id="stockRangeFilter">
                                     <option value="">Toutes quantités</option>
@@ -352,7 +352,6 @@
                     loadComputers();
 
                     document.getElementById('imagePreview').innerHTML = '';
-                    document.getElementById('fileCount').style.display = 'none';
                 } catch (error) {
                     console.error("Error:", error);
                     alert("Erreur: " + error.message);

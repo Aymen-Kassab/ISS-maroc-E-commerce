@@ -97,19 +97,3 @@ function showPopup(title, message, isError = false) {
 function hidePopup() {
     document.getElementById('customPopup').classList.remove('active');
 }
-
-// Setup event listeners for popup
-document.addEventListener('DOMContentLoaded', function() {
-    const popupClose = document.getElementById('popupClose');
-    const popupConfirm = document.getElementById('popupConfirm');
-    const popup = document.getElementById('customPopup');
-    
-    popupClose.addEventListener('click', hidePopup);
-    popupConfirm.addEventListener('click', hidePopup);
-    
-    popup.addEventListener('click', function(e) {
-        if (e.target === popup) {
-            hidePopup();
-        }
-    });
-});

@@ -184,10 +184,6 @@
                     return response.json();
                 })
                 .then(data => {
-                    if(data.length === 0){
-                        alert("Aucune image publiée pour le moment.");
-                        return;
-                    }
                     data.forEach(news => {
                         const item = document.createElement("div");
                         item.classList.add("gallery-item");

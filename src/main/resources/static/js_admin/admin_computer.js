@@ -13,37 +13,6 @@ sidebarOverlay.addEventListener('click', function() {
     sidebarOverlay.classList.remove('active');
 });
 
-// Navigation functionality
-/*const navLinks = document.querySelectorAll('.nav-link');
-const pageTitle = document.getElementById('pageTitle');
-
-navLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        navLinks.forEach(l => l.classList.remove('active'));
-        this.classList.add('active');
-        
-        const pageName = this.dataset.page;
-        const pageNames = {
-            'accueil': 'Accueil',
-            'nouveautes': 'Nouveautés',
-            'ordinateurs': 'Ordinateurs',
-            'imprimantes': 'Imprimantes',
-            'reseaux': 'Réseaux',
-            'commandes': 'Commandes',
-            'messages': 'Messages'
-        };
-        
-        pageTitle.textContent = pageNames[pageName];
-        
-        if (window.innerWidth <= 768) {
-            sidebar.classList.remove('mobile-visible');
-            sidebarOverlay.classList.remove('active');
-        }
-    });
-});*/
-
 // Image Upload Functionality
 const imageUploadSection = document.getElementById('imageUploadSection');
 const pcImages = document.getElementById('pcImages');
