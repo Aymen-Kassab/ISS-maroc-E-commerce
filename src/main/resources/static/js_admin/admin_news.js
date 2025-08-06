@@ -75,3 +75,41 @@ window.addEventListener('resize', function() {
         sidebarOverlay.classList.remove('active');
     }
 });
+
+// Popup functions
+function showPopup(title, message, isError = false) {
+    const popup = document.getElementById('customPopup');
+    const popupTitle = document.getElementById('popupTitle');
+    const popupMessage = document.getElementById('popupMessage');
+    
+    popupTitle.textContent = title;
+    popupMessage.textContent = message;
+    
+    if (isError) {
+        popupTitle.style.color = '#e74c3c';
+    } else {
+        popupTitle.style.color = '#333';
+    }
+    
+    popup.classList.add('active');
+}
+
+function hidePopup() {
+    document.getElementById('customPopup').classList.remove('active');
+}
+
+// Setup event listeners for popup
+document.addEventListener('DOMContentLoaded', function() {
+    const popupClose = document.getElementById('popupClose');
+    const popupConfirm = document.getElementById('popupConfirm');
+    const popup = document.getElementById('customPopup');
+    
+    popupClose.addEventListener('click', hidePopup);
+    popupConfirm.addEventListener('click', hidePopup);
+    
+    popup.addEventListener('click', function(e) {
+        if (e.target === popup) {
+            hidePopup();
+        }
+    });
+});

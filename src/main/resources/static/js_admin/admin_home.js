@@ -31,21 +31,16 @@ function animateNumber(elementId, targetValue, isCurrency = false) {
     function updateNumber(currentTime) {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
-        
         const easeOutQuart = 1 - Math.pow(1 - progress, 4);
         const currentValue = Math.floor(startValue + (targetValue - startValue) * easeOutQuart);
-        
-        if (isCurrency) {
-            element.textContent = formatCurrency(currentValue);
-        } else {
-            element.textContent = formatNumber(currentValue);
-        }
-        
+
+        element.textContent = isCurrency ? formatCurrency(currentValue) : formatNumber(currentValue);
+
         if (progress < 1) {
             requestAnimationFrame(updateNumber);
         }
     }
-    
+
     requestAnimationFrame(updateNumber);
 }
 
@@ -57,14 +52,46 @@ function formatCurrency(num) {
     return num.toLocaleString('fr-FR') + ' DH';
 }
 
-// Initialize dashboard
-document.addEventListener('DOMContentLoaded', function() {
-    // Animate statistics
-    setTimeout(() => {
-        animateNumber('totalOrdinateurs', 347);
-        animateNumber('totalImprimantes', 156);
-        animateNumber('totalReseaux', 89);
-        animateNumber('totalCommandes', 1247);
-        animateNumber('unreadMessages', 23);
-    }, 500);
+// Fetch all counts first
+async function fetchAndAnimateDashboard() {
+    try {
+        const [computersRes, printersRes, networksRes, commandsRes, contactsRes] = await Promise.all([
+            fetch("http://localhost:8080/api/computers"),
+            fetch("http://localhost:8080/api/printer"),
+            fetch("http://localhost:8080/api/network"),
+            fetch("http://localhost:8080/api/command"),
+            fetch("http://localhost:8080/api/contact")
+        ]);
+
+        if (!commandsRes.ok || !printersRes.ok || !networksRes.ok || !commandsRes.ok || !contactsRes.ok) {
+            throw new Error("One or more endpoints failed");
+        }
+
+        const [computers, printers, networks, commands, contacts] = await Promise.all([
+            computersRes.json(),
+            printersRes.json(),
+            networksRes.json(),
+            commandsRes.json(),
+            contactsRes.json()
+        ]);
+
+        const computerCount = computers.length;
+        const printerCount = printers.length;
+        const networkCount = networks.length;
+        const commandCount = commands.length;
+        const unreadMessages = contacts.filter(c => c.status === "unread").length;
+
+        animateNumber("totalOrdinateurs", computerCount);
+        animateNumber("totalImprimantes", printerCount);
+        animateNumber("totalReseaux", networkCount);
+        animateNumber("totalCommandes", commandCount);
+        animateNumber("unreadMessages", unreadMessages);
+
+    } catch (error) {
+        console.error("Dashboard load error:", error);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    fetchAndAnimateDashboard();
 });
