@@ -12,16 +12,11 @@
         <header class="header">
             <div class="header-container">
             <a href="client_home.html" class="logo">ISS MAROC</a>
-            <div class="search-container">
-                <input type="text" class="search-bar" placeholder="Search..." />
-                <button class="search-btn"><i class="fas fa-search"></i></button>
-            </div>
             <div class="header-icons">
-                <button class="icon-btn"><i class="fas fa-user"></i></button>
-                <button class="icon-btn">
+                <a href="client_cart.html"><button class="icon-btn">
                 <i class="fas fa-shopping-cart"></i>
-                <span class="cart-badge">2</span>
-                </button>
+                <span class="cart-badge">0</span>
+                </button></a>
             </div>
             </div>
         </header>
@@ -102,15 +97,6 @@
                 // Prepare badge category with a lowercase class safe for CSS
                 const badgeClass = product.model ? product.model.toLowerCase().replace(/\s+/g, '-') : "";
 
-                // Build specs string with highlights
-                const specs = [
-                    product.type,
-                    product.portsNum + " Ports",
-                    product.speed,
-                    product.managementType,
-                    product.connectivity
-                ].filter(Boolean).map(spec => `<span class="spec-highlight">${spec}</span>`).join(" | ");
-
                 container.innerHTML = `
                     <div class="product-details-grid">
 
@@ -125,28 +111,26 @@
                         <p class="product-category">${product.brand || ''}</p>
                         <h2 class="product-title">${product.name || ''}</h2>
 
-                        <p class="product-specs">${specs}</p>
-
                         <div class="product-price">
                         <span class="price-current">${product.price} DH</span>
                         ${product.oldPrice ? `<span class="price-old">${product.oldPrice} DH</span>` : ''}
                         </div>
 
                         <div class="product-actions">
-                        <button class="btn-primary">Add to Cart</button>
-                        <button class="btn-secondary" onclick="buyNow(${product.id})">Buy Now</button>
+                        <button class="btn-primary">Ajouter au panier</button>
+                        <button class="btn-secondary" onclick="buyNow(${product.id})">Acheter maintenant</button>
                         </div>
 
                         <div class="product-description">
                         <h3>Description</h3>
-                        <p>${product.description || 'Description non disponible.'}</p>
+                        <p style="white-space: pre-line;">${product.description || 'Description non disponible.'}</p>
                         </div>
                     </div>
 
                     </div>
                 `;
-                document.querySelector(".btn-secondary").addEventListener("click", () => {
-                            addToCart(product.id);
+                document.querySelector(".btn-primary").addEventListener("click", () => {
+                            addToCart(product, imageUrl);
                         });
 
                 document.querySelector(".btn-secondary").addEventListener("click", (e) => {
@@ -154,6 +138,31 @@
                     // Use the product.id from the fetched product data
                     window.location.href = `/client_net_purchase.html?id=${product.id}`;
                 });
+
+                function addToCart(net, imageUrl) {
+                    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+                    const existingItem = cart.find(item => item.id === net.id && item.category === "Réseaux");
+
+                    if (existingItem) {
+                        existingItem.quantity += 1;
+                    } else {
+                        cart.push({
+                            id: net.id,
+                            name: net.name,
+                            category: 'Réseaux',
+                            price: net.price,
+                            description: net.description,
+                            quantity: 1,
+                            image: imageUrl,
+                            addedAt: Date.now()
+                        });
+                    }
+
+                    localStorage.setItem("cart", JSON.stringify(cart));
+                    alert("Produit ajouté au panier !");
+                    console.log("Cart:", cart);
+                }
                 })
                 .catch(error => {
                 container.innerHTML = `<div class="error">Erreur: ${error.message}</div>`;

@@ -11,17 +11,12 @@
 
     <header class="header">
       <div class="header-container">
-        <a href="#" class="logo">ISS MAROC</a>
-        <div class="search-container">
-          <input type="text" class="search-bar" placeholder="Search..." />
-          <button class="search-btn"><i class="fas fa-search"></i></button>
-        </div>
+        <a href="client_home.html" class="logo">ISS MAROC</a>
         <div class="header-icons">
-          <button class="icon-btn"><i class="fas fa-user"></i></button>
-          <button class="icon-btn">
+          <a href="client_cart.html"><button class="icon-btn">
             <i class="fas fa-shopping-cart"></i>
             <span class="cart-badge">2</span>
-          </button>
+          </button></a>
         </div>
       </div>
     </header>
@@ -78,21 +73,12 @@
                 <h2 class="product-title">${product.name}</h2>
 
                 <p class="product-specs">
-                  <span class="spec-highlight">${product.postsNum + " ports"}</span> |
-                  <span class="spec-highlight">${product.speed} </span> |
-                  <span class="spec-highlight">${product.managementTyoe}</span> |
-                  <span class="spec-highlight">Stock : ${product.stock}</span>
+                  <p style="white-space: pre-line;">${product.description || 'Description non disponible.'}</p>
+                  Stock :<span class="spec-highlight">${product.stock}</span>
                 </p>
 
                 <div class="product-price">
                   <span class="price-current">${product.price} DH</span>
-                </div>
-
-                <div class="product-description">
-                  <h3>Description</h3>
-                  <p>
-                    Le Acer Predator Helios 300 est un ordinateur portable de jeu puissant équipé de composants haut de gamme. Parfait pour les jeux, la création de contenu, et les tâches intensives.
-                  </p>
                 </div>
 
                 <form id="order-form" class="order-form">
