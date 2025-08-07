@@ -118,14 +118,14 @@
                                             <option value="">Sélectionner une marque</option>
                                             <option value="Cisco">Cisco</option>
                                             <option value="HP">HP</option>
-                                            <option value="Dell">Dell</option>
-                                            <option value="Netgear">Netgear</option>
+                                            <option value="Altai">Altai</option>
+                                            <option value="Linksys">Linksys</option>
                                             <option value="D-Link">D-Link</option>
                                             <option value="TP-Link">TP-Link</option>
                                             <option value="Ubiquiti">Ubiquiti</option>
-                                            <option value="Juniper">Juniper</option>
+                                            <option value="Mercusys">Mercusys</option>
                                             <option value="Aruba">Aruba</option>
-                                            <option value="Fortinet">Fortinet</option>
+                                            <option value="HPE">HPE</option>
                                             <option value="Autre">Autre</option>
                                         </select>
                                     </div>
@@ -148,19 +148,17 @@
                                             <option value="">Sélectionner le type</option>
                                             <option value="Switch">Switch</option>
                                             <option value="Routeur">Routeur</option>
-                                            <option value="Server">Serveur</option>
-                                            <option value="Point d'Accès">Point d'Accès WiFi</option>
-                                            <option value="Pare-feu">Pare-feu</option>
-                                            <option value="Modem">Modem</option>
-                                            <option value="Hub">Hub</option>
-                                            <option value="Répéteur">Répéteur</option>
-                                            <option value="Contrôleur">Contrôleur Réseau</option>
-                                            <option value="Passerelle">Passerelle</option>
+                                            <option value="Point d'Accès WiFi">Point d'Accès WiFi</option>
+                                            <option value="Modem Routeur">Modem Routeur</option>
+                                            <option value="Adaptateur Wi-Fi USB">Adaptateur Wi-Fi USB</option>
+                                            <option value="Range Extender">Range Extender</option>
+                                            <option value="Transceiver">Transceiver</option>
+                                            <option value="Kit CPL">Kit CPL</option>
                                         </select>
                                     </div>
 
                                     <!-- Number of Ports -->
-                                    <div class="form-group">
+                                <!--   <div class="form-group">
                                         <label class="form-label" for="ports">
                                             <i class="fas fa-plug"></i> Nombre de Ports
                                         </label>
@@ -173,10 +171,10 @@
                                             <option value="48">48 ports</option>
                                             <option value="Autre">Autre</option>
                                         </select>
-                                    </div>
+                                    </div> --> 
 
                                     <!-- Speed -->
-                                    <div class="form-group">
+                                <!--    <div class="form-group">
                                         <label class="form-label" for="speed">
                                             <i class="fas fa-tachometer-alt"></i> Vitesse
                                         </label>
@@ -189,10 +187,10 @@
                                             <option value="100 Gbps">100 Gbps</option>
                                             <option value="Autre">Autre</option>
                                         </select>
-                                    </div>
+                                    </div> --> 
 
                                     <!-- Management -->
-                                    <div class="form-group">
+                                <!--    <div class="form-group">
                                         <label class="form-label" for="management">
                                             <i class="fas fa-cogs"></i> Type de Gestion
                                         </label>
@@ -202,6 +200,15 @@
                                             <option value="Non géré">Non géré (Unmanaged)</option>
                                             <option value="Smart">Smart/Web Smart</option>
                                         </select>
+                                    </div> --> 
+
+                                    <!-- Description -->
+                                    <div class="form-group full-width">
+                                        <label class="form-label" for="description">
+                                            <i class="fas fa-align-left"></i> Description
+                                        </label>
+                                        <textarea id="description" name="description" class="form-input" rows="3" 
+                                                placeholder="Description détaillée de l'équipement réseau..."></textarea>
                                     </div>
 
                                     <!-- Price -->
@@ -317,9 +324,7 @@
                     brand : document.getElementById("brand").value,
                     model : document.getElementById("model").value,
                     equipmentType : document.getElementById("equipmentType").value,
-                    ports : document.getElementById("ports").value,
-                    speed : document.getElementById("speed").value,
-                    management : document.getElementById("management").value,
+                    description : document.getElementById("description").value,
                     price : document.getElementById("price").value,
                     stockQuantity : document.getElementById("stockQuantity").value
                 }
@@ -419,11 +424,7 @@
                             </div>
                             <div class="spec-item">
                                 <i class="fas fa-tachometer-alt"></i>
-                                <span>${net.speed} Gbps Firewall</span>
-                            </div>
-                            <div class="spec-item">
-                                <i class="fas fa-plug"></i>
-                                <span>${net.portsNum} ports internes</span>
+                                <span>${net.description} Gbps Firewall</span>
                             </div>
                             <div class="spec-item">
                                 <i class="fas fa-boxes"></i>

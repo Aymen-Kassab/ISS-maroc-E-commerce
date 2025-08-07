@@ -56,11 +56,9 @@
                             <i class="fas fa-chevron-down dropdown-icon"></i>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="client_computer.html?category=Bureau"><i class="fas fa-desktop"></i> PC Bureau</a></li>
-                            <li><a href="client_computer.html?category=Portable"><i class="fas fa-laptop"></i> PC Portable</a></li>
-                            <li><a href="client_computer.html?category=All-in-One"><i class="fas fa-gamepad"></i> PC Gaming</a></li>
-                            <li><a href="client_computer.html?category=Mini PC"><i class="fas fa-server"></i> Serveurs</a></li>
-                            <li><a href="client_computer.html?category=Workstation"><i class="fas fa-keyboard"></i> Accessoires</a></li>
+                            <li><a href="client_computer.html?category=Pc de Bureau"><i class="fas fa-desktop"></i> PC de Bureau</a></li>
+                            <li><a href="client_computer.html?category=Pc Portable"><i class="fas fa-laptop"></i> PC Portable</a></li>
+                            <li><a href="client_computer.html?category=Serveur"><i class="fas fa-server"></i> Serveur</a></li>
                         </ul>
                     </li>
                     
@@ -92,11 +90,14 @@
                             <i class="fas fa-chevron-down dropdown-icon"></i>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#"><i class="fas fa-wifi"></i> Routeurs WiFi</a></li>
-                            <li><a href="#"><i class="fas fa-ethernet"></i> Switchs</a></li>
-                            <li><a href="#"><i class="fas fa-server"></i> Serveurs NAS</a></li>
-                            <li><a href="#"><i class="fas fa-shield-alt"></i> Pare-feu</a></li>
-                            <li><a href="#"><i class="fas fa-plug"></i> Câbles Réseau</a></li>
+                            <li><a href="client_network.html?category=Switch"><i class="fas fa-ethernet"></i> Switch</a></li>
+                            <li><a href="client_network.html?category=Routeur"><i class="fas fa-wifi"></i> Routeur</a></li>
+                            <li><a href="client_network.html?category=Point d'Accès WiFi"><i class="fas fa-wifi"></i> Point d'Accès WiFi</a></li>
+                            <li><a href="client_network.html?category=Modem Routeur"><i class="fas fa-wifi"></i> Modem Routeur</a></li>
+                            <li><a href="client_network.html?category=Adaptateur Wi-Fi USB"><i class="fas fa-key"></i> Adaptateur Wi-Fi USB</a></li>
+                            <li><a href="client_network.html?category=Range Extender"><i class="fa-solid fa-bolt"></i> Range Extender</a></li>
+                            <li><a href="client_network.html?category=Transceiver"><i class="fa-solid fa-globe"></i> Transceiver</a></li>
+                            <li><a href="client_network.html?category=Kit CPL"><i class="fa-solid fa-magnet"></i> Kit CPL</a></li>
                         </ul>
                     </li>
                     
@@ -134,20 +135,22 @@
                     <div class="filter-grid">
                         <div class="filter-group">
                             <label class="filter-label">Catégorie</label>
-                            <select class="filter-select" id="categoryFilter" onchange="applyFilters()">
+                            <select class="filter-select" id="categoryFilter">
                                 <option value="">Toutes les catégories</option>
-                                <option value="routeur">Routeurs</option>
-                                <option value="switch">Switches</option>
-                                <option value="access-point">Points d'accès</option>
-                                <option value="firewall">Pare-feu</option>
-                                <option value="cable">Câbles & Accessoires</option>
-                                <option value="nas">Serveurs NAS</option>
+                                <option value="Switch">Switch</option>
+                                <option value="Routeur">Routeur</option>
+                                <option value="Point d'Accès WiFi">Point d'Accès WiFi</option>
+                                <option value="Modem Routeur">Modem Routeur</option>
+                                <option value="Adaptateur Wi-Fi USB">Adaptateur Wi-Fi USB</option>
+                                <option value="Range Extender">Range Extender</option>
+                                <option value="Transceiver">Transceiver</option>
+                                <option value="Kit CPL">Kit CPL</option>
                             </select>
                         </div>
                         
                         <div class="filter-group">
                             <label class="filter-label">Gamme de prix</label>
-                            <select class="filter-select" id="priceFilter" onchange="applyFilters()">
+                            <select class="filter-select" id="priceFilter">
                                 <option value="">Tous les prix</option>
                                 <option value="0-500">0 - 500 DH</option>
                                 <option value="500-1500">500 - 1,500 DH</option>
@@ -159,19 +162,23 @@
                         
                         <div class="filter-group">
                             <label class="filter-label">Marque</label>
-                            <select class="filter-select" id="brandFilter" onchange="applyFilters()">
-                                <option value="">Toutes les marques</option>
-                                <option value="cisco">Cisco</option>
-                                <option value="tp-link">TP-Link</option>
-                                <option value="netgear">Netgear</option>
-                                <option value="ubiquiti">Ubiquiti</option>
-                                <option value="d-link">D-Link</option>
-                                <option value="asus">ASUS</option>
-                                <option value="mikrotik">MikroTik</option>
+                            <select class="filter-select" id="brandFilter">
+                                <option value="">Sélectionner une marque</option>
+                                <option value="Cisco">Cisco</option>
+                                <option value="HP">HP</option>
+                                <option value="Altai">Altai</option>
+                                <option value="Linksys">Linksys</option>
+                                <option value="D-Link">D-Link</option>
+                                <option value="TP-Link">TP-Link</option>
+                                <option value="Ubiquiti">Ubiquiti</option>
+                                <option value="Mercusys">Mercusys</option>
+                                <option value="Aruba">Aruba</option>
+                                <option value="HPE">HPE</option>
+                                <option value="Autre">Autre</option>
                             </select>
                         </div>
                         
-                        <div class="filter-group">
+                    <!--    <div class="filter-group">
                             <label class="filter-label">Vitesse</label>
                             <select class="filter-select" id="speedFilter" onchange="applyFilters()">
                                 <option value="">Toutes les vitesses</option>
@@ -182,7 +189,7 @@
                                 <option value="wifi6">WiFi 6 (AX)</option>
                                 <option value="wifi6e">WiFi 6E</option>
                             </select>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 
@@ -226,58 +233,87 @@
         <!-- Overlay for mobile -->
         <div class="overlay" id="overlay" onclick="closeMobileMenu()"></div>
         <script>
-            document.addEventListener("DOMContentLoaded", function () {
+            // client_network.js
+            document.addEventListener("DOMContentLoaded", function() {
+                // Initialize the page
                 loadNetwork();
+                setupEventListeners();
+                updateCartBadge();
+                
+                // Apply any URL filters
+                applyUrlFilters();
             });
 
             function loadNetwork() {
                 const container = document.getElementById("productsGrid");
+                container.innerHTML = '<div class="loading">Chargement en cours...</div>';
+                
                 fetch("http://localhost:8080/api/network")
-                .then(response => response.json())
-                .then(data => {
-                    container.innerHTML = "";
-
-                    if (!data || data.length === 0) {
-                        container.innerHTML = `<div class="no-results">Aucun produit trouvé</div>`;
-                        return;
-                    }
-
-                    data.forEach(net => {
-                        const card = createNetworkCard(net);
-                        container.appendChild(card);
+                    .then(response => {
+                        if (!response.ok) throw new Error("Erreur de chargement des équipements réseau");
+                        return response.json();
+                    })
+                    .then(data => {
+                        container.innerHTML = "";
+                        
+                        if (!data || data.length === 0) {
+                            container.innerHTML = '<div class="no-results">Aucun équipement réseau trouvé</div>';
+                            return;
+                        }
+                        
+                        // Store products globally for filtering
+                        window.networkProducts = data;
+                        
+                        // Create cards for all products initially
+                        data.forEach(product => {
+                            const card = createNetworkCard(product);
+                            container.appendChild(card);
+                        });
+                        
+                        // Update results count
+                        document.getElementById('resultsCount').textContent = data.length;
+                        // Apply URL filters here AFTER loading products
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const category = urlParams.get('category');
+                        if (category) {
+                            document.getElementById('categoryFilter').value = category;
+                            applyFilters();
+            }
+                    })
+                    .catch(error => {
+                        console.error("Fetch error:", error);
+                        container.innerHTML = `<div class="error">Erreur de chargement: ${error.message}</div>`;
                     });
-                })
-                .catch(error => {
-                    console.error("Fetch error:", error);
-                    container.innerHTML = `<div class="error">Erreur de chargement: ${error.message}</div>`;
-                });
             }
 
-            function createNetworkCard(net){
+            function createNetworkCard(product) {
                 const card = document.createElement('div');
                 card.className = "product-card";
-
-                card.dataset.brand = net.brand;
-                card.dataset.type = net.type;
-                card.dataset.price = net.price;
-
+                
+                // Set data attributes for filtering
+                card.dataset.category = product.type;
+                card.dataset.brand = product.brand;
+                card.dataset.price = product.price;
+                
+                // Handle image URL
                 let imageUrl = '/placeholder.svg';
-                if (net.imageUrls && net.imageUrls.length > 0) {
-                    imageUrl = net.imageUrls[0].startsWith('http') 
-                        ? net.imageUrls[0] 
-                        : `http://localhost:8080${net.imageUrls[0]}`;
+                if (product.imageUrls && product.imageUrls.length > 0) {
+                    imageUrl = product.imageUrls[0].startsWith('http') 
+                        ? product.imageUrls[0] 
+                        : `http://localhost:8080${product.imageUrls[0]}`;
                 }
 
+                // Create card HTML (matches your exact structure)
                 card.innerHTML = `
                     <div class="product-image">
-                        <img src="${imageUrl}" alt="${net.name}">
+                        <img src="${imageUrl}" alt="${product.name}" loading="lazy">
                     </div>
                     <div class="product-info">
-                        <div class="product-category">${net.type}</div>
-                        <h3 class="product-title">${net.name}</h3>
-                        <div class="product-specs">WiFi 5, ${net.speed} Mbps, ${net.postsNum} ports, Montage plafond</div>
+                        <div class="product-category">${product.type}</div>
+                        <h3 class="product-title">${product.name}</h3>
+                        <div style="white-space: pre-line;" class="product-specs">${product.description}</div>
                         <div class="product-price">
-                            <span class="price-current">${net.price} DH</span>
+                            <span class="price-current">${product.price} DH</span>
                         </div>
                         <div class="product-actions">
                             <button class="btn-primary add-to-cart">
@@ -287,42 +323,225 @@
                     </div>
                 `;
                 
-                card.querySelector('.add-to-cart').addEventListener('click', (e) => {
-                    e.stopPropagation(); 
-                    addToCart(net, imageUrl);
+                // Add event listeners
+                card.querySelector('.add-to-cart').addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    addToCart(product, imageUrl);
                 });
-
-                card.style.cursor = "pointer";
-                card.addEventListener("click", () => {
-                    window.location.href = `/client_net_det.html?id=${net.id}`;
-                });
-
-                function addToCart(net, imageUrl) {
-                    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-                    const existingItem = cart.find(item => item.id === net.id && item.category === "net");
-
-                    if (existingItem) {
-                        existingItem.quantity += 1;
-                    } else {
-                        cart.push({
-                            id: net.id,
-                            name: net.name,
-                            category: 'net',
-                            price: net.price,
-                            description: `${net.brand} || ${net.model} || ${net.type} || ${net.portsNum} || ${net.speed} || Management type : ${net.managementType}`,
-                            quantity: 1,
-                            image: imageUrl,
-                            addedAt: Date.now()
-                        });
+                
+                card.addEventListener('click', function(e) {
+                    if (!e.target.closest('.add-to-cart')) {
+                        window.location.href = `/client_net_det.html?id=${product.id}`;
                     }
-
-                    localStorage.setItem("cart", JSON.stringify(cart));
-                    alert("Produit ajouté au panier !");
-                    console.log("Cart:", cart);
-                }
-            
+                });
+                
                 return card;
+            }
+
+            function setupEventListeners() {
+                // Filter event listeners
+                document.getElementById('categoryFilter').addEventListener('change', applyFilters);
+                document.getElementById('priceFilter').addEventListener('change', applyFilters);
+                document.getElementById('brandFilter').addEventListener('change', applyFilters);
+                
+                // Search functionality
+                document.querySelector('.search-btn').addEventListener('click', searchProducts);
+                document.querySelector('.search-bar').addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') searchProducts();
+                });
+                
+                // Clear filters
+                document.querySelector('.clear-filters').addEventListener('click', clearAllFilters);
+                
+                // Sort functionality
+                document.getElementById('sortSelect').addEventListener('change', sortProducts);
+                
+                // View toggle
+                document.querySelectorAll('.view-toggle .view-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        toggleView(this.classList.contains('active') ? 'grid' : 'list');
+                    });
+                });
+                
+                // Mobile menu toggle
+                document.querySelector('.mobile-menu-toggle').addEventListener('click', toggleMobileMenu);
+                document.getElementById('overlay').addEventListener('click', closeMobileMenu);
+                
+                // Dropdown menus in sidebar
+                document.querySelectorAll('.has-dropdown').forEach(item => {
+                    item.addEventListener('click', function(e) {
+                        if (window.innerWidth <= 768) {
+                            e.preventDefault();
+                            this.classList.toggle('open');
+                        }
+                    });
+                });
+            }
+
+            function applyUrlFilters() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const category = urlParams.get('category');
+                
+                if (category) {
+                    document.getElementById('categoryFilter').value = category;
+                    applyFilters();
+                }
+            }
+
+            function applyFilters() {
+                const category = document.getElementById('categoryFilter').value;
+                const priceRange = document.getElementById('priceFilter').value;
+                const brand = document.getElementById('brandFilter').value;
+                const searchTerm = document.querySelector('.search-bar').value.toLowerCase();
+                
+                const cards = document.querySelectorAll('.product-card');
+                let visibleCount = 0;
+                
+                cards.forEach(card => {
+                    const cardCategory = card.dataset.category;
+                    const cardBrand = card.dataset.brand;
+                    const cardPrice = parseFloat(card.dataset.price);
+                    const cardTitle = card.querySelector('.product-title').textContent.toLowerCase();
+                    const cardSpecs = card.querySelector('.product-specs').textContent.toLowerCase();
+                    
+                    // Check filter conditions
+                    const categoryMatch = !category || cardCategory === category;
+                    const brandMatch = !brand || cardBrand === brand;
+                    const searchMatch = !searchTerm || 
+                                    cardTitle.includes(searchTerm) || 
+                                    cardSpecs.includes(searchTerm);
+                    
+                    // Check price range
+                    let priceMatch = true;
+                    if (priceRange) {
+                        const [min, max] = priceRange.includes('+') 
+                            ? [priceRange.replace('+', ''), null] 
+                            : priceRange.split('-').map(Number);
+                        
+                        if (max) {
+                            priceMatch = cardPrice >= min && cardPrice <= max;
+                        } else {
+                            priceMatch = cardPrice >= min;
+                        }
+                    }
+                    
+                    // Show/hide based on filters
+                    if (categoryMatch && brandMatch && priceMatch && searchMatch) {
+                        card.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                // Update results count
+                document.getElementById('resultsCount').textContent = visibleCount;
+                
+                // Show no results message if needed
+                const noResults = document.querySelector('.no-results');
+                if (visibleCount === 0) {
+                    if (!noResults) {
+                        const container = document.getElementById('productsGrid');
+                        const message = document.createElement('div');
+                        message.className = 'no-results';
+                        message.textContent = 'Aucun équipement ne correspond à vos critères';
+                        container.appendChild(message);
+                    }
+                } else if (noResults) {
+                    noResults.remove();
+                }
+            }
+
+            function searchProducts() {
+                applyFilters();
+            }
+
+            function clearAllFilters() {
+                document.getElementById('categoryFilter').value = '';
+                document.getElementById('priceFilter').value = '';
+                document.getElementById('brandFilter').value = '';
+                document.querySelector('.search-bar').value = '';
+                
+                applyFilters();
+            }
+
+            function sortProducts() {
+                const sortValue = document.getElementById('sortSelect').value;
+                const container = document.getElementById('productsGrid');
+                const cards = Array.from(container.querySelectorAll('.product-card[style*="block"]'));
+                
+                cards.sort((a, b) => {
+                    const aPrice = parseFloat(a.dataset.price);
+                    const bPrice = parseFloat(b.dataset.price);
+                    const aName = a.querySelector('.product-title').textContent;
+                    const bName = b.querySelector('.product-title').textContent;
+                    
+                    switch(sortValue) {
+                        case 'price-low': return aPrice - bPrice;
+                        case 'price-high': return bPrice - aPrice;
+                        case 'name': return aName.localeCompare(bName);
+                        case 'newest': return (b.dataset.id || 0) - (a.dataset.id || 0);
+                        default: return 0;
+                    }
+                });
+                
+                // Re-append sorted cards
+                cards.forEach(card => container.appendChild(card));
+            }
+
+            function toggleView(viewType) {
+                const grid = document.getElementById('productsGrid');
+                const buttons = document.querySelectorAll('.view-toggle .view-btn');
+                
+                buttons.forEach(btn => btn.classList.remove('active'));
+                
+                if (viewType === 'list') {
+                    grid.classList.add('list-view');
+                    buttons[1].classList.add('active');
+                } else {
+                    grid.classList.remove('list-view');
+                    buttons[0].classList.add('active');
+                }
+            }
+
+            function addToCart(product, imageUrl) {
+                const cart = JSON.parse(localStorage.getItem("cart")) || [];
+                const existingItem = cart.find(item => item.id === product.id && item.category === "net");
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        id: product.id,
+                        name: product.name,
+                        category: 'net',
+                        price: product.price,
+                        description: `${product.brand} || ${product.model} || ${product.type} || ${product.portsNum} || ${product.speed} || Management type : ${product.managementType}`,
+                        quantity: 1,
+                        image: imageUrl,
+                        addedAt: Date.now()
+                    });
+                }
+                
+                localStorage.setItem("cart", JSON.stringify(cart));
+                updateCartBadge();
+                alert("Produit ajouté au panier !");
+            }
+
+            function updateCartBadge() {
+                const cart = JSON.parse(localStorage.getItem("cart")) || [];
+                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                document.querySelector('.cart-badge').textContent = totalItems;
+            }
+
+            function toggleMobileMenu() {
+                document.getElementById('mainSidebar').classList.toggle('active');
+                document.getElementById('overlay').classList.toggle('active');
+            }
+
+            function closeMobileMenu() {
+                document.getElementById('mainSidebar').classList.remove('active');
+                document.getElementById('overlay').classList.remove('active');
             }
         </script>
         <script src="js_client/client_network.js"></script>

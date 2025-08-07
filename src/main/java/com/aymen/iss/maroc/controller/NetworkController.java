@@ -45,9 +45,7 @@ public class NetworkController {
             @RequestParam("brand") String brand,
             @RequestParam("model") String model,
             @RequestParam("equipmentType") String type,
-            @RequestParam("ports") String portsNum,
-            @RequestParam("speed") String speed,
-            @RequestParam("management") String managementType,
+            @RequestParam("description") String description,
             @RequestParam("price") String price,
             @RequestParam("stockQuantity") String stock,
             @RequestParam("equipmentImages") MultipartFile[] images) {
@@ -66,9 +64,7 @@ public class NetworkController {
         net.setBrand(brand);
         net.setModel(model);
         net.setType(type);
-        net.setPortsNum(portsNum);
-        net.setSpeed(speed);
-        net.setManagementType(managementType);
+        net.setDescription(description);
         net.setPrice(price);
         net.setStock(stock);
 

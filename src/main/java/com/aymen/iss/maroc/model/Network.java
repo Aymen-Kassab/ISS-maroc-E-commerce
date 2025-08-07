@@ -15,9 +15,7 @@ public class Network {
     private String brand;
     private String model;
     private String type;
-    private String portsNum;
-    private String speed;
-    private String managementType;
+    private String description;
     private String price;
     private String stock;
 
@@ -48,16 +46,8 @@ public class Network {
         return this.type;
     }
 
-    public String getPortsNum(){
-        return this.portsNum;
-    }
-
-    public String getSpeed(){
-        return this.speed;
-    }
-
-    public String getManagementType(){
-        return this.managementType;
+    public String getDescription(){
+        return this.description;
     }
 
     public String getPrice(){
@@ -93,16 +83,8 @@ public class Network {
         this.type = type;
     }
 
-    public void setPortsNum(String portsNum){
-        this.portsNum = portsNum;
-    }
-
-    public void setSpeed(String speed){
-        this.speed = speed;
-    }
-
-    public void setManagementType(String managementType){
-        this.managementType = managementType;
+    public void setDescription(String description){
+        this.description = description;
     }
 
     public void setPrice(String price){
