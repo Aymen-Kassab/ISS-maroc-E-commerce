@@ -23,21 +23,28 @@ body {
 
 .header-container {
     max-width: 1200px;
-    height: 42.5px;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 1rem;
     gap: 2rem;
+    flex-wrap: wrap; /* allow wrapping on small screens */
+    height: auto; /* REMOVE fixed height */
 }
-
 .logo {
     font-size: 1.8rem;
     font-weight: bold;
     color: white;
     text-decoration: none;
     margin-top: 1px;
+}
+
+.logo-img {
+    width: 120px; /* or try 100px if too large */
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
 .icon-btn {
@@ -69,21 +76,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.cart-badge {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  background: #ff4757;
-  color: white;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  font-size: 0.8rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 /* Product Details */

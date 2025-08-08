@@ -50,7 +50,8 @@ public class SecurityConfig {
                                 "/auth/api/**",
                                 "/api/command/**",
                                 "/api/contact/**",
-                                "/api/new/**"
+                                "/api/new/**",
+                                "/logo/**"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )

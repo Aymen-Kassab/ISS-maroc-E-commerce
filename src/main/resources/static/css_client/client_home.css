@@ -23,21 +23,28 @@ body {
 
 .header-container {
     max-width: 1200px;
-    height: 42.5px;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 1rem;
     gap: 2rem;
+    flex-wrap: wrap; /* allow wrapping on small screens */
+    height: auto; /* REMOVE fixed height */
 }
-
 .logo {
     font-size: 1.8rem;
     font-weight: bold;
     color: white;
     text-decoration: none;
     margin-top: 1px;
+}
+
+.logo-img {
+    width: 120px; /* or try 100px if too large */
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
 .icon-btn {

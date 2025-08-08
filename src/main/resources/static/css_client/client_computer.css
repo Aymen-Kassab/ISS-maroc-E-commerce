@@ -29,19 +29,29 @@ body {
     justify-content: space-between;
     padding: 0 1rem;
     gap: 2rem;
+    flex-wrap: nowrap;
 }
 
 .logo {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: white;
+    display: flex;     
+    align-items: center;
     text-decoration: none;
+    flex-shrink: 0;  
+    padding: 0 0.5rem 0 0;
+}
+
+.logo-img {
+    width: 120px; 
+    max-width: 100%;
+    height: auto;
+  object-fit: contain; 
 }
 
 .search-container {
     flex: 1;
     max-width: 500px;
     position: relative;
+    min-width: 200px;
 }
 
 .search-bar {
@@ -116,6 +126,21 @@ body {
     color: white;
     font-size: 1.5rem;
     cursor: pointer;
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .header-container {
+        padding: 0 0.5rem;
+        gap: 1rem;
+    }
+
+    .logo-img {
+        width: 100px;
+    }
+
+    .search-container {
+        max-width: 350px;
+    }
 }
 
 /* Main Layout */

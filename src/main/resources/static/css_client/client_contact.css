@@ -10,7 +10,7 @@ body {
     color: #333;
 }
 
-/* Header Styles (keeping the same as you loved) */
+/* Header Styles */
 .header {
     background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
     color: white;
@@ -23,15 +23,15 @@ body {
 
 .header-container {
     max-width: 1200px;
-    height: 42.5px;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 1rem;
     gap: 2rem;
+    flex-wrap: wrap; /* allow wrapping on small screens */
+    height: auto; /* REMOVE fixed height */
 }
-
 .logo {
     font-size: 1.8rem;
     font-weight: bold;
@@ -40,44 +40,11 @@ body {
     margin-top: 1px;
 }
 
-.search-container {
-    flex: 1;
-    max-width: 500px;
-    position: relative;
-}
-
-.search-bar {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border: none;
-    border-radius: 25px;
-    font-size: 1rem;
-    outline: none;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.search-btn {
-    position: absolute;
-    right: 5px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: #1e3c72;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.search-btn:hover {
-    background: #2a5298;
-}
-
-.header-icons {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
+.logo-img {
+    width: 120px; /* or try 100px if too large */
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
 .icon-btn {
