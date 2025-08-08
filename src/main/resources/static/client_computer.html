@@ -5,11 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>ISS MAROC - Ordinateurs</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-        <link rel="stylesheet" href="css_client/client_computer.css">
+        <link rel="stylesheet" href="css_client/client_products.css">
         <link rel="icon" href="data:,">
     </head>
     <body>
-        <!-- Header (Same as before) -->
         <header class="header">
             <div class="header-container">
                 <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
@@ -222,15 +221,6 @@
                         </div>
                         
                         <div class="sort-section">
-                            <span class="sort-label">Trier par:</span>
-                            <select class="sort-select" id="sortSelect">
-                                <option value="relevance">Pertinence</option>
-                                <option value="price-low">Prix croissant</option>
-                                <option value="price-high">Prix décroissant</option>
-                                <option value="name">Nom A-Z</option>
-                                <option value="newest">Plus récent</option>
-                            </select>
-                            
                             <div class="view-toggle">
                                 <button class="view-btn active" onclick="toggleView('grid')">
                                     <i class="fas fa-th"></i>
@@ -244,7 +234,7 @@
 
                     <!-- Products Grid -->
                     <div class="products-grid" id="productsGrid">
-                        <!-- Sample Computer Products -->
+                        
                     </div>
                 </div>
             </main>
@@ -271,16 +261,14 @@
 
         <script>
             document.addEventListener("DOMContentLoaded", function() {
-                // 1. Get URL filter parameter
+                
                 const urlParams = new URLSearchParams(window.location.search);
                 const urlCategory = urlParams.get('category');
                 
-                // 2. Set the type filter if URL has category
                 if (urlCategory) {
                     document.getElementById('typeFilter').value = urlCategory;
                 }
-                
-                // 3. Load and filter computers
+            
                 loadAndFilterComputers();
             });
 
@@ -294,10 +282,8 @@
                     return response.json();
                 })
                 .then(allComputers => {
-                    // Apply filters
                     const filtered = filterComputers(allComputers);
                     
-                    // Display results (keeping YOUR exact card format)
                     displayFilteredComputers(filtered);
                 })
                 .catch(error => {
@@ -321,8 +307,6 @@
                     if (ramFilter && computer.memory !== ramFilter) return false;
                     if (storageFilter && computer.storage !== storageFilter) return false;
 
-
-                    // Handle price range filtering
                     if (priceFilter) {
                         const price = parseInt(computer.price);
                         const [min, max] = priceFilter.split('-').map(p => p.replace('+', ''));
@@ -348,7 +332,6 @@
                     return;
                 }
                 
-                // Keep your EXACT card rendering
                 computers.forEach(computer => {
                     const card = document.createElement("div");
                     card.className = "product-card";
@@ -360,7 +343,6 @@
                     card.dataset.processor = computer.processor;
                     card.dataset.storage = computer.storage;
                     
-                    // Your exact image handling
                     let imageUrl = '/placeholder.svg';
                     if (computer.imageUrls && computer.imageUrls.length > 0) {
                         imageUrl = computer.imageUrls[0].startsWith('http') 
@@ -368,7 +350,6 @@
                             : `http://localhost:8080${computer.imageUrls[0]}`;
                     }
 
-                    // Your exact card HTML
                     card.innerHTML = `
                         <div class="product-image">
                             <img src="${imageUrl}" alt="${computer.name || 'Ordinateur'}" loading="lazy">
@@ -393,7 +374,6 @@
                         </div>
                     `;
                     
-                    // Your exact event listeners
                     card.querySelector('.add-to-cart').addEventListener('click', (e) => {
                         e.stopPropagation();
                         addToCart(computer, imageUrl);
@@ -409,7 +389,6 @@
                 document.getElementById("resultsCount").textContent = computers.length;
             }
 
-            // Your exact addToCart function
             function addToCart(computer, imageUrl) {
                 const cart = JSON.parse(localStorage.getItem("cart")) || [];
                 const existingItem = cart.find(item => item.id === computer.id);
@@ -439,17 +418,14 @@
                 popup.style.display = 'block';
                 popup.style.opacity = '1';
 
-                // Hide after duration ms with fade effect
                 setTimeout(() => {
                     popup.style.opacity = '0';
-                    // After transition ends, hide completely
                     setTimeout(() => {
                         popup.style.display = 'none';
-                    }, 500); // matches CSS transition time
+                    }, 500);
                 }, duration);
             }
 
-            // Initialize filters
             document.querySelectorAll('.filter-select').forEach(select => {
                 select.addEventListener('change', loadAndFilterComputers);
             });

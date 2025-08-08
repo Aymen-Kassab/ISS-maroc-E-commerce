@@ -59,22 +59,6 @@ function toggleCategory(categoryId) {
     }
 }
 
-// Close expandable sidebar when clicking outside
-document.addEventListener('click', function(event) {
-const expandableSidebar = document.getElementById('expandableSidebar');
-const mainSidebar = document.getElementById('mainSidebar');
-            
-if (!expandableSidebar.contains(event.target) && 
-    !mainSidebar.contains(event.target) && 
-    !event.target.closest('.mobile-menu-toggle')) {
-                
-        if (window.innerWidth > 768) {
-            expandableSidebar.classList.remove('expanded');
-            currentExpandedSidebar = null;
-        }
-    }
-});
-
 // Handle window resize
 window.addEventListener('resize', function() {
     if (window.innerWidth > 768) {

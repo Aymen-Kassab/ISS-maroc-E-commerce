@@ -33,7 +33,7 @@
             <nav class="main-sidebar" id="mainSidebar">
                 <ul class="sidebar-menu">
                     <li>
-                        <a href="#" class="active">
+                        <a href="" class="active">
                             <i class="fas fa-home"></i>
                             Accueil
                         </a>
@@ -100,46 +100,13 @@
                 </ul>
             </nav>
 
-            <!-- Expandable Left Sidebar -->
-            <div class="expandable-sidebar" id="expandableSidebar">
-                <div class="category-section">
-                    <button class="category-header" onclick="toggleCategory('bureau')">
-                         Ordinateur Bureau
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                </div>
-
-                <div class="category-section">
-                    <button class="category-header" onclick="toggleCategory('portable')">
-                        Ordinateur Portable
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                </div>
-
-                <div class="category-section">
-                    <button class="category-header" onclick="toggleCategory('impression')">
-                        Impression et Imagerie
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                </div>
-
-                <div class="category-section">
-                    <button class="category-header" onclick="toggleCategory('reseauSub')">
-                        Réseau
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                </div>
-            </div>
-
             <main class="content-area">
                 <div class="image-slider">
                     <div class="slider-container">
-                        <!-- Replace these with your actual images -->
                     </div>
                     <button class="slider-arrow next-arrow">❯</button>
                     <button class="slider-arrow prev-arrow">❮</button>
                     <div class="slider-dots">
-                        
                     </div>
                 </div>
 
@@ -192,7 +159,6 @@
                             return;
                         }
 
-                        // Create image slides
                         data.forEach(news => {
                             const slide = document.createElement("div");
                             slide.className = "slide";
@@ -200,12 +166,11 @@
                             const img = new Image();
                             img.src = news.imageUrl;
                             img.alt = news.title || "Actualité ISS MAROC";
-                            img.style.display = 'block'; // Ensure proper rendering
+                            img.style.display = 'block';
                             
                             img.onload = function() {
                                 slide.appendChild(img);
                                 sliderContainer.appendChild(slide);
-                                // Only initialize slider after last image loads
                                 if (document.querySelectorAll('.slide').length === data.length) {
                                     initSlider();
                                 }
@@ -217,7 +182,6 @@
                             };
                         });
 
-                        // Initialize slider functionality
                         initSlider();
                     })
                     .catch(error => {
