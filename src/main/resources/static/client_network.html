@@ -201,15 +201,6 @@
                         </div>
                         
                         <div class="sort-section">
-                            <span class="sort-label">Trier par:</span>
-                            <select class="sort-select" id="sortSelect" onchange="sortProducts()">
-                                <option value="relevance">Pertinence</option>
-                                <option value="price-low">Prix croissant</option>
-                                <option value="price-high">Prix décroissant</option>
-                                <option value="name">Nom A-Z</option>
-                                <option value="newest">Plus récent</option>
-                            </select>
-                            
                             <div class="view-toggle">
                                 <button class="view-btn active" onclick="toggleView('grid')">
                                     <i class="fas fa-th"></i>
@@ -368,9 +359,6 @@
                 
                 // Clear filters
                 document.querySelector('.clear-filters').addEventListener('click', clearAllFilters);
-                
-                // Sort functionality
-                document.getElementById('sortSelect').addEventListener('change', sortProducts);
                 
                 // View toggle
                 document.querySelectorAll('.view-toggle .view-btn').forEach(btn => {
@@ -576,6 +564,6 @@
                 document.getElementById('overlay').classList.remove('active');
             }
         </script>
-        <script src="js_client/client_network.js"></script>
+        <script src="js_client/client_computer.js"></script>
     </body>
 </html>

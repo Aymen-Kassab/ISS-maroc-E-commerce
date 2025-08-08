@@ -195,14 +195,7 @@
                         </div>
                         
                         <div class="sort-section">
-                            <span class="sort-label">Trier par:</span>
-                            <select class="sort-select" id="sortSelect" onchange="sortProducts()">
-                                <option value="relevance">Pertinence</option>
-                                <option value="price-low">Prix croissant</option>
-                                <option value="price-high">Prix décroissant</option>
-                                <option value="name">Nom A-Z</option>
-                                <option value="newest">Plus récent</option>
-                            </select>
+                            
                             
                             <div class="view-toggle">
                                 <button class="view-btn active" onclick="toggleView('grid')">
@@ -217,14 +210,12 @@
 
                     <!-- Products Grid -->
                     <div class="products-grid" id="productsGrid">
-                        <!-- Sample Printer Products -->
                         
                     </div>
                 </div>
             </main>
         </div>
 
-        <!-- Overlay for mobile -->
         <div class="overlay" id="overlay" onclick="closeMobileMenu()"></div>
         <div id="popupMessage" style="
             display: none;
@@ -243,15 +234,11 @@
             transition: opacity 0.5s ease-in-out;
         "></div>
         <script>
-           // client_printer.js
             document.addEventListener("DOMContentLoaded", function() {
-                // Load printers and apply any URL filters
                 loadPrinters();
                 
-                // Initialize filter functionality
                 setupFilters();
                 
-                // Initialize cart badge
                 updateCartBadge();
             });
 
@@ -264,20 +251,18 @@
                         return response.json();
                     })
                     .then(data => {
-                        container.innerHTML = ""; // Clear existing content
+                        container.innerHTML = "";
 
                         if (!data || data.length === 0) {
                             container.innerHTML = `<div class="no-results">Aucune imprimante trouvée</div>`;
                             return;
                         }
 
-                        // Create printer cards
                         data.forEach(printer => {
                             const card = createPrinterCard(printer);
                             container.appendChild(card);
                         });
 
-                        // Check for URL filters and apply them
                         const urlParams = new URLSearchParams(window.location.search);
                         const category = urlParams.get('category');
                         
@@ -296,12 +281,10 @@
                 const card = document.createElement('div');
                 card.className = "product-card";
                 
-                // Set data attributes for filtering
                 card.dataset.category = printer.type;
                 card.dataset.brand = printer.brand.toLowerCase();
                 card.dataset.price = printer.price;
                 
-                // Determine print type (adjust based on your data structure)
                 if (printer.type.toLowerCase().includes('photo')) {
                     card.dataset.printType = 'photo';
                 } else if (printer.type.toLowerCase().includes('3d')) {
@@ -310,7 +293,6 @@
                     card.dataset.printType = printer.isColor ? 'couleur' : 'noir-blanc';
                 }
 
-                // Set image URL (fallback to placeholder)
                 let imageUrl = '/placeholder.svg';
                 if (printer.imageUrls && printer.imageUrls.length > 0) {
                     imageUrl = printer.imageUrls[0].startsWith('http') 
@@ -318,7 +300,6 @@
                         : `http://localhost:8080${printer.imageUrls[0]}`;
                 }
 
-                // Create card HTML (same structure as your original)
                 card.innerHTML = `
                     <div class="product-image">
                         <img src="${imageUrl}" alt="${printer.name}" loading="lazy">
@@ -341,14 +322,12 @@
                     </div>
                 `;
 
-                // Add click event for product details
                 card.addEventListener("click", (e) => {
                     if (!e.target.closest('.add-to-cart')) {
                         window.location.href = `/client_prn_det.html?id=${printer.id}`;
                     }
                 });
 
-                // Add to cart functionality
                 card.querySelector('.add-to-cart').addEventListener('click', function(e) {
                     e.stopPropagation();
                     addToCart(printer, imageUrl);
@@ -358,19 +337,13 @@
             }
 
             function setupFilters() {
-                // Set up filter change events
                 document.getElementById('categoryFilter').addEventListener('change', applyFilters);
                 document.getElementById('priceFilter').addEventListener('change', applyFilters);
                 document.getElementById('brandFilter').addEventListener('change', applyFilters);
                 document.getElementById('printTypeFilter').addEventListener('change', applyFilters);
                 
-                // Clear filters button
                 document.querySelector('.clear-filters').addEventListener('click', clearAllFilters);
                 
-                // Sort functionality
-                document.getElementById('sortSelect').addEventListener('change', sortProducts);
-                
-                // View toggle buttons
                 document.querySelector('.view-toggle button:first-child').addEventListener('click', () => toggleView('grid'));
                 document.querySelector('.view-toggle button:last-child').addEventListener('click', () => toggleView('list'));
             }
@@ -390,12 +363,10 @@
                     const cardPrice = parseFloat(card.dataset.price);
                     const cardPrintType = card.dataset.printType;
                     
-                    // Check each filter condition
                     const categoryMatch = !category || cardCategory === category;
                     const brandMatch = !brand || cardBrand === brand.toLowerCase();
                     const printTypeMatch = !printType || cardPrintType === printType;
                     
-                    // Check price range
                     let priceMatch = true;
                     if (priceRange) {
                         const [min, max] = priceRange.split('-').map(Number);
@@ -406,7 +377,6 @@
                         }
                     }
                     
-                    // Show or hide card based on filters
                     if (categoryMatch && brandMatch && printTypeMatch && priceMatch) {
                         card.style.display = 'block';
                         visibleCount++;
@@ -415,10 +385,8 @@
                     }
                 });
                 
-                // Update results count
                 document.getElementById('resultsCount').textContent = visibleCount;
                 
-                // Show no results message if needed
                 const noResults = document.querySelector('.no-results');
                 if (visibleCount === 0) {
                     if (!noResults) {
@@ -462,7 +430,6 @@
                     }
                 });
                 
-                // Re-append sorted cards
                 cards.forEach(card => container.appendChild(card));
             }
 
@@ -526,6 +493,6 @@
                 document.querySelector('.cart-badge').textContent = totalItems;
             }
         </script>
-        <script src="js_client/client_printer.js"></script>
+        <script src="js_client/client_computer.js"></script>
     </body>
 </html>

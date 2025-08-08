@@ -12,7 +12,7 @@ body {
 
 /* Header Styles */
 .header {
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    background: linear-gradient(135deg, #f19999 0%, #ed4343 100%);
     color: white;
     padding: 1rem 0;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -29,8 +29,8 @@ body {
     justify-content: space-between;
     padding: 0 1rem;
     gap: 2rem;
-    flex-wrap: wrap; /* allow wrapping on small screens */
-    height: auto; /* REMOVE fixed height */
+    flex-wrap: wrap;
+    height: auto;
 }
 .logo {
     font-size: 1.8rem;
@@ -41,7 +41,7 @@ body {
 }
 
 .logo-img {
-    width: 120px; /* or try 100px if too large */
+    width: 120px;
     max-width: 100%;
     height: auto;
     object-fit: contain;
@@ -67,7 +67,7 @@ body {
     position: absolute;
     top: -5px;
     right: -5px;
-    background: #ff4757;
+    background: #ff0015;
     color: white;
     border-radius: 50%;
     width: 20px;
@@ -76,8 +76,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 1.5px solid;
 }
-
 /* Product Details */
 .content-area {
   padding: 2rem;
@@ -139,7 +139,7 @@ body {
 
 .product-title {
   font-size: 2rem;
-  color: #1e3c72;
+  color: #ed4343;
   margin-bottom: 1rem;
 }
 
@@ -150,7 +150,7 @@ body {
 }
 
 .spec-highlight {
-  color: #1e3c72;
+  color: #ed4343;
   font-weight: bold;
 }
 
@@ -163,7 +163,7 @@ body {
 
 .price-current {
   font-size: 1.5rem;
-  color: #1e3c72;
+  color: #ed4343;
   font-weight: bold;
 }
 
@@ -180,7 +180,7 @@ body {
 }
 
 .btn-primary {
-  background: #1e3c72;
+  background: #ed4343;
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -190,26 +190,26 @@ body {
 }
 
 .btn-primary:hover {
-  background: #2a5298;
+  background: #ff7f7f;
 }
 
 .btn-secondary {
   background: white;
-  color: #1e3c72;
-  border: 1px solid #1e3c72;
+  color: #ed4343;
+  border: 1px solid #ed4343;
   padding: 0.75rem 1.5rem;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .btn-secondary:hover {
-  background: #1e3c72;
+  background: #ff7f7f;
   color: white;
 }
 
 .product-description h3 {
   font-size: 1.2rem;
-  color: #1e3c72;
+  color: #ed4343;
   margin-bottom: 0.5rem;
 }
 
