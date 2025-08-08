@@ -326,7 +326,6 @@
 
     <!-- Overlay for mobile -->
     <div class="overlay" id="overlay" onclick="closeMobileMenu()"></div>
-    
     <script>
         document.getElementById("contactForm").addEventListener("submit", async function (e) {
             e.preventDefault();
@@ -361,7 +360,6 @@
                 }
 
                 const result = await response.json();
-                console.log("Success:", result);
                 this.reset();
             }catch (error) {
                 console.error("Error:", error);
