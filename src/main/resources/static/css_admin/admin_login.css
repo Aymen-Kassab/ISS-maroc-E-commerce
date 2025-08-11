@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #f19999 0%, #ff5563 100%);
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -31,11 +31,11 @@ body {
     left: 0;
     right: 0;
     height: 5px;
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    background: linear-gradient(135deg, #ff0015, #f19999);
 }
 
 .login-header {
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    background: linear-gradient(135deg, #ff0015, #f19999);
     color: white;
     padding: 2.5rem 2rem 2rem;
     text-align: center;
@@ -52,7 +52,7 @@ body {
     height: 0;
     border-left: 15px solid transparent;
     border-right: 15px solid transparent;
-    border-top: 10px solid #2a5298;
+    border-top: 10px solid #ff0015;
 }
 
 .logo {
@@ -101,7 +101,7 @@ body {
 }
 
 .form-label i {
-    color: #1e3c72;
+    color: #ff0015;
     width: 16px;
 }
 
@@ -118,7 +118,7 @@ body {
 
 .form-input:focus {
     outline: none;
-    border-color: #1e3c72;
+    border-color: #ff0015;
     background: white;
     box-shadow: 0 0 0 4px rgba(30, 60, 114, 0.1);
     transform: translateY(-2px);
@@ -154,7 +154,7 @@ body {
 }
 
 .password-toggle:hover {
-    color: #1e3c72;
+    color: #ff0015;
     background: rgba(30, 60, 114, 0.1);
 }
 
@@ -176,7 +176,7 @@ body {
 .checkbox-input {
     width: 16px;
     height: 16px;
-    accent-color: #1e3c72;
+    accent-color: #ff0015;
     cursor: pointer;
 }
 
@@ -187,7 +187,7 @@ body {
 }
 
 .forgot-password {
-    color: #1e3c72;
+    color: #ff0015;
     text-decoration: none;
     font-size: 0.9rem;
     font-weight: 500;
@@ -195,14 +195,14 @@ body {
 }
 
 .forgot-password:hover {
-    color: #2a5298;
+    color: #f19999;
     text-decoration: underline;
 }
 
 .login-btn {
     width: 100%;
     padding: 1rem;
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    background: linear-gradient(135deg, #ff0015, #f19999);
     color: white;
     border: none;
     border-radius: 12px;
@@ -298,8 +298,8 @@ body {
 }
 
 .quick-login-btn:hover {
-    border-color: #1e3c72;
-    color: #1e3c72;
+    border-color: #ff0015;
+    color: #ff0015;
     transform: translateY(-2px);
 }
 
@@ -316,7 +316,7 @@ body {
 }
 
 .signup-link a {
-    color: #1e3c72;
+    color: #ff0015;
     text-decoration: none;
     font-weight: 600;
 }
