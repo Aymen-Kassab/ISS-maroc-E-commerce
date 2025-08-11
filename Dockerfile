@@ -1,5 +1,5 @@
 # Use official lightweight OpenJDK 17 image
-FROM openjdk:17-jdk-alpine
+FROM openjdk:17-jdk-slim
 
 # Copy the jar file into the container
 COPY target/iss-maroc-0.0.1-SNAPSHOT.jar app.jar
