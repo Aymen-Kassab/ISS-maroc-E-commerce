@@ -18,7 +18,7 @@ body {
     top: 0;
     width: 280px;
     height: 100vh;
-    background: linear-gradient(180deg, #1e3c72 0%, #2a5298 100%);
+    background: linear-gradient(180deg, #ed4343 0%, #f19999 100%);
     color: white;
     transition: transform 0.3s ease;
     z-index: 1000;
@@ -142,7 +142,7 @@ body {
 
 .page-title {
     font-size: 1.8rem;
-    color: #1e3c72;
+    color: #ed4343;
     font-weight: 600;
 }
 
@@ -173,7 +173,7 @@ body {
     color: #333;
     border: none;
     background-color: transparent;
-    color: #1e3c72;
+    color: #ed4343;
 }
 
 /* Dashboard Content */
@@ -263,7 +263,7 @@ body {
 .form-input:focus,
 .form-select:focus {
     outline: none;
-    border-color: #4834d4;
+    border-color: #f19999;
     box-shadow: 0 0 0 3px rgba(72, 52, 212, 0.1);
 }
 
@@ -278,12 +278,12 @@ body {
 }
 
 .image-upload-section:hover {
-    border-color: #4834d4;
+    border-color: #f19999;
     background: #f8f7ff;
 }
 
 .image-upload-section.dragover {
-    border-color: #4834d4;
+    border-color: #f19999;
     background: #f0f0ff;
     transform: scale(1.02);
 }
@@ -657,6 +657,10 @@ body {
 
     .top-header {
         padding: 1rem;
+    }
+
+    .logout {
+        font-size: 0.8em;
     }
 
     .dashboard-content {

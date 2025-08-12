@@ -18,7 +18,7 @@ body {
     top: 0;
     width: 280px;
     height: 100vh;
-    background: linear-gradient(180deg, #1e3c72 0%, #2a5298 100%);
+    background: linear-gradient(180deg, #ed4343 0%, #f19999 100%);
     color: white;
     transition: transform 0.3s ease;
     z-index: 1000;
@@ -142,7 +142,7 @@ body {
 
 .page-title {
     font-size: 1.8rem;
-    color: #1e3c72;
+    color: #ed4343;
     font-weight: 600;
 }
 
@@ -173,7 +173,7 @@ body {
     color: #333;
     border: none;
     background-color: transparent;
-    color: #1e3c72;
+    color: #ed4343;
 }
 
 /* Dashboard Content */
@@ -204,7 +204,7 @@ body {
 }
 
 .card-header {
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    background: linear-gradient(135deg, #ed4343 0%, #f19999 100%);
     color: white;
     padding: 1.5rem 2rem;
 }
@@ -238,12 +238,12 @@ body {
 }
 
 .image-upload-area:hover {
-    border-color: #1e3c72;
+    border-color: #ed4343;
     background: #f8f9ff;
 }
 
 .image-upload-area.dragover {
-    border-color: #1e3c72;
+    border-color: #ed4343;
     background: #f0f4ff;
     transform: scale(1.02);
     border-style: solid;
@@ -251,7 +251,7 @@ body {
 
 .upload-icon {
     font-size: 4rem;
-    color: #1e3c72;
+    color: #ed4343;
     margin-bottom: 1.5rem;
 }
 
@@ -277,7 +277,7 @@ body {
 }
 
 .upload-btn {
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    background: linear-gradient(135deg, #ed4343, #f19999);
     color: white;
     border: none;
     padding: 1rem 2rem;
@@ -325,15 +325,15 @@ body {
 }
 
 .type-radio:checked + .type-label {
-    border-color: #1e3c72;
+    border-color: #ed4343;
     background: #f8f9ff;
-    color: #1e3c72;
+    color: #ed4343;
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(30, 60, 114, 0.2);
 }
 
 .type-label:hover {
-    border-color: #1e3c72;
+    border-color: #ed4343;
     transform: translateY(-2px);
 }
 
@@ -550,7 +550,7 @@ body {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    background: linear-gradient(135deg, #ed4343, #f19999);
     color: white;
 }
 
@@ -614,6 +614,10 @@ body {
 
     .top-header {
         padding: 1rem;
+    }
+
+    .logout {
+        font-size: 0.8em;
     }
 
     .dashboard-content {
