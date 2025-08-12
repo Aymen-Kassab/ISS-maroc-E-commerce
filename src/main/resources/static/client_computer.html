@@ -361,7 +361,7 @@
                             <div class="product-specs">Processeur: ${computer.processor}</div>
                             <div class="product-specs">RAM: ${computer.memory}</div>
                             <div class="product-specs">Stockage: ${computer.storage} ${computer.storageType}</div>
-                            <div class="product-specs">Carte graphique: ${computer.graphics}</div>
+                            <!-- <div class="product-specs">Carte graphique: ${computer.graphics || 'Non spécifiée'}</div> -->
                             <div class="product-price">
                                 <span class="price-current">${computer.price} DH</span>
                                 ${computer.oldPrice ? `<span class="price-old">${computer.oldPrice} DH</span>` : ''}
