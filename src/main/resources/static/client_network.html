@@ -254,7 +254,7 @@
                 const container = document.getElementById("productsGrid");
                 container.innerHTML = '<div class="loading">Chargement en cours...</div>';
                 
-                fetch("http://localhost:8080/api/network")
+                fetch("https://isswebproject-production.up.railway.app/api/network")
                     .then(response => {
                         if (!response.ok) throw new Error("Erreur de chargement des équipements réseau");
                         return response.json();
@@ -306,7 +306,7 @@
                 if (product.imageUrls && product.imageUrls.length > 0) {
                     imageUrl = product.imageUrls[0].startsWith('http') 
                         ? product.imageUrls[0] 
-                        : `http://localhost:8080${product.imageUrls[0]}`;
+                        : `https://isswebproject-production.up.railway.app${product.imageUrls[0]}`;
                 }
 
                 // Create card HTML (matches your exact structure)

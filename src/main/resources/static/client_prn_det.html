@@ -55,7 +55,7 @@
                 return;
             }
 
-            fetch(`http://localhost:8080/api/printer/${productId}`)
+            fetch(`https://isswebproject-production.up.railway.app/api/printer/${productId}`)
                 .then(res => {
                 if (!res.ok) throw new Error("Erreur lors du chargement du produit.");
                 return res.json();
@@ -71,7 +71,7 @@
                 if (product.imageUrls && product.imageUrls.length > 0) {
                     imageUrl = product.imageUrls[0].startsWith("http")
                     ? product.imageUrls[0]
-                    : `http://localhost:8080${product.imageUrls[0]}`;
+                    : `https://isswebproject-production.up.railway.app${product.imageUrls[0]}`;
                 }
 
                 // Prepare badge category with a lowercase class safe for CSS

@@ -56,11 +56,11 @@ function formatCurrency(num) {
 async function fetchAndAnimateDashboard() {
     try {
         const [computersRes, printersRes, networksRes, commandsRes, contactsRes] = await Promise.all([
-            fetch("http://localhost:8080/api/computers"),
-            fetch("http://localhost:8080/api/printer"),
-            fetch("http://localhost:8080/api/network"),
-            fetch("http://localhost:8080/api/command"),
-            fetch("http://localhost:8080/api/contact")
+            fetch("https://isswebproject-production.up.railway.app/api/computers"),
+            fetch("https://isswebproject-production.up.railway.app/api/printer"),
+            fetch("https://isswebproject-production.up.railway.app/api/network"),
+            fetch("https://isswebproject-production.up.railway.app/api/command"),
+            fetch("https://isswebproject-production.up.railway.app/api/contact")
         ]);
 
         if (!commandsRes.ok || !printersRes.ok || !networksRes.ok || !commandsRes.ok || !contactsRes.ok) {

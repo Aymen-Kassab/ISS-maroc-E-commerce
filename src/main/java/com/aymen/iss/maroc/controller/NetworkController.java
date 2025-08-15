@@ -1,8 +1,9 @@
 package com.aymen.iss.maroc.controller;
 
 import com.aymen.iss.maroc.model.Network;
-import com.aymen.iss.maroc.model.Printer;
 import com.aymen.iss.maroc.service.NetworkService;
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -11,13 +12,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/network")
@@ -25,17 +23,19 @@ import java.util.UUID;
 public class NetworkController {
 
     private final NetworkService networkService;
-    private static final String UPLOAD_DIR = "uploads/";
+    private final Cloudinary cloudinary;
+
     private static final int MAX_FILES = 20;
     private static final long MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 
     @Autowired
-    public NetworkController(NetworkService networkService){
+    public NetworkController(NetworkService networkService, Cloudinary cloudinary) {
         this.networkService = networkService;
+        this.cloudinary = cloudinary;
     }
 
     @GetMapping
-    public List<Network> getAllNetwork(){
+    public List<Network> getAllNetwork() {
         return networkService.getAllNetwork();
     }
 
@@ -50,10 +50,7 @@ public class NetworkController {
             @RequestParam("stockQuantity") String stock,
             @RequestParam("equipmentImages") MultipartFile[] images) {
 
-
-
         // Validate file count
-        final int MAX_FILES = 20;
         if (images != null && images.length > MAX_FILES) {
             return ResponseEntity.badRequest()
                     .body("Maximum " + MAX_FILES + " images allowed");
@@ -68,13 +65,10 @@ public class NetworkController {
         net.setPrice(price);
         net.setStock(stock);
 
+        // Handle image upload to Cloudinary
         if (images != null && images.length > 0) {
             List<String> savedImageUrls = new ArrayList<>();
-            Path uploadPath = Paths.get("src/main/resources/static", UPLOAD_DIR).toAbsolutePath().normalize();
-
             try {
-                Files.createDirectories(uploadPath);
-
                 for (MultipartFile image : images) {
                     if (!image.isEmpty()) {
                         // Validate file size
@@ -83,20 +77,20 @@ public class NetworkController {
                                     .body("File " + image.getOriginalFilename() + " exceeds size limit of 10MB");
                         }
 
-                        String fileExtension = image.getOriginalFilename()
-                                .substring(image.getOriginalFilename().lastIndexOf("."));
-                        String uniqueFilename = UUID.randomUUID() + fileExtension;
+                        // Upload to Cloudinary
+                        Map uploadResult = cloudinary.uploader().upload(
+                                image.getBytes(),
+                                ObjectUtils.asMap("folder", "network")
+                        );
 
-                        Path destination = uploadPath.resolve(uniqueFilename);
-                        image.transferTo(destination);
-
-                        savedImageUrls.add("/" + UPLOAD_DIR + uniqueFilename);
+                        String imageUrl = uploadResult.get("secure_url").toString();
+                        savedImageUrls.add(imageUrl);
                     }
                 }
                 net.setImageUrls(savedImageUrls);
             } catch (IOException e) {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                        .body("Failed to save images: " + e.getMessage());
+                        .body("Failed to upload images: " + e.getMessage());
             }
         }
 
@@ -110,18 +104,19 @@ public class NetworkController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteNetwork(@PathVariable Long id){
+    public ResponseEntity<?> deleteNetwork(@PathVariable Long id) {
         boolean deleted = networkService.deleteNetwork(id);
 
-        if(deleted){
+        if (deleted) {
             return ResponseEntity.ok().build();
-        }else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Equipement introuvable");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Equipement introuvable");
         }
     }
 
     @GetMapping("/{id}")
-    public Optional<Network> getNetwork(@PathVariable long id){
+    public Optional<Network> getNetwork(@PathVariable long id) {
         return networkService.getNetworkById(id);
     }
 }

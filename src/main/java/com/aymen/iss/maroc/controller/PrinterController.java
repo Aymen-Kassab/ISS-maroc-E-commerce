@@ -2,6 +2,8 @@ package com.aymen.iss.maroc.controller;
 
 import com.aymen.iss.maroc.model.Printer;
 import com.aymen.iss.maroc.service.PrinterService;
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -10,13 +12,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/printer")
@@ -24,17 +23,19 @@ import java.util.UUID;
 public class PrinterController {
 
     private final PrinterService printerService;
-    private static final String UPLOAD_DIR = "uploads/";
+    private final Cloudinary cloudinary;
+
     private static final int MAX_FILES = 20;
-    private static final long MAX_FILE_SIZE = 10 * 1024 * 1024; //10MB
+    private static final long MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 
     @Autowired
-    public PrinterController(PrinterService printerService) {
+    public PrinterController(PrinterService printerService, Cloudinary cloudinary) {
         this.printerService = printerService;
+        this.cloudinary = cloudinary;
     }
 
     @GetMapping
-    public List<Printer> getAllPrinters(){
+    public List<Printer> getAllPrinters() {
         return printerService.getAllPrinters();
     }
 
@@ -50,11 +51,9 @@ public class PrinterController {
             @RequestParam("stockQuantity") String stock,
             @RequestParam("connectivity") List<String> connectivity,
             @RequestParam("scannerImages") MultipartFile[] images
-    ){
+    ) {
 
-
-        //validate file count
-        final int MAX_FILES = 20;
+        // Validate file count
         if (images != null && images.length > MAX_FILES) {
             return ResponseEntity.badRequest()
                     .body("Maximum " + MAX_FILES + " images allowed");
@@ -71,13 +70,10 @@ public class PrinterController {
         printer.setStock(stock);
         printer.setConnectivity(connectivity);
 
+        // Upload to Cloudinary
         if (images != null && images.length > 0) {
             List<String> savedImageUrls = new ArrayList<>();
-            Path uploadPath = Paths.get("src/main/resources/static", UPLOAD_DIR).toAbsolutePath().normalize();
-
             try {
-                Files.createDirectories(uploadPath);
-
                 for (MultipartFile image : images) {
                     if (!image.isEmpty()) {
                         // Validate file size
@@ -86,45 +82,45 @@ public class PrinterController {
                                     .body("File " + image.getOriginalFilename() + " exceeds size limit of 10MB");
                         }
 
-                        String fileExtension = image.getOriginalFilename()
-                                .substring(image.getOriginalFilename().lastIndexOf("."));
-                        String uniqueFilename = UUID.randomUUID() + fileExtension;
+                        // Upload to Cloudinary
+                        Map uploadResult = cloudinary.uploader().upload(
+                                image.getBytes(),
+                                ObjectUtils.asMap("folder", "printers")
+                        );
 
-                        Path destination = uploadPath.resolve(uniqueFilename);
-                        image.transferTo(destination);
-
-                        savedImageUrls.add("/" + UPLOAD_DIR + uniqueFilename);
+                        String imageUrl = uploadResult.get("secure_url").toString();
+                        savedImageUrls.add(imageUrl);
                     }
                 }
                 printer.setImageUrls(savedImageUrls);
             } catch (IOException e) {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                        .body("Failed to save images: " + e.getMessage());
+                        .body("Failed to upload images: " + e.getMessage());
             }
         }
 
-        try{
+        try {
             Printer savedPrinter = printerService.savePrinter(printer);
             return ResponseEntity.ok(savedPrinter);
-        } catch (Exception e){
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Failed to save computer: " + e.getMessage());
+                    .body("Failed to save printer: " + e.getMessage());
         }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deletePrinter(@PathVariable Long id){
+    public ResponseEntity<?> deletePrinter(@PathVariable Long id) {
         boolean deleted = printerService.deletePrinter(id);
 
-        if(deleted){
+        if (deleted) {
             return ResponseEntity.ok().build();
-        }else {
+        } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Imprimante introuvable");
         }
     }
 
     @GetMapping("/{id}")
-    public Optional<Printer> getPrinter(@PathVariable long id){
+    public Optional<Printer> getPrinter(@PathVariable long id) {
         return printerService.getPrinterById(id);
     }
 }

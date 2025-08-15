@@ -139,7 +139,6 @@ function updateStatistics() {
     document.querySelector('.stat-card:nth-child(1) .stat-number').textContent = stats.new;
     document.querySelector('.stat-card:nth-child(2) .stat-number').textContent = stats.read;
     document.querySelector('.stat-card:nth-child(3) .stat-number').textContent = stats.replied;
-    document.querySelector('.stat-card:nth-child(4) .stat-number').textContent = stats.archived;
 }
 
 // Handle window resize

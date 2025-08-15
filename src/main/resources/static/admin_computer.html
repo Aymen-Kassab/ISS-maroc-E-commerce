@@ -335,7 +335,7 @@
 
                 // 5. Send to backend
                 try {
-                    const response = await fetch('http://localhost:8080/api/computers', {
+                    const response = await fetch('https://isswebproject-production.up.railway.app/api/computers', {
                         method: 'POST',
                         body: formData
                     });
@@ -364,7 +364,7 @@
             });
 
             function loadComputers() {
-                fetch("http://localhost:8080/api/computers")
+                fetch("https://isswebproject-production.up.railway.app/api/computers")
                 .then(response => response.json())
                 .then(data => {
                     const container = document.getElementById("pcInventory");
@@ -389,7 +389,12 @@
                 pcCard.setAttribute("data-stock", stockStatus);
 
                 // Fix image URL handling
-                const imageUrl = comp.imageUrls && comp.imageUrls.length > 0 ? `http://localhost:8080${comp.imageUrls[0]}` : '/placeholder.svg?height=200&width=350';
+                let imageUrl = '/placeholder.svg';
+                if (comp.imageUrls && comp.imageUrls.length > 0) {
+                    imageUrl = comp.imageUrls[0].startsWith('http') 
+                        ? comp.imageUrls[0] 
+                        : `https://isswebproject-production.up.railway.app${comp.imageUrls[0]}`;
+                }
 
                 pcCard.innerHTML = `
                     <img src="${imageUrl}" alt="${comp.name}" class="pc-image">
@@ -455,7 +460,7 @@
 
             function deletePc(id) {
                 if (confirm("Voulez-vous vraiment supprimer cet ordinateur?")) {
-                    fetch(`http://localhost:8080/api/computers/${id}`, {
+                    fetch(`https://isswebproject-production.up.railway.app/api/computers/${id}`, {
                         method: 'DELETE'
                     })
                     .then(response => {
@@ -463,13 +468,13 @@
                             loadComputers(); // Refresh the list
                             alert("Ordinateur supprimé avec succès!");
                         } else {
-                            throw new Error("Échec de la suppression");
+                            //throw new Error("Échec de la suppression");
                             loadComputers();
                         }
                     })
                     .catch(error => {
                         console.error("Error:", error);
-                        alert("Erreur lors de la suppression");
+                        //alert("Erreur lors de la suppression");
                         loadComputers();
                     });
                 }

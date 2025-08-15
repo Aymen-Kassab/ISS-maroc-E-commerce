@@ -148,7 +148,7 @@
                 
                 sliderContainer.innerHTML = "";
 
-                fetch("http://localhost:8080/api/news")
+                fetch("https://isswebproject-production.up.railway.app/api/news")
                     .then(response => {
                         if (!response.ok) throw new Error("Erreur de chargement des images");
                         return response.json();

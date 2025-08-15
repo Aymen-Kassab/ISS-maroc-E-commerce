@@ -245,7 +245,7 @@
             function loadPrinters() {
                 const container = document.getElementById("productsGrid");
                 
-                fetch("http://localhost:8080/api/printer")
+                fetch("https://isswebproject-production.up.railway.app/api/printer")
                     .then(response => {
                         if (!response.ok) throw new Error("Erreur de chargement des imprimantes");
                         return response.json();
@@ -297,7 +297,7 @@
                 if (printer.imageUrls && printer.imageUrls.length > 0) {
                     imageUrl = printer.imageUrls[0].startsWith('http') 
                         ? printer.imageUrls[0] 
-                        : `http://localhost:8080${printer.imageUrls[0]}`;
+                        : `https://isswebproject-production.up.railway.app${printer.imageUrls[0]}`;
                 }
 
                 card.innerHTML = `

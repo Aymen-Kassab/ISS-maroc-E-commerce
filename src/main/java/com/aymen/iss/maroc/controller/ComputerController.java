@@ -2,6 +2,8 @@ package com.aymen.iss.maroc.controller;
 
 import com.aymen.iss.maroc.model.Computer;
 import com.aymen.iss.maroc.service.ComputerService;
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -13,10 +15,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/computers")
@@ -38,6 +37,9 @@ public class ComputerController {
         return computerService.getAllComputers();
     }
 
+    @Autowired
+    private Cloudinary cloudinary;
+
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<?> addComputer(
             @RequestParam("pcName") String name,
@@ -51,13 +53,9 @@ public class ComputerController {
             @RequestParam("stockQuantity") String stockQuantity,
             @RequestParam("pcImages") MultipartFile[] images) {
 
-
-
         // Validate file count
-        final int MAX_FILES = 20;
         if (images != null && images.length > MAX_FILES) {
-            return ResponseEntity.badRequest()
-                    .body("Maximum " + MAX_FILES + " images allowed");
+            return ResponseEntity.badRequest().body("Maximum " + MAX_FILES + " images allowed");
         }
 
         Computer comp = new Computer();
@@ -73,11 +71,7 @@ public class ComputerController {
 
         if (images != null && images.length > 0) {
             List<String> savedImageUrls = new ArrayList<>();
-            Path uploadPath = Paths.get("src/main/resources/static", UPLOAD_DIR).toAbsolutePath().normalize();
-
             try {
-                Files.createDirectories(uploadPath);
-
                 for (MultipartFile image : images) {
                     if (!image.isEmpty()) {
                         // Validate file size
@@ -86,20 +80,20 @@ public class ComputerController {
                                     .body("File " + image.getOriginalFilename() + " exceeds size limit of 10MB");
                         }
 
-                        String fileExtension = image.getOriginalFilename()
-                                .substring(image.getOriginalFilename().lastIndexOf("."));
-                        String uniqueFilename = UUID.randomUUID() + fileExtension;
+                        // Upload to Cloudinary
+                        Map uploadResult = cloudinary.uploader().upload(
+                                image.getBytes(),
+                                ObjectUtils.asMap("folder", "computers") // optional folder name
+                        );
 
-                        Path destination = uploadPath.resolve(uniqueFilename);
-                        image.transferTo(destination);
-
-                        savedImageUrls.add("/" + UPLOAD_DIR + uniqueFilename);
+                        String imageUrl = uploadResult.get("secure_url").toString();
+                        savedImageUrls.add(imageUrl);
                     }
                 }
                 comp.setImageUrls(savedImageUrls);
             } catch (IOException e) {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                        .body("Failed to save images: " + e.getMessage());
+                        .body("Failed to upload images: " + e.getMessage());
             }
         }
 

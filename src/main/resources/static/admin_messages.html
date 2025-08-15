@@ -165,7 +165,7 @@
             });
 
             function loadMessages() {
-                fetch("http://localhost:8080/api/contact")
+                fetch("https://isswebproject-production.up.railway.app/api/contact")
                 .then(response => response.json())
                 .then(data => {
                     const container = document.getElementById("messagesGrid");
@@ -265,7 +265,7 @@
 
             function deleteMessage(id){
                 if(confirm("Voulez-vous vraiment supprimer ce message?")){
-                    fetch(`http://localhost:8080/api/contact/${id}`, {
+                    fetch(`https://isswebproject-production.up.railway.app/api/contact/${id}`, {
                         method: 'DELETE'
                     })
                     .then(response => {
@@ -288,7 +288,7 @@
 
             async function markReadMessage(Id) {
                 try {
-                    const response = await fetch(`http://localhost:8080/api/contact/${Id}/status`, {
+                    const response = await fetch(`https://isswebproject-production.up.railway.app/api/contact/${Id}/status`, {
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json'
@@ -310,7 +310,7 @@
             
             async function archMessage(Id) {
                 try {
-                    const response = await fetch(`http://localhost:8080/api/contact/${Id}/status`, {
+                    const response = await fetch(`https://isswebproject-production.up.railway.app/api/contact/${Id}/status`, {
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json'

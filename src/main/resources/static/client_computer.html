@@ -276,7 +276,7 @@
                 const container = document.getElementById("productsGrid");
                 container.innerHTML = '<div class="loading">Chargement des produits...</div>';
                 
-                fetch("http://localhost:8080/api/computers")
+                fetch("https://isswebproject-production.up.railway.app/api/computers")
                 .then(response => {
                     if (!response.ok) throw new Error("Erreur réseau");
                     return response.json();
@@ -347,7 +347,7 @@
                     if (computer.imageUrls && computer.imageUrls.length > 0) {
                         imageUrl = computer.imageUrls[0].startsWith('http') 
                             ? computer.imageUrls[0] 
-                            : `http://localhost:8080${computer.imageUrls[0]}`;
+                            : `https://isswebproject-production.up.railway.app${computer.imageUrls[0]}`;
                     }
 
                     card.innerHTML = `

@@ -119,5 +119,5 @@ window.addEventListener('resize', function() {
 
 // Initialize statistics on page load
 document.addEventListener('DOMContentLoaded', function() {
-    updateStatistics();
+    
 });

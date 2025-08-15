@@ -182,7 +182,7 @@
 
             // 1. Fixed loadCommands function
             function loadCommands() {
-                fetch("http://localhost:8080/api/command/sorted-by-id")
+                fetch("https://isswebproject-production.up.railway.app/api/command/sorted-by-id")
                 .then(response => {
                     if (!response.ok) throw new Error("Failed to load commands");
                     return response.json();
@@ -290,7 +290,7 @@
                     selectElement.disabled = true;
                     row.classList.add('updating');
 
-                    const response = await fetch(`http://localhost:8080/api/command/${commandId}/status`, {
+                    const response = await fetch(`https://isswebproject-production.up.railway.app/api/command/${commandId}/status`, {
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json',
@@ -312,7 +312,7 @@
                     row.classList.add('updated');
                     
                     // Update statistics
-                    const commands = await fetch("http://localhost:8080/api/command").then(res => res.json());
+                    const commands = await fetch("https://isswebproject-production.up.railway.app/api/command").then(res => res.json());
                     updateStats(commands);
                     
                 } catch (error) {

@@ -144,86 +144,92 @@
             </div>
         </main>
         <script>
-            document.getElementById("newsUploadForm").addEventListener("submit", function(e){
-                e.preventDefault();
+document.getElementById("newsUploadForm").addEventListener("submit", function(e){
+    e.preventDefault();
 
-                const formData = new FormData();
+    const formData = new FormData();
+    const fileInput = document.getElementById("newsImages");
+    const file = fileInput.files[0];
 
-                const file = document.getElementById("newsImages").files[0];
-                if(!file) return alert("Veuillez sélectionner une image.");
+    if (!file) return alert("Veuillez sélectionner une image.");
 
-                formData.append("image", file);
+    formData.append("image", file);
 
-                fetch("http://localhost:8080/api/news", {
-                    method: "POST",
-                    body: formData
-                })
-                .then(response => {
-                    if (!response.ok) throw new Error("Erreur d'upload");
-                    return response.json();
-                    loadNews();
-                })
-                .then(data => {
-                    alert("Image ajoutée avec succès!");
-                    loadNews();
-                })
-                .catch(error => alert("Erreur lors de l'ajout de l'image."))
-            })
-        </script>
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                loadNews();
-            });
-            function loadNews(){
-                const gallery = document.getElementById("imageGallery");
-                gallery.innerHTML = "";
+    fetch("https://isswebproject-production.up.railway.app/api/news", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => {
+        if (!response.ok) return response.text().then(text => { throw new Error(text); });
+        return response.json();
+    })
+    .then(data => {
+        alert("Image ajoutée avec succès!");
+        fileInput.value = ""; // Reset input
+        loadNews();
+    })
+    .catch(error => alert("Erreur lors de l'ajout de l'image: " + error.message));
+});
+</script>
 
-                fetch("http://localhost:8080/api/news")
-                .then(response => {
-                    if(!response.ok) throw new Error("Erreur de chargement des images");
-                    return response.json();
-                })
-                .then(data => {
-                    data.forEach(news => {
-                        const item = document.createElement("div");
-                        item.classList.add("gallery-item");
-                        const imageUrl = news.imageUrl;
-                        item.innerHTML = `
-                            <img src="${imageUrl}" alt="" class="gallery-image">
-                            <div class="gallery-info">
-                                <span class="gallery-type promotion">Nouveauté</span>
-                            </div>
-                            <div class="gallery-actions">
-                                <button class="action-btn delete" onclick="deleteNews(${news.id}, this)">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>`;
-                        gallery.appendChild(item);
-                    });
-                })
-                .catch(error => {
-                    gallery.innerHTML = `<p>Erreur de chargement: ${error.message}</p>`;
-                });
-            }
-            
-            async function deleteNews(id, buttonElement) {
-                if (!confirm("Supprimer cette image ?")) return;
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    loadNews();
+});
 
-                try {
-                    const response = await fetch(`http://localhost:8080/api/news/${id}`, {
-                        method: "DELETE"
-                    });
+function loadNews(){
+    const gallery = document.getElementById("imageGallery");
+    gallery.innerHTML = "";
 
-                    if (!response.ok) throw new Error("Échec de la suppression");
+    fetch("https://isswebproject-production.up.railway.app/api/news")
+    .then(response => {
+        if (!response.ok) throw new Error("Erreur de chargement des images");
+        return response.json();
+    })
+    .then(data => {
+        data.forEach(news => {
+            const item = document.createElement("div");
+            item.classList.add("gallery-item");
 
-                    // Remove the deleted item from the UI
-                    buttonElement.closest(".gallery-item").remove();
-                    console.log("Image supprimée !");
-                } catch (error) {
-                    alert("Erreur : " + error.message);
-                }
-            }
-        </script>
+            let imageUrl = news.imageUrl; // Cloudinary direct URL
+
+            item.innerHTML = `
+                <img src="${imageUrl}" alt="" class="gallery-image">
+                <div class="gallery-info">
+                    <span class="gallery-type promotion">Nouveauté</span>
+                </div>
+                <div class="gallery-actions">
+                    <button class="action-btn delete" onclick="deleteNews(${news.id}, this)">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>`;
+            gallery.appendChild(item);
+        });
+    })
+    .catch(error => {
+        gallery.innerHTML = `<p>Erreur de chargement: ${error.message}</p>`;
+    });
+}
+
+async function deleteNews(id, buttonElement) {
+    if (!confirm("Supprimer cette image ?")) return;
+
+    try {
+        const response = await fetch(`https://isswebproject-production.up.railway.app/api/news/${id}`, {
+            method: "DELETE"
+        });
+
+        if (!response.ok) throw new Error("Échec de la suppression");
+
+        buttonElement.closest(".gallery-item").remove();
+        console.log("Image supprimée !");
+    } catch (error) {
+        alert("Erreur : " + error.message);
+    }
+}
+</script>
+
+
         <script src="js_admin/admin_news.js"></script>
     </body>
 </html>

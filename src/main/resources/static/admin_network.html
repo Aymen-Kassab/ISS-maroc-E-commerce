@@ -345,7 +345,7 @@
                 }
 
                 try {
-                    const response = await fetch('http://localhost:8080/api/network', {
+                    const response = await fetch('https://isswebproject-production.up.railway.app/api/network', {
                         method: 'POST',
                         body: formData
                     });
@@ -375,7 +375,7 @@
             })
 
             function loadNetworks() {
-                fetch("http://localhost:8080/api/network")
+                fetch("https://isswebproject-production.up.railway.app/api/network")
                 .then(response => response.json())
                 .then(data => {
                     const container = document.getElementById("networkInventory");
@@ -398,7 +398,13 @@
                                 stockQty < 5 ? "low-stock" : "in-stock";
                 netCard.setAttribute("data-stock", stockStatus);
 
-                const imageUrl = net.imageUrls && net.imageUrls.length > 0 ? `http://localhost:8080${net.imageUrls[0]}` : '/placeholder.svg?height=200&width=350';
+                // Fix image URL handling
+                let imageUrl = '/placeholder.svg';
+                if (net.imageUrls && net.imageUrls.length > 0) {
+                    imageUrl = net.imageUrls[0].startsWith('http') 
+                        ? net.imageUrls[0] 
+                        : `https://isswebproject-production.up.railway.app${net.imageUrls[0]}`;
+                }
 
                 netCard.innerHTML = `
                     <img src="${imageUrl}" alt="${net.name}" class="network-image">
@@ -452,7 +458,7 @@
 
             function deleteNet(id) {
                 if (confirm("Voulez-vous vraiment supprimer cet equipement?")) {
-                    fetch(`http://localhost:8080/api/network/${id}`, {
+                    fetch(`https://isswebproject-production.up.railway.app/api/network/${id}`, {
                         method: 'DELETE'
                     })
                     .then(response => {
@@ -460,13 +466,13 @@
                             loadNetworks(); // Refresh the list
                             alert("Equipement supprimé avec succès!");
                         } else {
-                            throw new Error("Échec de la suppression");
+                            //throw new Error("Échec de la suppression");
                             loadNetworks();
                         }
                     })
                     .catch(error => {
                         console.error("Error:", error);
-                        alert("Erreur lors de la suppression");
+                        //alert("Erreur lors de la suppression");
                         loadNetworks();
                     });
                 }
