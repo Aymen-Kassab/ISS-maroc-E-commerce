@@ -13,51 +13,82 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* ===== Header ===== */
+/* Header Styles */
 .header {
-  background: linear-gradient(135deg, #f19999 0%, #ed4343 100%);
-  color: white;
-  padding: 0.75rem 0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    background: linear-gradient(135deg, #f19999 0%, #ed4343 100%);
+    color: white;
+    padding: 1rem 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .header-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    gap: 2rem;
+    flex-wrap: wrap;
+    height: auto;
+}
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    margin-top: 1px;
 }
 
 .logo-img {
-  width: 100px;
-  height: auto;
-  transition: transform 0.2s ease;
+    width: 120px;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
-.logo-img:active {
-  transform: scale(0.95);
+.icon-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background 0.3s;
+    position: relative;
+}
+
+.icon-btn:hover {
+    background: rgba(255,255,255,0.1);
 }
 
 .cart-badge {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  background: #ff0015;
-  color: white;
-  border-radius: 50%;
-  width: 22px;
-  height: 22px;
-  font-size: 0.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  border: 2px solid #fff;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ff0015;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid;
+}
+
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
 }
 
 /* ===== Main Cart Styles ===== */
@@ -194,12 +225,11 @@ body {
   margin-left: auto;
 }
 
-/* ===== Buttons ===== */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
+  border-radius: 12px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -215,7 +245,7 @@ body {
   background: white;
   color: #ff0015;
   border: 1px solid #ff0015;
-  padding: 0.75rem 1.25rem;
+  padding: 0.6rem 1.1rem;
   font-size: 0.9rem;
 }
 
